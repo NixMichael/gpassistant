@@ -24,13 +24,13 @@ class Database {
         }
     }
 
-    public function logIn ($email, $password) {
-        $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+    public function logIn ($email) {
+        $query = "SELECT * FROM users WHERE email = :email";
 
         $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['email'=>$email, 'password'=>$password]);
-        $count = $stmt->rowCount();
-        return $count;
+        $stmt->execute(['email'=>$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user;
     }
 
     public function existingUser ($email, $username) {
@@ -42,8 +42,8 @@ class Database {
         return $count;
     }
 
-    public function addNewUser ($email, $username, $password) {
-        $query = "INSERT INTO users (name, email, password) VALUES (:username, :email :password)";
+    public function registerUser ($email, $username, $password) {
+        $query = "INSERT INTO users (name, email, password) VALUES (:username, :email, :password)";
         $stmt = $this->dbh->prepare($query);
         return $stmt->execute(['username'=>$username, 'email'=>$email, 'password'=>$password]);
     }

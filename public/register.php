@@ -1,4 +1,5 @@
 <?php require_once '../app/includes/header.inc.php'; ?>
+<?php require_once '../app/includes/register.inc.php'; ?>
 
 <div class="container">
     <div class="logIn">
@@ -10,7 +11,7 @@
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptyusername') { echo 'username field required'; } ?></span>
             <input type="password" name="password" placeholder="Password" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptypassword') { echo 'password field required'; } ?></span>
-            <input type="password" name="password" placeholder="Repeat password" autocomplete="off"/>
+            <input type="password" name="repeatPassword" placeholder="Repeat password" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptypassword') { echo 'password field required'; } ?></span>
             <input type="submit" name="submit" value="Register"/>
             <a href="/index.php">Already registered?</a>

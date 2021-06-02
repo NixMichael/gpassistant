@@ -21,9 +21,9 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $result = $conn->logIn($email, $password);
+    $user = $conn->logIn($email);
 
-    if ($result === 1) {
+    if (password_verify($password, $user['password'])) {
         $_SESSION['useremail'] = $email;
         header('Location: /messages.php');
     } else {

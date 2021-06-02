@@ -7,39 +7,46 @@ require_once '../app/libraries/Database.class.php';
 
 $conn = new Database();
 
-if (!isset($_POST['submit'])) {
-    header('Location: /index.php');
-} else {
+if (isset($_POST['submit'])) {
+    // header('Location: /index.php');
+// } else {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $rptPassword = $_POST['repeatPassword'];
 
     if (!$email) {
-        header('Location: /index.php?error=emptyemail');
+        header('Location: /register.php?error=emptyemail');
         exit();
     }
 
     if (!$username) {
-        header('Location: /index.php?error=emptyusername');
+        header('Location: /register.php?error=emptyusername');
         exit();
     }
 
     if (!$password) {
-        header('Location: /index.php?error=emptypassword');
+        header('Location: /register.php?error=emptypassword');
         exit();
     }
 
     if (!$rptPassword) {
-        header('Location: /index.php?error=emptyrepeatpassword');
+        header('Location: /register.php?error=emptyrepeatpassword');
         exit();
     }
+
+    if ($password !== $rptPassword) {
+        header('Location: /register.php?error=passwordmismatch');
+        exit();
+    }
+
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $existing = $conn->existingUser($email, $username);
 
     if ($existing < 1) {
-        $_SESSION['useremail'] = $email;
-        header('Location: /messages.php');
+        $conn->registerUser($email, $username, $hash);
+        header('Location: /index.php?status=successfullyregistered');
     } else {
         header('Location: /index.php?error=userexists');
     }
