@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    color: rgb(84, 182, 182);
+    span {
+        color: white;
+        font-size: 1.3rem;
+    }
+}
+
+header {
+    color: white;
+    background-color: rgb(30,40,40);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    nav ul {
+        display: flex;
+        li {
+            list-style: none;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            a {
+                text-decoration: none;
+                color: white;
+                padding-bottom: 5px;
+                border-bottom: 5px solid rgb(84, 182, 182);
+            }
+        }
+    }
+}
+
+.container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .logIn {
+        box-shadow: 0 0 10px 0 rgba(20,20,20,0.5);
+        background-color: rgba(20,20,20,0.2);
+        background-color: rgba(141, 179, 197, 0.8);
+        border-radius: 10px;
+        padding: 1rem 3rem;
+        margin-bottom: 8rem;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input {
+                margin: 0;
+                &[type=submit] {
+                    margin-bottom: 0.5rem;
+                }
+            }
+            .fielderror {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                height: 1.5rem;
+                margin-top: 5px;
+                font-size: 0.8rem;
+                color: red;
+            }
+        }
+
+        a {
+            color: black;
+            font-size: 0.7rem;
+        }
+    }
+}
+
+.module {
+    box-shadow: 0 0 5px 0 rgb(0,0,0);
+    background-color: rgba(141, 179, 197, 0.8);
+    padding: 1rem;
+    width: 60vh;
+    height: 40vh;
+}
+
+footer {
+    color: white;
+    background-color: rgb(30,40,40);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
