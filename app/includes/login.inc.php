@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    // $user = $conn->logIn($email);
+    $user = $conn->logIn($email);
 
     if (password_verify($password, $user['password'])) {
         $_SESSION['useremail'] = $email;
