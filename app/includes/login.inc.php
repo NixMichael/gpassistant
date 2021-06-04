@@ -3,9 +3,9 @@
 session_start();
 
 require_once '../app/config.php';
-require_once '../app/libraries/Database.class.php';
+// require_once '../app/libraries/Database.class.php';
 
-$conn = new Database();
+// $conn = new Database();
 
 if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $user = $conn->logIn($email);
+    // $user = $conn->logIn($email);
 
     if (password_verify($password, $user['password'])) {
         $_SESSION['useremail'] = $email;
