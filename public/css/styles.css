@@ -16,6 +16,11 @@ h1 span {
   font-size: 1.3rem;
 }
 
+.highlight-text {
+  color: #54b6b6;
+  font-size: 1.2em;
+}
+
 header {
   color: white;
   background-color: #1e2828;
@@ -37,6 +42,9 @@ header nav ul li a {
   text-decoration: none;
   color: white;
   padding-bottom: 5px;
+}
+
+.link-highlight {
   border-bottom: 5px solid #54b6b6;
 }
 
@@ -49,9 +57,10 @@ header nav ul li a {
   text-align: center;
 }
 .container .logIn {
-  box-shadow: 0 0 10px 0 rgba(20, 20, 20, 0.5);
-  background-color: rgba(20, 20, 20, 0.2);
-  background-color: rgba(141, 179, 197, 0.8);
+  box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20, 20, 20, 0.7);
+  background-color: rgba(141, 179, 197, 0.2);
+  outline: 5px solid #8db3c5;
+  outline-offset: 10px;
   border-radius: 10px;
   padding: 1rem 3rem;
   margin-bottom: 8rem;
@@ -62,10 +71,17 @@ header nav ul li a {
   align-items: center;
 }
 .container .logIn form input {
+  font-size: 0.9rem;
   margin: 0;
+  padding: 5px;
 }
 .container .logIn form input[type=submit] {
   margin-bottom: 0.5rem;
+  background-color: #8db3c5;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
 }
 .container .logIn form .fielderror {
   display: flex;

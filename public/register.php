@@ -14,7 +14,7 @@
             <input type="password" name="repeatPassword" placeholder="Repeat password" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptypassword') { echo 'password field required'; } ?></span>
             <input type="submit" name="submit" value="Register"/>
-            <a href="/index.php">Already registered?</a>
+            <a href="/">Already registered?</a>
         </form>
     </div>
 </div>

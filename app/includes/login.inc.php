@@ -8,8 +8,11 @@ require_once '../app/libraries/Database.class.php';
 $conn = new Database();
 
 if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+
+    $email = trim($email);
+    $password = trim($password);
 
     if (!$email) {
         header('Location: /index.php?error=emptyemail');

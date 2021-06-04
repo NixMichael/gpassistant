@@ -8,8 +8,6 @@ require_once '../app/libraries/Database.class.php';
 $conn = new Database();
 
 if (isset($_POST['submit'])) {
-    // header('Location: /index.php');
-// } else {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];

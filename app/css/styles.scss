@@ -16,6 +16,11 @@ h1 {
     }
 }
 
+.highlight-text {
+    color:rgb(84, 182, 182);
+    font-size: 1.2em;
+}
+
 header {
     color: white;
     background-color: rgb(30,40,40);
@@ -34,10 +39,13 @@ header {
                 text-decoration: none;
                 color: white;
                 padding-bottom: 5px;
-                border-bottom: 5px solid rgb(84, 182, 182);
             }
         }
     }
+}
+
+.link-highlight {
+    border-bottom: 5px solid rgb(84, 182, 182);
 }
 
 .container {
@@ -49,9 +57,10 @@ header {
     text-align: center;
 
     .logIn {
-        box-shadow: 0 0 10px 0 rgba(20,20,20,0.5);
-        background-color: rgba(20,20,20,0.2);
-        background-color: rgba(141, 179, 197, 0.8);
+        box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
+        background-color: rgba(141, 179, 197, 0.2);
+        outline: 5px solid rgb(141, 179, 197);
+        outline-offset: 10px;
         border-radius: 10px;
         padding: 1rem 3rem;
         margin-bottom: 8rem;
@@ -61,9 +70,16 @@ header {
             flex-direction: column;
             align-items: center;
             input {
+                font-size: 0.9rem;
                 margin: 0;
+                padding: 5px;
                 &[type=submit] {
                     margin-bottom: 0.5rem;
+                    background-color: rgb(141, 179, 197);
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    color: white;
                 }
             }
             .fielderror {
