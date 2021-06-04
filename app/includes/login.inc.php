@@ -5,7 +5,7 @@ session_start();
 require_once '../app/config.php';
 require_once '../app/libraries/Database.class.php';
 
-// $conn = new Database();
+$conn = new Database();
 
 if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
