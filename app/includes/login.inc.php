@@ -14,10 +14,10 @@ define('DBUSER', 'b7fe4d33393ce4');
 define('DBPASS', '918aad18');
 
 class Database {
-    private $dbHost = DBHOST;
-    private $dbUser = DBUSER;
-    private $dbPass = DBPASS;
-    private $dbName = DBNAME;
+    private $dbHost = 'us-cdbr-east-04.cleardb.com';
+    private $dbUser = 'b7fe4d33393ce4';
+    private $dbPass = '918aad18';
+    private $dbName = 'heroku_0c5f40e63f30201';
     private $charset = CHARSET;
     private $dsn = '';
     private $dbh;
