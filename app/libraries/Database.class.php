@@ -54,8 +54,15 @@ class Database {
         $stmt = $this->dbh->prepare($query);
         $stmt->execute(['email'=>$email]);
         while($row = $stmt->fetch()) {
-            return $row['name'];
+            return $row['username'];
         }
+    }
+
+    public function fetchMessages ($username) {
+        $query = "SELECT * from messages Where username = :username";
+
+        $stmt = $this->dbh->prepare($query);
+        return $stmt->execute(['username'=>$username]);
     }
 
     public function query () {

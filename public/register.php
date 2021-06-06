@@ -1,10 +1,9 @@
-<?php require_once '../app/includes/header.inc.php'; ?>
-<?php require_once '../app/includes/register.inc.php'; ?>
+<?php require_once 'includes/header.inc.php'; ?>
 
 <div class="container">
     <div class="logIn">
         <h3>Register</h3>
-        <form action="" method="POST">
+        <form action="includes/register.inc.php" method="POST">
             <input type="text" name="email" placeholder="Email" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptyemail') { echo 'email field required'; } ?></span>
             <input type="text" name="username" placeholder="Username" autocomplete="off"/>
@@ -19,4 +18,4 @@
     </div>
 </div>
 
-<?php require_once '../app/includes/footer.inc.php'; ?>
+<?php require_once 'includes/footer.inc.php'; ?>

@@ -1,5 +1,6 @@
 <?php
 
+// IN DEVELOPMENT
 // define('DBNAME', 'gp_appt');
 // define('CHARSET', 'utf8mb4');
 
@@ -7,6 +8,7 @@
 // define('DBUSER', 'root');
 // define('DBPASS', 'C)dfishj)3');
 
+// IN PRODUCTION
 define('DBNAME', 'heroku_0c5f40e63f30201');
 define('CHARSET', 'utf8mb4');
 

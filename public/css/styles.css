@@ -52,7 +52,7 @@ header nav ul li a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
 }
 .container .logIn {
@@ -94,6 +94,49 @@ header nav ul li a {
 .container .logIn a {
   color: black;
   font-size: 0.7rem;
+}
+.container .calendar {
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  border-top: 3px solid #1e2828;
+  padding-top: 2rem;
+}
+.container .calendar .dates {
+  padding: 0;
+  width: 300px;
+  min-height: 300px;
+}
+.container .calendar .dates .navigate-dates {
+  background-color: #8db3c5;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 5px 0 black;
+}
+.container .calendar .dates .navigate-dates .current-month {
+  color: white;
+  background-color: #1e2828;
+  flex-grow: 1;
+  margin: 0 0.5rem;
+  padding: 0.5rem 0;
+}
+.container .calendar .dates .date-selection {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+.container .calendar .dates .date-selection .day {
+  background-color: #54b6b6;
+  width: 3ch;
+  height: 3ch;
+  padding: 0.3rem;
+}
+.container .times h2 {
+  margin: 0;
 }
 
 .module {

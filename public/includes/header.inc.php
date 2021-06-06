@@ -23,7 +23,7 @@
             <?php else: ?>
                 <li><a href="/appointments.php">My Appointment</a></li>
                 <li><a href="/messages.php">Messages</a></li>
-                <li><a href="logout.inc.php">Log Out</a></li>
+                <li><a href="/includes/logout.inc.php">Log Out</a></li>
             <?php endif; ?>
         </ul>
     </nav>

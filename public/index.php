@@ -1,6 +1,5 @@
 <?php
-require_once '../app/includes/login.inc.php';
-require_once '../app/includes/header.inc.php';
+require_once 'includes/header.inc.php';
 
 $loggedIn = isset($_SESSION['useremail']) ? true : false;
 ?>
@@ -10,7 +9,7 @@ $loggedIn = isset($_SESSION['useremail']) ? true : false;
     <?php if (!$loggedIn): ?>
     <div class="logIn">
         <h3>Log In</h3>
-        <form action="" method="POST">
+        <form action="/includes/login.inc.php" method="POST">
             <input type="text" name="email" placeholder="email" value="<?php echo isset($_SESSION['']) ?>" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptyemail') { echo 'email field required'; } ?></span>
             <input type="password" name="password" placeholder="password" autocomplete="off"/>
@@ -30,4 +29,4 @@ $loggedIn = isset($_SESSION['useremail']) ? true : false;
     <?php endif; ?>
 </div>
 
-<?php require_once '../app/includes/footer.inc.php'; ?>
+<?php require_once 'includes/footer.inc.php'; ?>

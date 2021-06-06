@@ -5,7 +5,7 @@ require_once '../app/libraries/Database.class.php';
 
 $conn = new Database();
 
-require_once '../app/includes/header.inc.php'; ?>
+require_once 'includes/header.inc.php'; ?>
 
 <div class="container">
     <?php if (!isset($_SESSION['useremail'])): ?>
@@ -15,10 +15,10 @@ require_once '../app/includes/header.inc.php'; ?>
     <?php else: ?>
         <div class="module">
             <?php $result = $conn->fetchUser($_SESSION['useremail']);
-            echo '<h4>Welcome '.$result.'!</h4>';
+            echo '<h4>Welcome '.ucfirst($result).'!</h4>';
             ?>
         </div>
     <?php endif; ?>
 </div>
 
-<?php require_once '../app/includes/footer.inc.php'; ?>
+<?php require_once 'includes/footer.inc.php'; ?>

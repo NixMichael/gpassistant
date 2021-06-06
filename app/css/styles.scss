@@ -52,7 +52,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
 
     .logIn {
@@ -95,6 +95,53 @@ header {
         a {
             color: black;
             font-size: 0.7rem;
+        }
+    }
+
+    .calendar {
+        width: 80vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        border-top: 3px solid rgb(30,40,40);
+        padding-top: 2rem;
+        .dates {
+            padding: 0;
+            width: 300px;
+            min-height: 300px;
+            .navigate-dates {
+                background-color: rgb(141, 179, 197);
+                padding: 0 0.5rem;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 0 5px 0 rgb(0,0,0);
+                .current-month {
+                    color: white;
+                    background-color: rgb(30,40,40);
+                    flex-grow: 1;
+                    margin: 0 0.5rem;
+                    padding: 0.5rem 0;
+                }
+            }
+            .date-selection {
+                display: flex;
+                justify-content: center;
+                gap: 5px;
+                flex-wrap: wrap;
+                padding: 0.5rem;
+
+                .day {
+                    background-color:rgb(84, 182, 182);
+                    width: 3ch;
+                    height: 3ch;
+                    padding: 0.3rem;
+                }
+            }
+        }
+    }
+    .times {
+        h2 {
+            margin: 0;
         }
     }
 }
