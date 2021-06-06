@@ -1,6 +1,7 @@
 const links = document.querySelectorAll('.menu a')
 const urlEls = window.location.href.split('/').reverse();
-const currentPage = urlEls[0]
+let currentPage = urlEls[0]
+currentPage = currentPage.split('?')[0]
 
 links.forEach((link, i) => {
     if (link.getAttribute('href') === `/${currentPage}`) {

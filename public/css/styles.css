@@ -106,7 +106,6 @@ header nav ul li a {
 .container .calendar .dates {
   padding: 0;
   width: 300px;
-  min-height: 300px;
 }
 .container .calendar .dates .navigate-dates {
   background-color: #8db3c5;
@@ -115,28 +114,62 @@ header nav ul li a {
   align-items: center;
   box-shadow: 0 0 5px 0 black;
 }
-.container .calendar .dates .navigate-dates .current-month {
+.container .calendar .dates .navigate-dates .nav-months {
+  cursor: pointer;
+}
+.container .calendar .dates .navigate-dates #current-month {
   color: white;
-  background-color: #1e2828;
+  background-color: #5a5a5a;
   flex-grow: 1;
   margin: 0 0.5rem;
   padding: 0.5rem 0;
 }
 .container .calendar .dates .date-selection {
   display: flex;
-  justify-content: center;
-  gap: 5px;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0.5rem;
+  gap: 5px;
+  padding-left: 20px;
 }
 .container .calendar .dates .date-selection .day {
   background-color: #54b6b6;
-  width: 3ch;
-  height: 3ch;
+  width: 3.3ch;
+  height: 3.3ch;
   padding: 0.3rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
-.container .times h2 {
-  margin: 0;
+.container .calendar .dates .date-selection .day:hover {
+  background-color: rgba(84, 182, 182, 0.55);
+}
+.container .dates h2, .container .times h2 {
+  margin-top: 0;
+}
+.container .dates .time-slots, .container .times .time-slots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+.container .dates .time-slots .slot, .container .times .time-slots .slot {
+  display: block;
+  background-color: #54b6b6;
+  padding: 0.5rem 4rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.container .dates .time-slots .slot:hover, .container .times .time-slots .slot:hover {
+  background-color: rgba(84, 182, 182, 0.55);
+}
+.container .alert {
+  background-color: rgba(255, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 4rem 6rem;
 }
 
 .module {

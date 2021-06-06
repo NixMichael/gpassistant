@@ -76,4 +76,12 @@ class Database {
             echo $row['name'];
         }
     }
+
+    public function addAppointment ($day, $time) {
+        $query = "INSERT INTO appointments (day, time) VALUES (:day, :time)";
+
+        $stmt = $this->dbh->prepare($query);
+
+        return $stmt->execute(['day'=>$day, 'time'=>$time]);
+    }
 }
