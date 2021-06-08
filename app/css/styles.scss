@@ -196,3 +196,79 @@ footer {
     display: flex;
     justify-content: center;
 }
+
+.flexCal {
+    // width: 100%;
+    min-width: 700px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5em 0;
+
+    a {
+        color: white;
+        text-decoration: none;
+        background-color: rgba(0,0,0,0.4);
+        padding: 0.5rem 1rem;
+    }
+}
+
+.dayBox {
+    background-color: rgba(0,0,0,0.4);
+    flex-grow: 1;
+    padding: 0.5rem 0;
+    max-width: calc((100% * 1/7) - 4px);
+}
+
+.datesArea {
+    // width: 100%;
+    min-width: 700px;
+    display: flex;
+    & > .testCal {
+        width: calc((100% * 1/7) - 4px);
+        background-color: rgba(84, 182, 182, 0.55);
+        margin: 2px;
+        color: white;
+        text-decoration: none;
+
+        // a {
+        //     color: white;
+        //     text-decoration: none;
+        // }        
+    }
+}
+
+.calendar-are {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    & > div {
+        // width: 60%;
+    &:first-child {
+        & > div > div {
+            background: rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            padding: 1rem 2rem;
+        }
+    }
+    &:last-child {
+        width: 40%;
+        .results {
+            display: flex;
+            flex-wrap: wrap;
+            background: rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            padding: 1rem 2rem;
+            .result {
+                color: white;
+                background-color: rgba(84, 182, 182, 0.55);
+                padding: 0.5rem 1rem;
+                margin: 10px;
+                border-radius: 10px;
+                text-decoration: none;
+            }
+        }
+    }
+
+
+    }
+}

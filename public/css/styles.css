@@ -188,4 +188,65 @@ footer {
   justify-content: center;
 }
 
+.flexCal {
+  min-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0;
+}
+.flexCal a {
+  color: white;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+}
+
+.dayBox {
+  background-color: rgba(0, 0, 0, 0.4);
+  flex-grow: 1;
+  padding: 0.5rem 0;
+  max-width: calc((100% * 1/7) - 4px);
+}
+
+.datesArea {
+  min-width: 700px;
+  display: flex;
+}
+.datesArea > .testCal {
+  width: calc((100% * 1/7) - 4px);
+  background-color: rgba(84, 182, 182, 0.55);
+  margin: 2px;
+  color: white;
+  text-decoration: none;
+}
+
+.calendar-are {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.calendar-are > div:first-child > div > div {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+.calendar-are > div:last-child {
+  width: 40%;
+}
+.calendar-are > div:last-child .results {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+.calendar-are > div:last-child .results .result {
+  color: white;
+  background-color: rgba(84, 182, 182, 0.55);
+  padding: 0.5rem 1rem;
+  margin: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

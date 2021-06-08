@@ -84,4 +84,18 @@ class Database {
 
         return $stmt->execute(['day'=>$day, 'time'=>$time]);
     }
+
+    public function checkTimes ($day) {
+        // $query = "SELECT time FROM appointments WHERE day = :date";
+
+        // $stmt = $this->dbh->prepare($query);
+        // return $stmt->execute(['date' => $day]);
+
+        $query = "SELECT time from appointments WHERE day = :date";
+
+        $stmt = $this->dbh->prepare($query);
+        $stmt->execute(['date'=>$day]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
