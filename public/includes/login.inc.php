@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 
     if (password_verify($password, $user['password'])) {
         $_SESSION['useremail'] = $email;
-        header('Location: /messages.php');
+        header('Location: /makeCalendar.php');
     } else {
         header('Location: /index.php?error=failedlogin');
     }

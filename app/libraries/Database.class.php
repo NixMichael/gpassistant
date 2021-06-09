@@ -96,6 +96,12 @@ class Database {
         $stmt = $this->dbh->prepare($query);
         $stmt->execute(['date'=>$day]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
+
+        $sel = [];
+        foreach($result as $r) {
+            $sel[] = $r['time'];
+        }
+        return $sel;
     }
 }

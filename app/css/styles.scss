@@ -197,7 +197,7 @@ footer {
     justify-content: center;
 }
 
-.flexCal {
+.navCal {
     // width: 100%;
     min-width: 700px;
     display: flex;
@@ -205,10 +205,13 @@ footer {
     margin: 0.5em 0;
 
     a {
-        color: white;
+        color: black;
         text-decoration: none;
-        background-color: rgba(0,0,0,0.4);
         padding: 0.5rem 1rem;
+        &:hover {
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 5px;
+        }
     }
 }
 
@@ -220,15 +223,18 @@ footer {
 }
 
 .datesArea {
-    // width: 100%;
-    min-width: 700px;
-    display: flex;
+    // min-width: 700px;
+    display: grid;
+    grid-template-columns: repeat(7, auto);
     & > .testCal {
-        width: calc((100% * 1/7) - 4px);
         background-color: rgba(84, 182, 182, 0.55);
         margin: 2px;
+        padding: 0.5rem 0;
         color: white;
         text-decoration: none;
+        &:hover {
+            background-color: rgba(84, 182, 182, 0.35);
+        }
 
         // a {
         //     color: white;
@@ -237,27 +243,28 @@ footer {
     }
 }
 
-.calendar-are {
+.calendar-area {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    border-top: 3px solid black;
     & > div {
-        // width: 60%;
-    &:first-child {
-        & > div > div {
-            background: rgba(0,0,0,0.1);
-            border-radius: 1rem;
-            padding: 1rem 2rem;
-        }
+        &:first-child {
+            & > div > div {
+                background: rgba(0,0,0,0.1);
+                border-radius: 1rem;
+                padding: 1rem 2rem;
+            }
     }
     &:last-child {
         width: 40%;
         .results {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(5, auto);
             background: rgba(0,0,0,0.1);
             border-radius: 1rem;
             padding: 1rem 2rem;
+            
             .result {
                 color: white;
                 background-color: rgba(84, 182, 182, 0.55);
@@ -265,6 +272,9 @@ footer {
                 margin: 10px;
                 border-radius: 10px;
                 text-decoration: none;
+                &:hover {
+                    background-color: rgba(84, 182, 182, 0.35);
+                }
             }
         }
     }

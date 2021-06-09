@@ -188,20 +188,17 @@ footer {
   justify-content: center;
 }
 
-.navCal {
+.flexCal {
   min-width: 700px;
   display: flex;
   justify-content: space-between;
   margin: 0.5em 0;
 }
-.navCal a {
-  color: black;
+.flexCal a {
+  color: white;
   text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 0.5rem 1rem;
-}
-.navCal a:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
 }
 
 .dayBox {
@@ -212,42 +209,40 @@ footer {
 }
 
 .datesArea {
-  display: grid;
-  grid-template-columns: repeat(7, auto);
+  min-width: 700px;
+  display: flex;
 }
 .datesArea > .testCal {
+  width: calc((100% * 1/7) - 4px);
   background-color: rgba(84, 182, 182, 0.55);
   margin: 2px;
-  padding: 0.5rem 0;
   color: white;
   text-decoration: none;
 }
-.datesArea > .testCal:hover {
-  background-color: rgba(84, 182, 182, 0.35);
-}
 
-.calendar-area {
+.calendar-are {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  border-top: 3px solid black;
 }
-.calendar-area > div:first-child > div > div {
+.calendar-are > div:first-child > div > div {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1rem 2rem;
 }
-.calendar-area > div:last-child {
-  width: 40%;
+.calendar-are > div:last-child {
+  width: 30%;
 }
-.calendar-area > div:last-child .results {
+.calendar-are > div:last-child .results {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  align-content: center;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1rem 2rem;
 }
-.calendar-area > div:last-child .results .result {
+.calendar-are > div:last-child .results .result {
   color: white;
   background-color: rgba(84, 182, 182, 0.55);
   padding: 0.5rem 1rem;
@@ -255,8 +250,5 @@ footer {
   border-radius: 10px;
   text-decoration: none;
 }
-.calendar-area > div:last-child .results .result:hover {
-  background-color: rgba(84, 182, 182, 0.35);
-}
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=css.styles.css.map */

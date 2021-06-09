@@ -3,27 +3,44 @@
 require_once '../../app/config.php';
 require_once '../../app/libraries/Database.class.php';
 
-$day = $_GET['queryday'];
-$month = $_GET['querymonth'];
+$date = $_GET['querydate'];
+$month = intval($_GET['querymonth']);
 $year = $_GET['queryyear'];
 
 
 $conn = new Database();
 
-$response = $conn->checkTimes($day);
+$response = $conn->checkTimes($date);
 
-// $result = ['9:30', '10:00', '1:45', '2:30', '3:30', '3:45', '4:00', '4:45', '5:15'];
-// $result = json_encode($times);
-// print_r($times);
 
-$times = [];
-foreach($response as $time) {
-    $times[] = $time['time'];
-}
-
-// print_r($b);
+$times = array_filter(TIMELIST, function ($t) {
+    global $response;
+    $chk = [];
+    foreach($response as $r) {
+        if ($r == $t) {
+            $chk[] = $t;
+        }
+    }
+    if (!empty($chk)) {
+        return false;
+    } else {
+        return true;
+    }
+});
 
 $result = json_encode($times);
+?>
 
+<form id="form" action="/makeCalendar.php" method="POST">
+    <input type="hidden" name="result" value=<?php echo $result?>>
+    <input type="hidden" name= "date" value=<?php echo $date?>>
+    <input type="hidden" name= "month" value=<?php echo $month?>>
+    <input type="hidden" name= "year" value=<?php echo $year?>>
+</form>
 
-header("Location: /makeCalendar.php?result=$result");
+<script>
+    const frm = document.getElementById('form');
+    frm.submit();
+</script>
+
+<!-- header("Location: /makeCalendar.php?result=$result&date=$date&month=$month&year=$year"); -->
