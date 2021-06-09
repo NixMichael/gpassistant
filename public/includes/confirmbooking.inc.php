@@ -16,5 +16,5 @@ if (isset($_POST['submit'])) {
 
     header('Location: /appointmentbooked.php?status=success');
 } else if (isset($_POST['cancel'])) {
-    header('Location: /makeCalendar.php');
+    header('Location: /appointments.php');
 }

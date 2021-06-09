@@ -31,7 +31,7 @@ $times = array_filter(TIMELIST, function ($t) {
 $result = json_encode($times);
 ?>
 
-<form id="form" action="/makeCalendar.php" method="POST">
+<form id="form" action="/appointments.php" method="POST">
     <input type="hidden" name="result" value=<?php echo $result?>>
     <input type="hidden" name= "date" value=<?php echo $date?>>
     <input type="hidden" name= "month" value=<?php echo $month?>>

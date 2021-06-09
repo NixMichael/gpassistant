@@ -189,19 +189,23 @@ footer {
 }
 
 .navCal {
-  min-width: 700px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5em 0;
 }
 .navCal a {
   color: black;
+  background-color: white;
+  border-radius: 5px;
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
 .navCal a:hover {
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
+}
+.navCal a:nth-of-type(2) {
+  background: none;
 }
 
 .dayBox {
@@ -213,24 +217,28 @@ footer {
 
 .datesArea {
   display: grid;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(7, 8ch);
+  justify-content: center;
 }
 .datesArea > .testCal {
   background-color: rgba(84, 182, 182, 0.55);
-  margin: 2px;
+  margin: 3px;
   padding: 0.5rem 0;
   color: white;
   text-decoration: none;
 }
 .datesArea > .testCal:hover {
-  background-color: rgba(84, 182, 182, 0.35);
+  color: black;
+  background-color: rgba(84, 182, 182, 0.25);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
+  padding: 0.4rem 0;
+  font-size: 1.1rem;
 }
 
 .calendar-area {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  border-top: 3px solid black;
 }
 .calendar-area > div:first-child > div > div {
   background: rgba(0, 0, 0, 0.1);
@@ -242,12 +250,14 @@ footer {
 }
 .calendar-area > div:last-child .results {
   display: grid;
-  grid-template-columns: repeat(5, auto);
   background: rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1rem 2rem;
 }
-.calendar-area > div:last-child .results .result {
+.calendar-area > div:last-child .results .results-area {
+  grid-template-columns: repeat(5, auto);
+}
+.calendar-area > div:last-child .results .results-area .result {
   color: white;
   background-color: rgba(84, 182, 182, 0.55);
   padding: 0.5rem 1rem;
@@ -256,8 +266,9 @@ footer {
   text-decoration: none;
   border: none;
 }
-.calendar-area > div:last-child .results .result:hover {
-  background-color: rgba(84, 182, 182, 0.35);
+.calendar-area > div:last-child .results .results-area .result:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 4px white, 0 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 .confirmBooking {

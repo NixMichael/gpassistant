@@ -78,7 +78,7 @@ class Database {
     }
 
     public function addAppointment ($day, $time, $note) {
-        $query = "INSERT INTO appointments (day, time, note) VALUES (:day, :time, :note)";
+        $query = "INSERT INTO appointments (day, time, notes) VALUES (:day, :time, :note)";
 
         $stmt = $this->dbh->prepare($query);
 
