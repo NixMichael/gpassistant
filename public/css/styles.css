@@ -157,6 +157,8 @@ footer {
   font-size: 1rem;
   margin: 0.5em 0;
   border-bottom: 2px solid black;
+  padding: 0.5rem 0 1rem;
+  padding: 0.5rem 0 1rem;
   padding-bottom: 0.5rem;
 }
 .calendar-area > div:first-of-type .appointment-heading span {

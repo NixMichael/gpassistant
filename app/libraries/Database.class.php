@@ -77,12 +77,28 @@ class Database {
         }
     }
 
-    public function addAppointment ($day, $time, $note) {
-        $query = "INSERT INTO appointments (day, time, notes) VALUES (:day, :time, :note)";
+    public function addAppointment ($day, $time) {
+        $query = "INSERT INTO appointments (day, time) VALUES (:day, :time)";
+
+        $stmt = $this->dbh->prepare($query);
+
+        return $stmt->execute(['day'=>$day, 'time'=>$time]);
+    }
+
+    public function addAppointmentNote ($day, $time, $note) {
+        $query = "UPDATE appointments SET notes = :note WHERE day = :day AND time = :time";
 
         $stmt = $this->dbh->prepare($query);
 
         return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note]);
+    }
+
+    public function removeAppointment ($day, $time) {
+        $query = "DELETE FROM appointments WHERE day = :day AND time = :time";
+
+        $stmt = $this->dbh->prepare($query);
+
+        return $stmt->execute(['day'=>$day, 'time'=>$time]);
     }
 
     public function checkTimes ($day) {

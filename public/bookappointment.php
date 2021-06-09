@@ -2,10 +2,18 @@
 
 require_once 'includes/header.inc.php';
 
+require_once '../app/config.php';
+require_once '../app/libraries/Database.class.php';
+
 $time = $_POST['time'];
 $date = $_POST['date'];
 $month = $_POST['month'];
 $year = $_POST['year'];
+
+$conn = new Database();
+
+$result = $conn->addAppointment($date, $time);
+
 ?>
 
 <div class="container">
