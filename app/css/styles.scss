@@ -238,10 +238,12 @@ footer {
                 padding: 0.5rem 1rem 0;
                 background-color: $originalFeatureColor;
                 &:hover {
-                    background-color: rgba(0,0,0,0.3);
+                    color: white;
+                    background-color: $featureColor;
                 }
                 &:nth-of-type(2) {
                     background: none;
+                    padding: 0 0 5px;
                 }
             }
         }

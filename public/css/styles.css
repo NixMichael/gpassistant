@@ -173,10 +173,12 @@ footer {
   background-color: rgba(84, 182, 182, 0.55);
 }
 .calendar-area > div:first-of-type .appointment-heading a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  background-color: #54b6b6;
 }
 .calendar-area > div:first-of-type .appointment-heading a:nth-of-type(2) {
   background: none;
+  padding: 0 0 5px;
 }
 .calendar-area > div:first-of-type .datesArea {
   display: grid;
