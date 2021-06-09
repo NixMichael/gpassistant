@@ -1,8 +1,8 @@
 <?php
 
-$confirmation = $_GET['booked'];
+$confirmation = $_GET['status'];
 
-$result = $confirmation == 1 ? 'Booking successful' : 'Booking error';
+$result = $confirmation == 'success' ? 'Thank you. You successfully booked an appointment' : 'Booking error. Please try again.';
 
 require_once 'includes/header.inc.php';
 ?>

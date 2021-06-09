@@ -78,16 +78,17 @@ if ($_GET['month'] && $_GET['year']) {
         </div>
         <div>
             <h2>Choose a time on <?php echo $daysOfWeek[$weekday]." ".$selectedDateNum.$postfix." ".$monthNm." ".$_GET['year']; ?></h2>
-            <div class="results">
+            <form action="/bookappointment.php" method="POST" class="results">
                 <?php if (isset($_POST['result'])) {
                     $result = json_decode($_POST['result']);
                 }
                 foreach($result as $time) : ?>
-                    <a class='result' href='/bookappointment.php?date=<?php echo $selectedDateNum ?>&time=<?php echo $time ?>'>
-                        <?php echo $time ?>
-                    </a>
+                    <input type="submit" name="time" value="<?php echo $time ?>" class='result'>
+                    <input type="hidden" name="date" value="<?php echo $selectedDateNum ?>">
+                    <input type="hidden" name="month" value="<?php echo $_POST['month'] ?>">
+                    <input type="hidden" name="year" value="<?php echo $_POST['year'] ?>">
                 <?php endforeach; ?>
-            </div>
+            </form>
         </div>
     </div>
 </div>
