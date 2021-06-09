@@ -40,9 +40,9 @@ function buildCalendar($month, $year) {
     $prevYear = date('Y', mktime(0, 0, 0, $month - 1, 1, $year));
     $nextYear = date('Y', mktime(0, 0, 0, $month + 1, 1, $year));
     $calendar = "<div><h2>1. Choose a date</h2><div>";
-    $calendar .= "<div class='navCal'>";
+    $calendar .= "<div class='navCal appointment-heading'>";
     $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
-    $calendar .= "<a href='?month=".date('m')."&year=".date('Y')."'><h2 style='margin: 0'>".$monthName." ".$year."</h2></a>";
+    $calendar .= "<a href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
     $calendar .= "<a href='?month=".$nextMonth."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
     // Days of week
     // $calendar .= "<div class='flexCal'>";
@@ -80,7 +80,7 @@ if ($_GET['month'] && $_GET['year']) {
             <h2>2. Choose a time</h2>
             <?php if (isset($_POST['month'])) : ?>
             <form action="/bookappointment.php" method="POST" class="results">
-                <h2><?php echo $daysOfWeek[$weekday]." ".$selectedDateNum.$postfix." ".$monthNm." ".$_GET['year'];?></h2>
+                <div class="appointment-heading"><?php echo $daysOfWeek[$weekday]." ".$selectedDateNum.$postfix." ".$monthNm." ".$_GET['year'];?></div>
                 <div class="results-area">
                 <?php if (isset($_POST['result'])) {
                     $result = json_decode($_POST['result']);
@@ -97,3 +97,5 @@ if ($_GET['month'] && $_GET['year']) {
         </div>
     </div>
 </div>
+
+<?php require_once 'includes/footer.inc.php'; ?>

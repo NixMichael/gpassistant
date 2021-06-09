@@ -95,55 +95,6 @@ header nav ul li a {
   color: black;
   font-size: 0.7rem;
 }
-.container .calendar {
-  width: 80vw;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  border-top: 3px solid #1e2828;
-  padding-top: 2rem;
-}
-.container .calendar .dates {
-  padding: 0;
-  width: 300px;
-}
-.container .calendar .dates .navigate-dates {
-  background-color: #8db3c5;
-  padding: 0 0.5rem;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0 5px 0 black;
-}
-.container .calendar .dates .navigate-dates .nav-months {
-  cursor: pointer;
-}
-.container .calendar .dates .navigate-dates #current-month {
-  color: white;
-  background-color: #5a5a5a;
-  flex-grow: 1;
-  margin: 0 0.5rem;
-  padding: 0.5rem 0;
-}
-.container .calendar .dates .date-selection {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 0.5rem;
-  gap: 5px;
-  padding-left: 20px;
-}
-.container .calendar .dates .date-selection .day {
-  background-color: #54b6b6;
-  width: 3.3ch;
-  height: 3.3ch;
-  padding: 0.3rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-}
-.container .calendar .dates .date-selection .day:hover {
-  background-color: rgba(84, 182, 182, 0.55);
-}
 .container .dates h2, .container .times h2 {
   margin-top: 0;
 }
@@ -188,26 +139,6 @@ footer {
   justify-content: center;
 }
 
-.navCal {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.5em 0;
-}
-.navCal a {
-  color: black;
-  background-color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-.navCal a:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-.navCal a:nth-of-type(2) {
-  background: none;
-}
-
 .dayBox {
   background-color: rgba(0, 0, 0, 0.4);
   flex-grow: 1;
@@ -215,33 +146,56 @@ footer {
   max-width: calc((100% * 1/7) - 4px);
 }
 
-.datesArea {
+.calendar-area {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.calendar-area > div:first-of-type .appointment-heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 0.5em 0;
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+}
+.calendar-area > div:first-of-type .appointment-heading span {
+  font-size: 1.4rem;
+}
+.calendar-area > div:first-of-type .appointment-heading a {
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 0.5rem 1rem 0;
+  background-color: rgba(84, 182, 182, 0.55);
+}
+.calendar-area > div:first-of-type .appointment-heading a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.calendar-area > div:first-of-type .appointment-heading a:nth-of-type(2) {
+  background: none;
+}
+.calendar-area > div:first-of-type .datesArea {
   display: grid;
   grid-template-columns: repeat(7, 8ch);
   justify-content: center;
 }
-.datesArea > .testCal {
-  background-color: rgba(84, 182, 182, 0.55);
+.calendar-area > div:first-of-type .datesArea > .testCal {
+  background-color: #54b6b6;
   margin: 3px;
   padding: 0.5rem 0;
   color: white;
   text-decoration: none;
 }
-.datesArea > .testCal:hover {
+.calendar-area > div:first-of-type .datesArea > .testCal:hover {
   color: black;
   background-color: rgba(84, 182, 182, 0.25);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
   padding: 0.4rem 0;
   font-size: 1.1rem;
 }
-
-.calendar-area {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
 .calendar-area > div:first-child > div > div {
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1rem 2rem;
 }
@@ -249,9 +203,14 @@ footer {
   width: 40%;
 }
 .calendar-area > div:last-child .results {
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1rem 2rem;
+}
+.calendar-area > div:last-child .results .appointment-heading {
+  font-size: 1.4rem;
+  margin: 0.5em 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid black;
 }
 .calendar-area > div:last-child .results .results-area {
   display: grid;
@@ -260,6 +219,7 @@ footer {
 .calendar-area > div:last-child .results .results-area .result {
   color: white;
   background-color: rgba(84, 182, 182, 0.55);
+  background-color: #54b6b6;
   padding: 0.5rem 1rem;
   margin: 10px;
   border-radius: 10px;
