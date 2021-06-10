@@ -11,6 +11,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-family: 'Open Sans', sans-serif;
+    // overflow: hidden;
 }
 
 h1 {
@@ -55,7 +56,6 @@ header {
 .container {
     padding: 1rem;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -189,12 +189,76 @@ header {
     }
 }
 
-.module {
+.messages {
+    align-self: flex-start;
     box-shadow: 0 0 5px 0 rgb(0,0,0);
-    background-color: rgba(141, 179, 197, 0.8);
-    padding: 1rem;
-    width: 60vh;
-    height: 40vh;
+    background-color: rgb(84, 182, 182);
+    padding: 1rem 0 0;
+    width: 90%;
+
+    .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 0 1rem;
+        margin-bottom: 1rem;
+        color: white;
+        h3 {
+            margin: 0;
+        }
+    }
+
+    .message-button {
+        color: $featureColor;
+        background-color:rgb(233, 233, 233);
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 0.75rem;
+        margin: 0.5rem 1rem;
+        text-decoration: none;
+    }
+
+    .msg-area {
+        margin: 0 auto;
+        padding-top: 1rem;
+        background-color:rgb(236, 236, 236);
+        min-height: 20ch;
+        width: 100%;
+        ul {
+            padding: 0;
+            li {
+                display: flex;
+                align-items: center;
+                list-style: none;
+                text-align: left;
+                // padding: 1rem;
+                background-color: rgb(221, 221, 221);
+                margin-bottom: 0.5rem;
+                // &:nth-child(2) {
+                //     background-color: rgb(214, 214, 214);
+                // }
+
+                span {
+                    padding: 1rem;
+                    color: black;
+                    display: flex;
+                    flex-direction: column;
+                    width: 12ch;
+                    margin-right: 1rem;
+                }
+
+                span:last-of-type {
+                    border-left: 2px dashed white;
+                    border-right: 2px dashed white;
+                    text-align: center;
+                }
+            }
+
+            .Doctor {
+                background-color: rgb(178, 148, 190);
+            }
+        }
+    }
 }
 
 footer {
@@ -212,10 +276,27 @@ footer {
     max-width: calc((100% * 1/7) - 4px);
 }
 
+.appointments {
+    position: fixed;
+    left: 10vw;
+    width: 80vw;
+    top: 15vh;
+    height: 40vh;
+    background-color: rgba(0,0,0,0.4);
+}
+
 .calendar-area {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-self: flex-start;
+    padding-top: 5rem;
+    & > div {
+        background-color:rgb(236, 236, 236);
+        box-shadow: 0 6px 6px 0 rgba(0,0,0,0.3);
+        border-radius: 10px;
+        padding: 1rem 3rem;
+    }
     & > div:first-of-type {
         .appointment-heading {
             display: flex;
@@ -252,7 +333,7 @@ footer {
             display: grid;
             grid-template-columns: repeat(7, 8ch);
             justify-content: center;
-            & > .testCal {
+            & > .calendar-element {
                 background-color: $featureColor;
                 margin: 3px;
                 padding: 0.5rem 0;
@@ -265,6 +346,13 @@ footer {
                     padding: 0.4rem 0;
                     font-size: 1.1rem;
                 }
+            }
+            .highlight-date {
+                color: black;
+                background-color: rgba(84, 182, 182, 0.25);
+                box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                padding: 0.4rem 0;
+                font-size: 1.1rem;
             }
         }
     }

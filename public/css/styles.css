@@ -50,7 +50,6 @@ header nav ul li a {
 .container {
   padding: 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -123,12 +122,66 @@ header nav ul li a {
   padding: 4rem 6rem;
 }
 
-.module {
+.messages {
+  align-self: flex-start;
   box-shadow: 0 0 5px 0 black;
-  background-color: rgba(141, 179, 197, 0.8);
+  background-color: #54b6b6;
+  padding: 1rem 0 0;
+  width: 90%;
+}
+.messages .message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+.messages .message-header h3 {
+  margin: 0;
+}
+.messages .message-button {
+  color: #54b6b6;
+  background-color: #e9e9e9;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 1rem;
+  text-decoration: none;
+}
+.messages .msg-area {
+  margin: 0 auto;
+  padding-top: 1rem;
+  background-color: #ececec;
+  min-height: 20ch;
+  width: 100%;
+}
+.messages .msg-area ul {
+  padding: 0;
+}
+.messages .msg-area ul li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: left;
+  background-color: #dddddd;
+  margin-bottom: 0.5rem;
+}
+.messages .msg-area ul li span {
   padding: 1rem;
-  width: 60vh;
-  height: 40vh;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 12ch;
+  margin-right: 1rem;
+}
+.messages .msg-area ul li span:last-of-type {
+  border-left: 2px dashed white;
+  border-right: 2px dashed white;
+  text-align: center;
+}
+.messages .msg-area ul .Doctor {
+  background-color: #b294be;
 }
 
 footer {
@@ -146,10 +199,27 @@ footer {
   max-width: calc((100% * 1/7) - 4px);
 }
 
+.appointments {
+  position: fixed;
+  left: 10vw;
+  width: 80vw;
+  top: 15vh;
+  height: 40vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .calendar-area {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-self: flex-start;
+  padding-top: 5rem;
+}
+.calendar-area > div {
+  background-color: #ececec;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 1rem 3rem;
 }
 .calendar-area > div:first-of-type .appointment-heading {
   display: flex;
@@ -185,14 +255,21 @@ footer {
   grid-template-columns: repeat(7, 8ch);
   justify-content: center;
 }
-.calendar-area > div:first-of-type .datesArea > .testCal {
+.calendar-area > div:first-of-type .datesArea > .calendar-element {
   background-color: #54b6b6;
   margin: 3px;
   padding: 0.5rem 0;
   color: white;
   text-decoration: none;
 }
-.calendar-area > div:first-of-type .datesArea > .testCal:hover {
+.calendar-area > div:first-of-type .datesArea > .calendar-element:hover {
+  color: black;
+  background-color: rgba(84, 182, 182, 0.25);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
+  padding: 0.4rem 0;
+  font-size: 1.1rem;
+}
+.calendar-area > div:first-of-type .datesArea .highlight-date {
   color: black;
   background-color: rgba(84, 182, 182, 0.25);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);

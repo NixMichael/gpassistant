@@ -10,3 +10,13 @@ links.forEach((link, i) => {
         link.classList.remove('link-highlight')
     }
 })
+
+const appointments = document.querySelector('.appointments')
+const bookNow = document.querySelector('.calendar-area')
+
+const showBooking = () => {
+    appointments.style.opacity = '0'
+    setTimeout(() => {
+        bookNow.style.transform = 'translateX(0)'
+    }, 200)
+}

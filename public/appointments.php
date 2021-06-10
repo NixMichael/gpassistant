@@ -8,6 +8,12 @@ $weekday = intval(date('N', $selectedDate)) - 1;
 $monthNm = date('F', $selectedDate);
 $selectedDateNum = $_POST['date'];
 
+function checkSelected($date) {
+    if ($date == $_POST['date']) {
+        return 'highlight-date';
+    }
+}
+
 function checkDates($dates) {
     return array_filter($dates, function ($e) {
         global $selectedDateNum;
@@ -44,15 +50,10 @@ function buildCalendar($month, $year) {
     $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
     $calendar .= "<a href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
     $calendar .= "<a href='?month=".$nextMonth."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
-    // Days of week
-    // $calendar .= "<div class='flexCal'>";
-    // foreach($daysOfWeek as $day) {
-    //     $calendar .= "<div class='dayBox'>".$day."</div>";
-    // }
     $calendar .= "<div class='datesArea'>";
     for ($c = 0; $c < $numberOfDays; $c++) {
         $i = $c + 1;
-        $calendar .= "<a href='includes/checkavailability.inc.php?querydate=".$i."&querymonth=".$month."&queryyear=".$year."' class='testCal'>".$i."</a>";
+        $calendar .= "<a href='includes/checkavailability.inc.php?querydate=".$i."&querymonth=".$month."&queryyear=".$year."' class='calendar-element  ".checkSelected($i)."   '>".$i."</a>";
     }
     $calendar .= "</div></div></div>";
     return $calendar;
@@ -72,12 +73,16 @@ if ($_GET['month'] && $_GET['year']) {
 ?>
 
 <div class='container'>
+    <!-- <div class="appointments">
+        <div>No appointments booked</div>
+        <div onclick="showBooking()">Book new appointment...</div>
+    </div> -->
     <div class='calendar-area'>
         <div>
             <?php echo buildCalendar($month, $year); ?>
         </div>
         <div>
-            <h2>2. Choose a time</h2>
+            <div><h2>2. Choose a time</h2></div>
             <?php if (isset($_POST['month'])) : ?>
             <form action="/bookappointment.php" method="POST" class="results">
                 <div class="appointment-heading"><?php echo $daysOfWeek[$weekday]." ".$selectedDateNum.$postfix." ".$monthNm." ".$_GET['year'];?></div>

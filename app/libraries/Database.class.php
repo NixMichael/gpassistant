@@ -34,7 +34,7 @@ class Database {
     }
 
     public function existingUser ($email, $username) {
-        $query = "SELECT * FROM users WHERE email = :email OR name = :username";
+        $query = "SELECT * FROM users WHERE email = :email OR username = :username";
 
         $stmt = $this->dbh->prepare($query);
         $stmt->execute(['email'=>$email, 'username'=>$username]);
@@ -43,7 +43,7 @@ class Database {
     }
 
     public function registerUser ($email, $username, $password) {
-        $query = "INSERT INTO users (name, email, password) VALUES (:username, :email, :password)";
+        $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
         $stmt = $this->dbh->prepare($query);
         return $stmt->execute(['username'=>$username, 'email'=>$email, 'password'=>$password]);
     }
@@ -56,13 +56,6 @@ class Database {
         while($row = $stmt->fetch()) {
             return $row['username'];
         }
-    }
-
-    public function fetchMessages ($username) {
-        $query = "SELECT * from messages Where username = :username";
-
-        $stmt = $this->dbh->prepare($query);
-        return $stmt->execute(['username'=>$username]);
     }
 
     public function query () {
@@ -118,6 +111,27 @@ class Database {
         foreach($result as $r) {
             $sel[] = $r['time'];
         }
+        return $sel;
+    }
+
+    public function fetchMessages ($user) {
+        $query = "SELECT message, date, sender FROM messages WHERE username = :username ORDER BY date DESC";
+        $stmt = $this->dbh->prepare($query);
+        $stmt->execute(['username'=>$user]);
+
+        $result = $stmt->fetchAll();
+
+        $sel = [];
+        foreach($result as $r) {
+            $msgs['date'] = $r['date'];
+            $msgs['msg'] = $r['message'];
+            $msgs['sender'] = $r['sender'];
+            $sel[] = $msgs;
+        }
+
+        // echo "<pre>";
+        // print_r($sel);
+        // echo "</pre>";
         return $sel;
     }
 }

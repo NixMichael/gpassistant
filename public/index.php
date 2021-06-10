@@ -5,6 +5,7 @@ $loggedIn = isset($_SESSION['useremail']) ? true : false;
 ?>
 
 <div class="container">
+    <div>
     <?php echo $_GET['status'] == 'successfullyregistered' ? '<h3>Registration complete. Now please sign in.</h3>' : ''; ?>
     <?php if (!$loggedIn): ?>
     <div class="logIn">
@@ -27,6 +28,7 @@ $loggedIn = isset($_SESSION['useremail']) ? true : false;
     <?php else: ?>
         <div>Home</div>
     <?php endif; ?>
+    </div>
 </div>
 
 <?php require_once 'includes/footer.inc.php'; ?>

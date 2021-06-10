@@ -21,8 +21,8 @@
                 <li><a href="/">Log In</a></li>
                 <li><a href="/register.php">Register</a></li>
             <?php else: ?>
-                <li><a href="/appointments.php">My Appointment</a></li>
-                <li><a href="/messages.php">Messages</a></li>
+                <li><a href="/appointments.php">My Appointments</a></li>
+                <li><a href="/messages.php">My Messages</a></li>
                 <li><a href="/includes/logout.inc.php">Log Out</a></li>
             <?php endif; ?>
         </ul>
