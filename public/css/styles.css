@@ -161,18 +161,19 @@ header nav ul li a {
 }
 .messages .msg-area ul li {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   list-style: none;
   text-align: left;
+  padding: 1rem;
   background-color: #dddddd;
   margin-bottom: 0.5rem;
 }
 .messages .msg-area ul li span {
-  padding: 1rem;
+  padding: 0 1rem;
   color: black;
   display: flex;
   flex-direction: column;
-  width: 12ch;
+  min-width: 12ch;
   margin-right: 1rem;
 }
 .messages .msg-area ul li span:last-of-type {
@@ -200,12 +201,47 @@ footer {
 }
 
 .appointments {
-  position: fixed;
-  left: 10vw;
   width: 80vw;
-  top: 15vh;
   height: 40vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  margin: 2rem auto 0;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 3px solid black;
+  text-align: center;
+  transition: opacity 400ms ease;
+}
+.appointments > div {
+  padding: 0;
+  margin: 2rem;
+}
+.appointments .booked-appointment {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: #54b6b6;
+  border-bottom: 1px solid black;
+}
+.appointments .appointment-note {
+  background: none;
+  justify-content: flex-start;
+  margin-bottom: 3rem;
+}
+.appointments .button {
+  background-color: rgba(84, 182, 182, 0.55);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  width: 20ch;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+.appointments .button:hover {
+  outline: none;
+  background-color: #54b6b6;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .calendar-area {
@@ -213,28 +249,25 @@ footer {
   display: flex;
   justify-content: space-around;
   align-self: flex-start;
-  padding-top: 5rem;
+  padding-top: 2rem;
+  position: absolute;
+  top: 5rem;
+  transition: opacity 600ms ease;
+  opacity: 0;
+  z-index: -1;
 }
-.calendar-area > div {
-  background-color: #ececec;
-  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 1rem 3rem;
-}
-.calendar-area > div:first-of-type .appointment-heading {
+.calendar-area > div:first-of-type .calendar-heading {
   display: flex;
   justify-content: space-between;
   font-size: 1rem;
   margin: 0.5em 0;
   border-bottom: 2px solid black;
   padding: 0.5rem 0 1rem;
-  padding: 0.5rem 0 1rem;
-  padding-bottom: 0.5rem;
 }
-.calendar-area > div:first-of-type .appointment-heading span {
+.calendar-area > div:first-of-type .calendar-heading span {
   font-size: 1.4rem;
 }
-.calendar-area > div:first-of-type .appointment-heading a {
+.calendar-area > div:first-of-type .calendar-heading a {
   color: black;
   background-color: white;
   border-radius: 5px;
@@ -242,11 +275,11 @@ footer {
   padding: 0.5rem 1rem 0;
   background-color: rgba(84, 182, 182, 0.55);
 }
-.calendar-area > div:first-of-type .appointment-heading a:hover {
+.calendar-area > div:first-of-type .calendar-heading a:hover {
   color: white;
   background-color: #54b6b6;
 }
-.calendar-area > div:first-of-type .appointment-heading a:nth-of-type(2) {
+.calendar-area > div:first-of-type .calendar-heading a:nth-of-type(2) {
   background: none;
   padding: 0 0 5px;
 }
@@ -282,15 +315,19 @@ footer {
 }
 .calendar-area > div:last-child {
   width: 40%;
+  opacity: 0.2;
 }
 .calendar-area > div:last-child .results {
   border-radius: 1rem;
   padding: 1rem 2rem;
 }
-.calendar-area > div:last-child .results .appointment-heading {
-  font-size: 1.4rem;
+.calendar-area > div:last-child .results .times-heading {
+  display: flex;
+  justify-content: center;
   margin: 0.5em 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 1rem;
+  font-size: 1.4rem;
+  opacity: 0;
   border-bottom: 2px solid black;
 }
 .calendar-area > div:last-child .results .results-area {

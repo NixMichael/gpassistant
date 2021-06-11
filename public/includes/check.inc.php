@@ -28,18 +28,5 @@ $times = array_filter(TIMELIST, function ($t) {
 });
 
 $result = json_encode($times);
-?>
 
-<form id="form" action="/appointments.php" method="POST">
-    <input type="hidden" name="result" value=<?php echo $result?>>
-    <input type="hidden" name= "date" value=<?php echo $date?>>
-    <input type="hidden" name= "month" value=<?php echo $month?>>
-    <input type="hidden" name= "year" value=<?php echo $year?>>
-</form>
-
-<script>
-    const frm = document.getElementById('form');
-    frm.submit();
-</script>
-
-<!-- header("Location: /makeCalendar.php?result=$result&date=$date&month=$month&year=$year"); -->
+print_r($result);

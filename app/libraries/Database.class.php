@@ -78,12 +78,12 @@ class Database {
         return $stmt->execute(['day'=>$day, 'time'=>$time]);
     }
 
-    public function addAppointmentNote ($day, $time, $note) {
-        $query = "UPDATE appointments SET notes = :note WHERE day = :day AND time = :time";
+    public function addAppointmentNote ($day, $time, $note, $patient) {
+        $query = "UPDATE appointments SET notes = :note, username = :patient WHERE day = :day AND time = :time";
 
         $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note]);
+        return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note, 'patient'=>$patient]);
     }
 
     public function removeAppointment ($day, $time) {
@@ -92,6 +92,26 @@ class Database {
         $stmt = $this->dbh->prepare($query);
 
         return $stmt->execute(['day'=>$day, 'time'=>$time]);
+    }
+
+    public function fetchAppointments ($user) {
+        $query = "SELECT id, day, time, notes, doctor_id FROM appointments WHERE username = :username";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['username'=>$user]);
+
+        $results = $stmt->fetchAll();
+
+        return $results;
+    }
+
+    public function cancelAppointment ($id, $time) {
+        $query = "DELETE FROM appointments WHERE id = :id AND time = :time";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['id'=>$id, 'time'=>$time]);
     }
 
     public function checkTimes ($day) {

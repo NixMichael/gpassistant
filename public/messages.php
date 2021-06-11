@@ -33,7 +33,7 @@ require_once 'includes/header.inc.php'; ?>
                     $datetime = explode(' ', $msg['date']);
                     $date = $datetime[0];
                     $time = $datetime[1];
-                    $sender = $msg['sender'] == 'D' ? 'Doctor' : ucfirst($username);
+                    $sender = $msg['sender'] == 'D' ? 'Doctor' : 'You';
                     echo "<li class='".$sender."'><span>$sender</span><span>$date <br> ($time)</span> $msg[msg]</li>";
                 }
             };
