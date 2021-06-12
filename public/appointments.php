@@ -22,11 +22,12 @@ $appointments = $conn->fetchAppointments($username);
 // $monthNm = date('F', $selectedDate);
 // $selectedDateNum = $_POST['date'];
 
-function checkSelected($date) {
-    if ($date == 1) {
-        return 'highlight-date';
-    }
-}
+// SET CURRENT DATE SELECTION WITH PHP
+// function checkSelected($date) {
+//     if ($date == 1) {
+//         return 'highlight-date';
+//     }
+// }
 
 // ADD DATE POSTFIX
 // function checkDates($dates) {
@@ -63,9 +64,17 @@ function buildCalendar($month, $year) {
     $nextYear = date('Y', mktime(0, 0, 0, $month + 1, 1, $year));
     $calendar = "<div><h2>1. Choose a date</h2><div>";
     $calendar .= "<div class='calendar-heading'>";
-    $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
+    if ($prevMonth >= date('m')) {
+        $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
+    } else {
+        $calendar .= "<a href='?month=".($prevMonth + 1)."&year=".date('Y')."'>&lt; ".$prevMonthName."</a>";
+    }
     $calendar .= "<a href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
-    $calendar .= "<a href='?month=".$nextMonth."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
+    if ($nextMonth <= (date('m') + 2)) {
+        $calendar .= "<a href='?month=".$nextMonth."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
+    } else {
+        $calendar .= "<a href='?month=".($nextMonth - 1)."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
+    }
     $calendar .= "<form class='datesArea'>";
     for ($c = 0; $c < $numberOfDays; $c++) {
         $i = $c + 1;
@@ -79,29 +88,33 @@ function buildCalendar($month, $year) {
 
 }
 
-$first = mktime(0, 0, 0, $month, 1, $year);
-$getDate = getdate($first);
+// $first = mktime(0, 0, 0, $month, 1, $year);
+// $getDate = getdate($first);
 
 if ($_GET['month'] && $_GET['year']) {
     $month = $_GET['month'];
     $year = $_GET['year'];
+    $monthName = date('M', mktime(0,0,0,$month,1,$year));
 } else {
-    $month = $getDate['mon'];
-    $year = $getDate['year'];
+    $month = date('m');
+    $year = date('Y');
 }
 ?>
 
+<?php if (!$_GET['month']) : ?>
 <div class="appointments">
     <?php if (!$appointments) : ?>
         <div>No upcoming appointments.</div>
-        <div class='button' onclick="showBooking()">Make an appointment</div>
+        <!-- <div class='button' onclick="showBooking()">Make an appointment</div> -->
+        <a class='button' href="?month=<?php echo $month ?>">Make an appointment</a>
     <?php else : ?>
         <div>Upcoming appointments:</div>
-        <div class='booked-appointment'><span><?php echo $appointments[0]['day'] ?></span><span><?php echo $appointments[0]['time'] ?></span><span><?php echo $appointments[0]['doctor_id'] ?></span></div>
-        <div class='booked-appointment appointment-note'><?php echo $appointments[0]['notes'] ?></div>
+        <div class='booked-appointment'><span><?php echo "Date: ".$appointments[0]['day'] ?></span><span><?php echo "Time: ".$appointments[0]['time'] ?></span><span>Doctor: <?php echo $appointments[0]['doctor_id'] ?: 'Unassigned' ?></span></div>
+        <div class='booked-appointment appointment-note'><strong>Message to doctor:&emsp;</strong><?php echo $appointments[0]['notes'] ?: 'None provided' ?></div>
         <a class="button" href="includes/cancelappointment.inc.php?id=<?php echo $appointments[0]['id'] ?>&time=<?php echo $appointments[0]['time'] ?>">Cancel Appointment</a>
-        <?php endif; ?>
+    <?php endif; ?>
 </div>
+<?php endif; ?>
 <div class='container'>
     <div class='calendar-area'>
         <div id='choose-date'>
@@ -111,9 +124,7 @@ if ($_GET['month'] && $_GET['year']) {
             <div><h2>2. Choose a time</h2></div>
             <form action="/bookappointment.php" method="POST" class="results">
                 <div class="times-heading"></div>
-                <div class="results-area">
-
-                </div>
+                <div class="results-area"></div>
             </form>
         </div>
     </div>

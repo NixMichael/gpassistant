@@ -55,6 +55,7 @@ header {
 
 .container {
     padding: 1rem;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,6 +103,43 @@ header {
             font-size: 0.7rem;
         }
     }
+
+    .newMessageContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .newMessage{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            padding: 2rem;
+            color: white;
+            background-color: $featureColor;
+            textarea {
+                resize: none;
+                width: 80%;
+                min-width: 60ch;
+                height: 15ch;
+            }
+            a, input {
+                margin: 2rem;
+                color: black;
+                text-decoration: none;
+                background-color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+    }
+
     // ORIGINAL CALENDAR STYLING
     // .calendar {
     //     width: 80vw;
@@ -183,9 +221,25 @@ header {
     }
 
     .alert {
-        background-color: rgba(255,0,0,0.4);
+        background-color: $featureColor;
         border-radius: 10px;
-        padding: 4rem 6rem;
+        padding: 2rem 3rem 3rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+        a {
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+            
+        }
     }
 }
 
@@ -193,6 +247,7 @@ header {
     align-self: flex-start;
     box-shadow: 0 0 5px 0 rgb(0,0,0);
     background-color: rgb(84, 182, 182);
+    margin-top: 2rem;
     padding: 1rem 0 0;
     width: 90%;
 
@@ -220,23 +275,30 @@ header {
 
     .msg-area {
         margin: 0 auto;
-        padding-top: 1rem;
+        padding: 1rem 0;
         background-color:rgb(236, 236, 236);
-        min-height: 20ch;
+        min-height: 50vh;
+        max-height: calc(100vh - 40vh);
         width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         ul {
             padding: 0;
+            margin: 0;
             li {
                 display: flex;
                 align-items: stretch;
                 list-style: none;
                 text-align: left;
                 padding: 1rem;
-                background-color: rgb(221, 221, 221);
+                background-color: rgb(202, 219, 209);
                 margin-bottom: 0.5rem;
-                // &:nth-child(2) {
-                //     background-color: rgb(214, 214, 214);
-                // }
+
+                &:last-of-type {
+                    margin-bottom: 1rem;
+                }
 
                 span {
                     padding: 0 1rem;
@@ -255,8 +317,16 @@ header {
             }
 
             .Doctor {
-                background-color: rgb(178, 148, 190);
+                background-color: rgb(223, 223, 223);
             }
+        }
+        .message-button {
+            align-self: center;
+            margin: 0.5rem;
+            padding: 0.5rem 3rem;
+            color: white;
+            background-color:rgb(84, 182, 182);
+
         }
     }
 }
@@ -285,6 +355,8 @@ footer {
     border: 3px solid black;
     text-align: center;
     transition: opacity 400ms ease;
+    background-color: white;
+    z-index: 2;
 
     & > div {
         padding: 0;
@@ -312,6 +384,7 @@ footer {
         box-shadow: 0 0 6px 0 rgba(0,0,0,0.3);
         border-radius: 5px;
         width: 20ch;
+        margin: 0 auto;
         padding: 0.5rem 1rem;
         cursor: pointer;
         color: black;
@@ -332,10 +405,7 @@ footer {
     padding-top: 2rem;
     position: absolute;
     top: 5rem;
-    // transform: translateY(-50vh);
     transition: opacity 600ms ease;
-    opacity: 0;
-    z-index: -1;
     & > div:first-of-type {
         .calendar-heading {
             display: flex;
@@ -356,7 +426,6 @@ footer {
                 padding: 0.5rem 1rem 0;
                 background-color: $originalFeatureColor;
                 &:hover {
-                    color: white;
                     background-color: $featureColor;
                 }
                 &:nth-of-type(2) {
@@ -477,6 +546,7 @@ footer {
             border-radius: 5px;
             color: white;
             min-width: 25ch;
+            cursor: pointer;
             &:last-of-type {
                 background-color: rgba(255,0,0,0.4);
             }

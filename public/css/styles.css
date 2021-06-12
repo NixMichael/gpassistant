@@ -49,6 +49,7 @@ header nav ul li a {
 
 .container {
   padding: 1rem;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +95,40 @@ header nav ul li a {
   color: black;
   font-size: 0.7rem;
 }
+.container .newMessageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .newMessageContainer .newMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 2rem;
+  color: white;
+  background-color: #54b6b6;
+}
+.container .newMessageContainer .newMessage textarea {
+  resize: none;
+  width: 80%;
+  min-width: 60ch;
+  height: 15ch;
+}
+.container .newMessageContainer .newMessage a, .container .newMessageContainer .newMessage input {
+  margin: 2rem;
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
 .container .dates h2, .container .times h2 {
   margin-top: 0;
 }
@@ -117,15 +152,31 @@ header nav ul li a {
   background-color: rgba(84, 182, 182, 0.55);
 }
 .container .alert {
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: #54b6b6;
   border-radius: 10px;
-  padding: 4rem 6rem;
+  padding: 2rem 3rem 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+.container .alert a {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .messages {
   align-self: flex-start;
   box-shadow: 0 0 5px 0 black;
   background-color: #54b6b6;
+  margin-top: 2rem;
   padding: 1rem 0 0;
   width: 90%;
 }
@@ -151,13 +202,19 @@ header nav ul li a {
 }
 .messages .msg-area {
   margin: 0 auto;
-  padding-top: 1rem;
+  padding: 1rem 0;
   background-color: #ececec;
-  min-height: 20ch;
+  min-height: 50vh;
+  max-height: calc(100vh - 40vh);
   width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .messages .msg-area ul {
   padding: 0;
+  margin: 0;
 }
 .messages .msg-area ul li {
   display: flex;
@@ -165,8 +222,11 @@ header nav ul li a {
   list-style: none;
   text-align: left;
   padding: 1rem;
-  background-color: #dddddd;
+  background-color: #cadbd1;
   margin-bottom: 0.5rem;
+}
+.messages .msg-area ul li:last-of-type {
+  margin-bottom: 1rem;
 }
 .messages .msg-area ul li span {
   padding: 0 1rem;
@@ -182,7 +242,14 @@ header nav ul li a {
   text-align: center;
 }
 .messages .msg-area ul .Doctor {
-  background-color: #b294be;
+  background-color: #dfdfdf;
+}
+.messages .msg-area .message-button {
+  align-self: center;
+  margin: 0.5rem;
+  padding: 0.5rem 3rem;
+  color: white;
+  background-color: #54b6b6;
 }
 
 footer {
@@ -209,6 +276,8 @@ footer {
   border: 3px solid black;
   text-align: center;
   transition: opacity 400ms ease;
+  background-color: white;
+  z-index: 2;
 }
 .appointments > div {
   padding: 0;
@@ -233,6 +302,7 @@ footer {
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   width: 20ch;
+  margin: 0 auto;
   padding: 0.5rem 1rem;
   cursor: pointer;
   color: black;
@@ -253,8 +323,6 @@ footer {
   position: absolute;
   top: 5rem;
   transition: opacity 600ms ease;
-  opacity: 0;
-  z-index: -1;
 }
 .calendar-area > div:first-of-type .calendar-heading {
   display: flex;
@@ -276,7 +344,6 @@ footer {
   background-color: rgba(84, 182, 182, 0.55);
 }
 .calendar-area > div:first-of-type .calendar-heading a:hover {
-  color: white;
   background-color: #54b6b6;
 }
 .calendar-area > div:first-of-type .calendar-heading a:nth-of-type(2) {
@@ -389,6 +456,7 @@ footer {
   border-radius: 5px;
   color: white;
   min-width: 25ch;
+  cursor: pointer;
 }
 .confirmBooking form button:last-of-type {
   background-color: rgba(255, 0, 0, 0.4);

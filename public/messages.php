@@ -7,12 +7,22 @@ session_start();
 
 $conn = new Database();
 
-$msgs = $conn->fetchMessages($_SESSION['useremail']);
+if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
+    $_SESSION['showall'] = true;
+} else if (isset($_GET['showAll']) && $_GET['showAll'] == 'false') {
+    $_SESSION['showall'] = false;
+} else if (empty($_SESSION['showall'])) {
+    $_SESSION['showall'] = false;
+}
+
+$msgs = $conn->fetchMessages($_SESSION['useremail'], $_SESSION['showall']);
+
+$msgs = array_reverse($msgs);
 
 require_once 'includes/header.inc.php'; ?>
 
-<div class="container">
-    <?php if (isset($_SESSION['useremail']) == false): ?>
+<div class="container msg-container">
+    <?php if (isset($_SESSION['useremail']) && $_SESSION['useremail'] == false): ?>
         <div>
             <h3>Not logged in</h3>
         </div>
@@ -22,7 +32,7 @@ require_once 'includes/header.inc.php'; ?>
             $username = $conn->fetchUser($_SESSION['useremail']);
             echo "<div class='message-header'>";
             echo '<h3>Hi '.ucfirst($username).', here are your messages:</h3>';
-            echo "<div><a class='message-button' href=''>Send Message</a><a class='message-button' href=''>Refresh</a></div>";
+            echo "<div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>";
             echo "</div>";
             echo "<div class='msg-area'>";
             echo "<ul>";
@@ -40,9 +50,26 @@ require_once 'includes/header.inc.php'; ?>
             
             echo "</ul>";
             ?>
+            <?php if (!$_SESSION['showall']) : ?>
+                <a class='message-button' href='<?php echo $_SERVER['self'] ?>?showAll=true'>View All</a>
+            <?php else : ?>
+                <a class='message-button' href='<?php echo $_SERVER['self'] ?>?showAll=false'>Show Less</a>
+            <?php endif ?>
             </div>
         </div>
     <?php endif; ?>
+    <?php if (isset($_GET['newmessage'])) : ?>
+        <div class="newMessageContainer">
+            <div class="newMessage">
+                <h3>Compose a new message:</h3>
+                <form action="includes/sendmessage.inc.php" method="POST">
+                    <textarea name="message"></textarea>
+                    <input type="submit" name="newmessage" value="Send Message">
+                    <a href="/messages.php">Cancel</a>
+                </form>
+            </div>
+        </div>
+    <?php endif ?>
 </div>
 
 <?php require_once 'includes/footer.inc.php'; ?>

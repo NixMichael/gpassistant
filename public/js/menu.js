@@ -17,9 +17,15 @@ const bookNow = document.querySelector('.calendar-area')
 const showBooking = () => {
     setTimeout(() => {
         bookNow.style.opacity = '1'
-    }, 200)
+        bookNow.style.zIndex = '0'
+    }, 400)
     appointments.style.opacity = '0'
-    bookNow.style.zIndex = '0'
+    bookNow.style.zIndex = '1'
+}
+
+if (currentPage === 'messages.php') {
+    const messagesContainer = document.querySelector('.msg-area')
+    messagesContainer.scrollTop = messagesContainer.scrollHeight
 }
 
 const submitAppointmentDate = (date, month, year) => {
@@ -34,6 +40,20 @@ const submitAppointmentDate = (date, month, year) => {
 
     selectedDate.classList.add('highlight-date')
 
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    let monthName = monthNames[month - 1]
+
+    let prefix = 'th'
+    if (date == 1 || date == 21 || date == 31) {
+        prefix = 'st'
+    } else if (date == 2 || date == 22) {
+        prefix = 'nd'
+    } else if (date == 3 || date == 23) {
+        prefix = 'rd'
+    } else {
+        prefix = 'th'
+    }
 
     $.ajax({
         type: "GET",
@@ -42,7 +62,7 @@ const submitAppointmentDate = (date, month, year) => {
         cache: false,
         success: function(r) {
             let times = $.parseJSON(r)
-            let timesHeading = `${date}/${month}/${year}`
+            let timesHeading = `${date}${prefix} ${monthName} ${year}`
             let content = ''
             $.each(times, function(i, v) {
                 content += `
