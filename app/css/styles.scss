@@ -1,38 +1,44 @@
 $originalFeatureColor: rgba(84, 182, 182, 0.55);
 $featureColor: rgb(84, 182, 182);
-
-
+$bgColor: rgb(30,40,40);
+$fontColorLight: rgb(255,255,255);
+$fontColorDark: rgb(0,0,0);
+$colorLight: rgb(255,255,255);
+$colorOffWhite: rgb(233, 233, 233);
+$colorDark: rgb(0,0,0);
 
 body {
-    margin-top: 3rem;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-family: 'Open Sans', sans-serif;
-    // overflow: hidden;
 }
 
 h1 {
-    color: rgb(84, 182, 182);
+    color: $featureColor;
     span {
-        color: white;
+        color: $fontColorLight;
         font-size: 1.3rem;
     }
 }
 
-.highlight-text {
-    color:rgb(84, 182, 182);
+header, footer {
+    color: $fontColorLight;
+    background-color: $bgColor;
+    display: flex;
+    .highlight-text {
+        color:$featureColor;
+    }
 }
 
 header {
-    color: white;
-    background-color: rgb(30,40,40);
-    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+
     nav ul {
         display: flex;
         li {
@@ -40,17 +46,23 @@ header {
             padding: 0 2rem;
             text-align: center;
             position: relative;
+
             a {
                 text-decoration: none;
-                color: white;
+                color: $fontColorLight;
                 padding-bottom: 5px;
+            }
+
+            .link-highlight {
+                border-bottom: 5px solid $featureColor;
             }
         }
     }
 }
 
-.link-highlight {
-    border-bottom: 5px solid rgb(84, 182, 182);
+footer {
+    justify-content: center;
+    padding: 1rem;
 }
 
 .container {
@@ -62,7 +74,7 @@ header {
     text-align: center;
 
     .logIn {
-        box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
+        box-shadow: 0 0 0 10px $colorLight, 0 10px 25px 0 rgba(20,20,20,0.7);
         background-color: rgba(141, 179, 197, 0.2);
         outline: 5px solid rgb(141, 179, 197);
         outline-offset: 10px;
@@ -84,7 +96,7 @@ header {
                     padding: 0.5rem 1rem;
                     border: none;
                     border-radius: 5px;
-                    color: white;
+                    color: $fontColorLight;
                 }
             }
             .fielderror {
@@ -94,49 +106,13 @@ header {
                 height: 1.5rem;
                 margin-top: 5px;
                 font-size: 0.8rem;
-                color: red;
+                color: rgb(201, 52, 52);
             }
         }
 
         a {
             color: black;
             font-size: 0.7rem;
-        }
-    }
-
-    .newMessageContainer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255,255,255,0.6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .newMessage{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 80%;
-            padding: 2rem;
-            color: white;
-            background-color: $featureColor;
-            textarea {
-                resize: none;
-                width: 80%;
-                min-width: 60ch;
-                height: 15ch;
-            }
-            a, input {
-                margin: 2rem;
-                color: black;
-                text-decoration: none;
-                background-color: white;
-                border: none;
-                border-radius: 4px;
-                padding: 0.5rem 0.75rem;
-            }
         }
     }
 
@@ -208,145 +184,152 @@ header {
             overflow-y: scroll;
             .slot {
                 display: block;
-                background-color:rgb(84, 182, 182);
+                background-color: $featureColor;
                 padding: 0.5rem 4rem;
                 margin: 0.5rem 0;
                 border-radius: 10px;
                 cursor: pointer;
                 &:hover {
-                    background-color: rgba(84, 182, 182, 0.55);
+                    background-color: rgba($featureColor, 0.55);
                 }
             }
         }
     }
+}
 
-    .alert {
+// *** MESSAGE PAGE STYLES ***
+
+.msg-container {
+    .messages {
+        align-self: flex-start;
+        box-shadow: 0 0 5px 0 rgb(0,0,0);
         background-color: $featureColor;
-        border-radius: 10px;
-        padding: 2rem 3rem 3rem;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
-        a {
-            text-decoration: none;
-            color: black;
-            background-color: white;
-            border-radius: 10px;
-            margin-top: 2rem;
-            padding: 0.5rem 1rem;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
-            
-        }
-    }
-}
+        margin-top: 2rem;
+        padding: 1rem 0 0;
+        width: 90%;
 
-.messages {
-    align-self: flex-start;
-    box-shadow: 0 0 5px 0 rgb(0,0,0);
-    background-color: rgb(84, 182, 182);
-    margin-top: 2rem;
-    padding: 1rem 0 0;
-    width: 90%;
-
-    .message-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 0 0 1rem;
-        margin-bottom: 1rem;
-        color: white;
-        h3 {
-            margin: 0;
-        }
-    }
-
-    .message-button {
-        color: $featureColor;
-        background-color:rgb(233, 233, 233);
-        border: none;
-        border-radius: 4px;
-        padding: 0.5rem 0.75rem;
-        margin: 0.5rem 1rem;
-        text-decoration: none;
-    }
-
-    .msg-area {
-        margin: 0 auto;
-        padding: 1rem 0;
-        background-color:rgb(236, 236, 236);
-        min-height: 50vh;
-        max-height: calc(100vh - 40vh);
-        width: 100%;
-        overflow-y: scroll;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        ul {
-            padding: 0;
-            margin: 0;
-            li {
-                display: flex;
-                align-items: stretch;
-                list-style: none;
-                text-align: left;
-                padding: 1rem;
-                background-color: rgb(202, 219, 209);
-                margin-bottom: 0.5rem;
-
-                &:last-of-type {
-                    margin-bottom: 1rem;
-                }
-
-                span {
-                    padding: 0 1rem;
-                    color: black;
-                    display: flex;
-                    flex-direction: column;
-                    min-width: 12ch;
-                    margin-right: 1rem;
-                }
-
-                span:last-of-type {
-                    border-left: 2px dashed white;
-                    border-right: 2px dashed white;
-                    text-align: center;
-                }
-            }
-
-            .Doctor {
-                background-color: rgb(223, 223, 223);
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 0 1rem;
+            margin-bottom: 1rem;
+            color: $fontColorLight;
+            h3 {
+                margin: 0;
             }
         }
+
         .message-button {
-            align-self: center;
-            margin: 0.5rem;
-            padding: 0.5rem 3rem;
-            color: white;
-            background-color:rgb(84, 182, 182);
+            color: $featureColor;
+            background-color:$colorOffWhite;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            margin: 0.5rem 1rem;
+            text-decoration: none;
+        }
 
+        .msg-area {
+            margin: 0 auto;
+            padding: 1rem 0;
+            background-color:$colorOffWhite;
+            min-height: 50vh;
+            max-height: calc(100vh - 40vh);
+            width: 100%;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    display: flex;
+                    align-items: stretch;
+                    list-style: none;
+                    text-align: left;
+                    padding: 1rem;
+                    background-color: rgb(226, 221, 221);
+                    margin-bottom: 0.5rem;
+
+                    &:last-of-type {
+                        margin-bottom: 1rem;
+                    }
+
+                    span {
+                        padding: 0 1rem;
+                        color: black;
+                        display: flex;
+                        flex-direction: column;
+                        min-width: 12ch;
+                        margin-right: 1rem;
+                    }
+
+                    span:last-of-type {
+                        border-left: 2px dashed $colorLight;
+                        border-right: 2px dashed $colorLight;
+                        text-align: center;
+                    }
+                }
+
+                .doctor {
+                    background-color: rgb(205, 224, 212);
+                }
+            }
+            .message-button {
+                align-self: center;
+                margin: 0.5rem;
+                padding: 0.5rem 3rem;
+                color: $fontColorLight;
+                background-color:$featureColor;
+
+            }
+        }
+    }
+
+    .newMessageContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($colorLight,0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .newMessage{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            padding: 2rem;
+            color: $fontColorLight;
+            background-color: $featureColor;
+            textarea {
+                resize: none;
+                width: 80%;
+                min-width: 60ch;
+                height: 15ch;
+            }
+            a, input {
+                margin: 2rem;
+                color: $colorDark;
+                text-decoration: none;
+                background-color: $colorLight;
+                border: none;
+                border-radius: 4px;
+                padding: 0.5rem 0.75rem;
+            }
         }
     }
 }
 
-footer {
-    color: white;
-    background-color: rgb(30,40,40);
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-}
+// ********************************
 
-.dayBox {
-    background-color: rgba(0,0,0,0.4);
-    flex-grow: 1;
-    padding: 0.5rem 0;
-    max-width: calc((100% * 1/7) - 4px);
-}
+// *** APPOINTMENTS PAGE STYLES ***
 
-.appointments {
+.current-appointments {
     width: 80vw;
     height: 40vh;
     margin: 2rem auto 0;
@@ -355,7 +338,7 @@ footer {
     border: 3px solid black;
     text-align: center;
     transition: opacity 400ms ease;
-    background-color: white;
+    background-color: $colorLight;
     z-index: 2;
 
     & > div {
@@ -397,159 +380,185 @@ footer {
     }
 }
 
-.calendar-area {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-self: flex-start;
-    padding-top: 2rem;
-    position: absolute;
-    top: 5rem;
-    transition: opacity 600ms ease;
-    & > div:first-of-type {
-        .calendar-heading {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            margin: 0.5em 0;
-            border-bottom: 2px solid black;
-            padding: 0.5rem 0 1rem;
-            span {
-                font-size: 1.4rem;
-            }
-
-            a {
-                color: black;
-                background-color: white;
-                border-radius: 5px;
-                text-decoration: none;
-                padding: 0.5rem 1rem 0;
-                background-color: $originalFeatureColor;
-                &:hover {
-                    background-color: $featureColor;
+.appointments-container {
+    .calendar-area {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-self: flex-start;
+        padding-top: 2rem;
+        position: absolute;
+        transition: opacity 600ms ease;
+        max-height: 100%;
+        & > div:first-of-type {
+            .calendar-heading {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
+                margin: 0.5em 0;
+                border-bottom: 2px solid black;
+                padding: 0.5rem 0 1rem;
+                span {
+                    font-size: 1.4rem;
                 }
-                &:nth-of-type(2) {
-                    background: none;
-                    padding: 0 0 5px;
-                }
-            }
-        }
-
-        .datesArea {
-            display: grid;
-            grid-template-columns: repeat(7, 8ch);
-            justify-content: center;
-            & > .calendar-element {
-                background-color: $featureColor;
-                margin: 3px;
-                padding: 0.5rem 0;
-                color: white;
-                text-decoration: none;
-                &:hover {
+    
+                a {
                     color: black;
-                    background-color: rgba(84, 182, 182, 0.25);
+                    background-color: $colorLight;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    padding: 0.5rem 1rem 0;
+                    background-color: $originalFeatureColor;
+                    &:hover {
+                        background-color: $featureColor;
+                    }
+                    &:nth-of-type(2) {
+                        background: none;
+                        padding: 0 0 5px;
+                    }
+                }
+            }
+    
+            .datesArea {
+                display: grid;
+                grid-template-columns: repeat(7, 8ch);
+                justify-content: center;
+                & > .calendar-element {
+                    background-color: $featureColor;
+                    margin: 3px;
+                    padding: 0.5rem 0;
+                    color: $fontColorLight;
+                    text-decoration: none;
+                    &:hover {
+                        color: $colorDark;
+                        background-color: rgba($featureColor, 0.25);
+                        box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                        padding: 0.4rem 0;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                    }
+                }
+                .highlight-date {
+                    color: $colorDark;
+                    background-color: rgba($featureColor, 0.25);
                     box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
                     padding: 0.4rem 0;
                     font-size: 1.1rem;
                 }
             }
-            .highlight-date {
-                color: black;
-                background-color: rgba(84, 182, 182, 0.25);
-                box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
-                padding: 0.4rem 0;
-                font-size: 1.1rem;
-            }
         }
-    }
-    & > div {
-        &:first-child {
-            & > div > div {
+        & > div {
+            &:first-child {
+                & > div > div {
+                    border-radius: 1rem;
+                    padding: 1rem 2rem;
+                }
+        }
+        &:last-child {
+            width: 40%;
+            opacity: 0.2;
+            .results {
                 border-radius: 1rem;
                 padding: 1rem 2rem;
-            }
-    }
-    &:last-child {
-        width: 40%;
-        opacity: 0.2;
-        .results {
-            border-radius: 1rem;
-            padding: 1rem 2rem;
-            .times-heading {
-                display: flex;
-                justify-content: center;
-                margin: 0.5em 0;
-                padding: 0.5rem 0 1rem;
-                font-size: 1.4rem;
-                opacity: 0;
-                border-bottom: 2px solid black;
-            }
-            .results-area {
-                display: grid;
-                grid-template-columns: repeat(5, auto);
-                .result {
-                    color: white;
-                    background-color: rgba(84, 182, 182, 0.55);
-                    background-color: $featureColor;
-                    padding: 0.5rem 1rem;
-                    margin: 10px;
-                    border-radius: 10px;
-                    text-decoration: none;
-                    border: none;
-                    &:hover {
-                        color: black;
-                        border-radius: 0;
-                        padding: 0.3rem 0.6rem;
-                        font-size: 1.1rem;
-                        background-color: rgba(84, 182, 182, 0.25);
-                        box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                .times-heading {
+                    display: flex;
+                    justify-content: center;
+                    margin: 0.5em 0;
+                    padding: 0.5rem 0 1rem;
+                    font-size: 1.4rem;
+                    opacity: 0;
+                    border-bottom: 2px solid black;
+                }
+                .results-area {
+                    display: grid;
+                    grid-template-columns: repeat(5, auto);
+                    .result {
+                        color: $fontColorLight;
+                        background-color: rgba($featureColor, 0.55);
+                        background-color: $featureColor;
+                        padding: 0.5rem 1rem;
+                        margin: 10px;
+                        border-radius: 10px;
+                        text-decoration: none;
+                        border: none;
+                        &:hover {
+                            color: $fontColorDark;
+                            border-radius: 0;
+                            padding: 0.3rem 0.6rem;
+                            font-size: 1.1rem;
+                            background-color: rgba($featureColor, 0.25);
+                            box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                            cursor: pointer;
+                        }
                     }
                 }
             }
         }
+    
+        }
+    
     }
 
-    }
-
-}
-.confirmBooking {
-    width: 35vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border-radius: 10px;
-    box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
-    background-color: rgba(141, 179, 197, 0.2);
-    outline: 5px solid rgb(141, 179, 197);
-    outline-offset: 10px;
-    border-radius: 10px;
-    padding: 1rem 3rem;
-    margin-bottom: 8rem;
-    & > * {
-        margin: 1rem 0;
-    }
-    form {
+    .confirm-appointment {
+        width: 35vw;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 100%;
-        textarea {
-            resize: none;
-            width: 100%;
-            height: 15ch;
+        justify-content: space-around;
+        border-radius: 10px;
+        box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
+        background-color: rgba(141, 179, 197, 0.2);
+        outline: 5px solid rgb(141, 179, 197);
+        outline-offset: 10px;
+        border-radius: 10px;
+        padding: 1rem 3rem;
+        margin-bottom: 8rem;
+        & > * {
+            margin: 1rem 0;
         }
-        button {
-            margin: 0.5rem 1rem;
-            background-color: rgb(141, 179, 197);
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            min-width: 25ch;
-            cursor: pointer;
-            &:last-of-type {
-                background-color: rgba(255,0,0,0.4);
+        form {
+            width: 100%;
+            textarea {
+                resize: none;
+                width: 100%;
+                height: 15ch;
+            }
+            button {
+                margin: 0.5rem 1rem;
+                background-color: rgb(141, 179, 197);
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: 5px;
+                color: $fontColorLight;
+                min-width: 25ch;
+                cursor: pointer;
+                &:last-of-type {
+                    background-color: rgba(255,0,0,0.4);
+                }
             }
         }
     }
+   
+    .confirmation-message {
+        background-color: $featureColor;
+        border-radius: 10px;
+        padding: 2rem 3rem 3rem;
+        color: $fontColorLight;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+        a {
+            text-decoration: none;
+            color: black;
+            background-color: $colorLight;
+            border-radius: 10px;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+            
+        }
+    }
 }
+
+// ********************************

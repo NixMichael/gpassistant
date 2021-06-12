@@ -1,16 +1,15 @@
 <?php
 
+
 require_once 'includes/header.inc.php';
 require_once '../app/config.php';
 require_once '../app/libraries/Database.class.php';
 
-
-if (isset($_GET['month'])) {
-    
-}
-
-
 session_start();
+
+if (empty($_SESSION['useremail'])) {
+    header('Location: /');
+}
 
 $conn = new Database();
 
@@ -102,7 +101,7 @@ if ($_GET['month'] && $_GET['year']) {
 ?>
 
 <?php if (!$_GET['month']) : ?>
-<div class="appointments">
+<div class="current-appointments">
     <?php if (!$appointments) : ?>
         <div>No upcoming appointments.</div>
         <!-- <div class='button' onclick="showBooking()">Make an appointment</div> -->
@@ -115,7 +114,7 @@ if ($_GET['month'] && $_GET['year']) {
     <?php endif; ?>
 </div>
 <?php endif; ?>
-<div class='container'>
+<div class='container appointments-container'>
     <div class='calendar-area'>
         <div id='choose-date'>
             <?php echo buildCalendar($month, $year); ?>

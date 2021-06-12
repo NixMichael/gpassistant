@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if (empty($_SESSION['useremail'])) {
+    header('Location: /');
+}
+
 require_once 'includes/header.inc.php';
 
 require_once '../app/config.php';
@@ -16,8 +22,8 @@ $result = $conn->addAppointment($date, $time);
 
 ?>
 
-<div class="container">
-    <div class="confirmBooking">
+<div class="container appointments-container">
+    <div class="confirm-appointment">
         <h3>Finalise appointment booking</h3>
         <?php echo "<div>Date: ".$date."/".$month."/".$year."</div><div>Time: ".$time."</div>"; ?>
         <form id="frm" action="/includes/confirmbooking.inc.php" method="POST">

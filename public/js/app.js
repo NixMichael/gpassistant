@@ -32,7 +32,6 @@ const submitAppointmentDate = (date, month, year) => {
     const dataString = `querydate=${date}&querymonth=${month}&queryyear=${year}`
     const selectedDate = document.getElementById(date)
     const calendarElements = document.querySelectorAll('.calendar-element')
-    // alert(date)
 
     calendarElements.forEach((el) => {
         el.classList.remove('highlight-date')
@@ -57,7 +56,7 @@ const submitAppointmentDate = (date, month, year) => {
 
     $.ajax({
         type: "GET",
-        url: "/includes/check.inc.php",
+        url: "/includes/checkavailability.inc.php",
         data: dataString,
         cache: false,
         success: function(r) {

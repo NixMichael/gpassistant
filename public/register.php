@@ -1,3 +1,11 @@
+<?php session_start(); 
+
+if (!empty($_SESSION['useremail'])) {
+    header('Location: /messages.php');
+}
+
+?>
+
 <?php require_once 'includes/header.inc.php'; ?>
 
 <div class="container">

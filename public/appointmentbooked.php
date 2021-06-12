@@ -1,5 +1,9 @@
 <?php
 
+if (empty($_SESSION['useremail'])) {
+    header('Location: /');
+}
+
 $confirmation = $_GET['status'];
 
 $result = $confirmation == 'success' ? 'Thank you. You successfully booked an appointment.' : 'Booking error. Please try again.';
@@ -7,9 +11,9 @@ $result = $confirmation == 'success' ? 'Thank you. You successfully booked an ap
 require_once 'includes/header.inc.php';
 ?>
 
-<div class="container">
+<div class="appointments-container">
     <?php if ($confirmation) : ?>
-        <div class="alert">
+        <div class="confirmation-message">
         <h4><?php echo $result ?></h4>
         <a class="button" href="/appointments.php">Return to your appointments</a>
     </div>

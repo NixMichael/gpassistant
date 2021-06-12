@@ -1,13 +1,13 @@
 <?php
 
-session_start();
-
 require_once '../../app/config.php';
 require_once '../../app/libraries/Database.class.php';
 
 $conn = new Database();
 
-if (isset($_POST['submit'])) {
+if (empty($_POST['submit'])) {
+    header('Location: /messages.php');
+} else {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];

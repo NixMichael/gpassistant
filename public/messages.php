@@ -5,6 +5,10 @@ require_once '../app/libraries/Database.class.php';
 
 session_start();
 
+if (empty($_SESSION['useremail'])) {
+    header('Location: /');
+}
+
 $conn = new Database();
 
 if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
@@ -43,7 +47,7 @@ require_once 'includes/header.inc.php'; ?>
                     $datetime = explode(' ', $msg['date']);
                     $date = $datetime[0];
                     $time = $datetime[1];
-                    $sender = $msg['sender'] == 'D' ? 'Doctor' : 'You';
+                    $sender = $msg['sender'] == 'D' ? 'doctor' : 'you';
                     echo "<li class='".$sender."'><span>$sender</span><span>$date <br> ($time)</span> $msg[msg]</li>";
                 }
             };
@@ -51,9 +55,9 @@ require_once 'includes/header.inc.php'; ?>
             echo "</ul>";
             ?>
             <?php if (!$_SESSION['showall']) : ?>
-                <a class='message-button' href='<?php echo $_SERVER['self'] ?>?showAll=true'>View All</a>
+                <a class='message-button' href='?showAll=true'>View All</a>
             <?php else : ?>
-                <a class='message-button' href='<?php echo $_SERVER['self'] ?>?showAll=false'>Show Less</a>
+                <a class='message-button' href='?showAll=false'>Show Less</a>
             <?php endif ?>
             </div>
         </div>
