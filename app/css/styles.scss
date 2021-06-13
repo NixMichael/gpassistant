@@ -7,6 +7,9 @@ $colorLight: rgb(255,255,255);
 $colorOffWhite: rgb(233, 233, 233);
 $colorDark: rgb(0,0,0);
 
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 body {
     margin: 0;
     padding: 0;
@@ -290,9 +293,8 @@ footer {
 
     .newMessageContainer {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba($colorLight,0.6);
+        inset: 0;
+        background-color: rgba($colorLight,0.95);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -304,6 +306,7 @@ footer {
             align-items: center;
             width: 80%;
             padding: 2rem;
+            border-radius: 10px;
             color: $fontColorLight;
             background-color: $featureColor;
             textarea {
@@ -312,7 +315,7 @@ footer {
                 min-width: 60ch;
                 height: 15ch;
             }
-            a, input {
+            input {
                 margin: 2rem;
                 color: $colorDark;
                 text-decoration: none;
@@ -320,6 +323,10 @@ footer {
                 border: none;
                 border-radius: 4px;
                 padding: 0.5rem 0.75rem;
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba($colorLight, 0.7);
+                }
             }
         }
     }
@@ -381,15 +388,14 @@ footer {
 }
 
 .appointments-container {
+    overflow-y: scroll;
     .calendar-area {
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-self: flex-start;
         padding-top: 2rem;
-        position: absolute;
         transition: opacity 600ms ease;
-        max-height: 100%;
         & > div:first-of-type {
             .calendar-heading {
                 display: flex;
@@ -562,3 +568,15 @@ footer {
 }
 
 // ********************************
+
+textarea, input {
+    &:hover, &:focus {
+        outline: 5px solid orange;
+    }
+}
+
+a, .link-highlight {
+    &:hover, &:focus {
+        border-bottom: 5px solid orange;
+    }
+}

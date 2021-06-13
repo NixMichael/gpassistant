@@ -113,8 +113,8 @@ if ($_GET['month'] && $_GET['year']) {
         <a class="button" href="includes/cancelappointment.inc.php?id=<?php echo $appointments[0]['id'] ?>&time=<?php echo $appointments[0]['time'] ?>">Cancel Appointment</a>
     <?php endif; ?>
 </div>
-<?php endif; ?>
-<div class='container appointments-container'>
+<?php else : ?>
+    <div class='container appointments-container'>
     <div class='calendar-area'>
         <div id='choose-date'>
             <?php echo buildCalendar($month, $year); ?>
@@ -128,6 +128,7 @@ if ($_GET['month'] && $_GET['year']) {
         </div>
     </div>
 </div>
+<?php endif; ?>
 
 <div>
 </div>

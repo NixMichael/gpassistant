@@ -1,14 +1,15 @@
 <?php
 
-require_once '../app/config.php';
-require_once '../app/libraries/Database.class.php';
+require_once '../../app/config.php';
+require_once '../../app/libraries/Database.class.php';
 
 $conn = new Database();
 
-$errors = ['email' => '', 'password' => '', 'failedlogin' => ''];
+// $errors = ['email' => '', 'password' => '', 'failedlogin' => ''];
 
 if (empty($_POST['submit'])) {
-    // header('Location: /messages.php');
+    header('Location: /index.php');
+    exit();
 } else {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -17,15 +18,15 @@ if (empty($_POST['submit'])) {
     $password = trim($password);
     
     if (!$email) {
-        $errors['email'] = 'email field required';
-        // header('Location: /index.php?error=emptyemail');
-        // exit();
+        // $errors['email'] = 'email field required';
+        header('Location: /index.php?error=emptyemail');
+        exit();
     }
     
     if (!$password) {
-        $errors['password'] = 'Password field required';
-        // header("Location: /index.php?error=emptypassword&email=$email");
-        // exit();
+        // $errors['password'] = 'Password field required';
+        header("Location: /index.php?error=emptypassword");
+        exit();
     }
 
     $user = $conn->logIn($email);
@@ -35,7 +36,8 @@ if (empty($_POST['submit'])) {
         $_SESSION['useremail'] = $email;
         header('Location: /messages.php');
     } else {
-        $errors['failedlogin'] = 'Username and/or password incorrect';
-        // header('Location: /index.php?error=failedlogin');
+        // $errors['failedlogin'] = 'Username and/or password incorrect';
+        header('Location: /index.php?error=failedlogin');
+        exit();
     }
 }

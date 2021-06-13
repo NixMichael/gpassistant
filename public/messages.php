@@ -66,10 +66,11 @@ require_once 'includes/header.inc.php'; ?>
         <div class="newMessageContainer">
             <div class="newMessage">
                 <h3>Compose a new message:</h3>
+                <p>(Once you have submitted a message it cannot be deleted as it will legally form part of your medical records)</p>
                 <form action="includes/sendmessage.inc.php" method="POST">
                     <textarea name="message"></textarea>
-                    <input type="submit" name="newmessage" value="Send Message">
-                    <a href="/messages.php">Cancel</a>
+                    <input type="submit" name="submit" value="Send Message">
+                    <input type="submit" name="cancel" value="Cancel">
                 </form>
             </div>
         </div>
