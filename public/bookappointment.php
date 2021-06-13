@@ -9,20 +9,20 @@ if (empty($_SESSION['useremail'])) {
 require_once 'includes/header.inc.php';
 
 require_once '../app/config.php';
-require_once '../app/libraries/Database.class.php';
+require_once '../app/libraries/Appointments.class.php';
 
 $time = $_POST['time'];
 $date = $_POST['date'];
 $month = $_POST['month'];
 $year = $_POST['year'];
 
-$conn = new Database();
+$conn = new Appointments();
 
 $result = $conn->addAppointment($date, $time);
 
 ?>
 
-<div class="container appointments-container">
+<div class="container">
     <div class="confirm-appointment">
         <h3>Finalise appointment booking</h3>
         <?php echo "<div>Date: ".$date."/".$month."/".$year."</div><div>Time: ".$time."</div>"; ?>

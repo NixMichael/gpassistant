@@ -3,7 +3,7 @@
 session_start();
 
 require_once '../../app/config.php';
-require_once '../../app/libraries/Database.class.php';
+require_once '../../app/libraries/Messages.class.php';
 
 $user = $_SESSION['useremail'];
 $message = $_POST['message'];
@@ -13,7 +13,7 @@ if (!isset($_POST['submit'])) {
     exit();
 }
 
-$conn = new Database();
+$conn = new Messages();
 
 $result = $conn->addMessage($user, $message, 'P');
 

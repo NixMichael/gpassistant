@@ -1,9 +1,9 @@
 <?php
 
 require_once '../../app/config.php';
-require_once '../../app/libraries/Database.class.php';
+require_once '../../app/libraries/Login.class.php';
 
-$conn = new Database();
+$conn = new Login();
 
 // $errors = ['email' => '', 'password' => '', 'failedlogin' => ''];
 
@@ -34,6 +34,7 @@ if (empty($_POST['submit'])) {
     if (password_verify($password, $user['password'])) {
         session_start();
         $_SESSION['useremail'] = $email;
+        $_SESSION['username'] = $user['username'];
         header('Location: /messages.php');
     } else {
         // $errors['failedlogin'] = 'Username and/or password incorrect';

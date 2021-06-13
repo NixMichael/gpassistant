@@ -1,13 +1,13 @@
 <?php
 
 class Database {
-    private $dbHost = DBHOST;
-    private $dbUser = DBUSER;
-    private $dbPass = DBPASS;
-    private $dbName = DBNAME;
-    private $charset = CHARSET;
-    private $dsn = '';
-    private $dbh;
+    protected $dbHost = DBHOST;
+    protected $dbUser = DBUSER;
+    protected $dbPass = DBPASS;
+    protected $dbName = DBNAME;
+    protected $charset = CHARSET;
+    protected $dsn = '';
+    protected $dbh;
 
     public function __construct() {
         $dsn = "mysql:host=$this->dbHost;dbname=$this->dbName;charset=$this->charset";
@@ -24,39 +24,41 @@ class Database {
         }
     }
 
-    public function logIn ($email) {
-        $query = "SELECT * FROM users WHERE email = :email";
+    // public function logIn ($email) {
+    //     $query = "SELECT * FROM users WHERE email = :email";
 
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['email'=>$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user;
-    }
+    //     $stmt = $this->dbh->prepare($query);
+    //     $stmt->execute(['email'=>$email]);
+    //     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     return $user;
+    // }
 
-    public function existingUser ($email, $username) {
-        $query = "SELECT * FROM users WHERE email = :email OR username = :username";
+    // public function existingUser ($email, $username) {
+    //     $query = "SELECT * FROM users WHERE email = :email OR username = :username";
 
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['email'=>$email, 'username'=>$username]);
-        $count = $stmt->rowCount();
-        return $count;
-    }
+    //     $stmt = $this->dbh->prepare($query);
+    //     $stmt->execute(['email'=>$email, 'username'=>$username]);
+    //     $count = $stmt->rowCount();
+    //     return $count;
+    // }
 
-    public function registerUser ($email, $username, $password) {
-        $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
-        $stmt = $this->dbh->prepare($query);
-        return $stmt->execute(['username'=>$username, 'email'=>$email, 'password'=>$password]);
-    }
+    // public function registerUser ($email, $username, $password) {
+    //     $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+    //     $stmt = $this->dbh->prepare($query);
+    //     return $stmt->execute(['username'=>$username, 'email'=>$email, 'password'=>$password]);
+    // }
 
-    public function fetchUser ($email) {
-        $query = "SELECT * FROM users WHERE email = :email";
+    // public function fetchUser ($email) {
+    //     $query = "SELECT * FROM users WHERE email = :email";
 
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['email'=>$email]);
-        while($row = $stmt->fetch()) {
-            return $row['username'];
-        }
-    }
+    //     $stmt = $this->dbh->prepare($query);
+    //     $stmt->execute(['email'=>$email]);
+    //     while($row = $stmt->fetch()) {
+    //         return $row['username'];
+    //     }
+    // }
+
+    // DELETE THIS?
 
     public function query () {
         $query = "SELECT * FROM users WHERE id = :id";
@@ -70,101 +72,99 @@ class Database {
         }
     }
 
-    public function addAppointment ($day, $time) {
-        $query = "INSERT INTO appointments (day, time) VALUES (:day, :time)";
+    // public function addAppointment ($day, $time) {
+    //     $query = "INSERT INTO appointments (day, time) VALUES (:day, :time)";
 
-        $stmt = $this->dbh->prepare($query);
+    //     $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time]);
-    }
+    //     return $stmt->execute(['day'=>$day, 'time'=>$time]);
+    // }
 
-    public function addAppointmentNote ($day, $time, $note, $patient) {
-        $query = "UPDATE appointments SET notes = :note, username = :patient WHERE day = :day AND time = :time";
+    // public function addAppointmentNote ($day, $time, $note, $patient) {
+    //     $query = "UPDATE appointments SET notes = :note, username = :patient WHERE day = :day AND time = :time";
 
-        $stmt = $this->dbh->prepare($query);
+    //     $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note, 'patient'=>$patient]);
-    }
+    //     return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note, 'patient'=>$patient]);
+    // }
 
-    public function removeAppointment ($day, $time) {
-        $query = "DELETE FROM appointments WHERE day = :day AND time = :time";
+    // public function removeAppointment ($day, $time) {
+    //     $query = "DELETE FROM appointments WHERE day = :day AND time = :time";
 
-        $stmt = $this->dbh->prepare($query);
+    //     $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time]);
-    }
+    //     return $stmt->execute(['day'=>$day, 'time'=>$time]);
+    // }
 
-    public function fetchAppointments ($user) {
-        $query = "SELECT id, day, time, notes, doctor_id FROM appointments WHERE username = :username";
+    // public function fetchAppointments ($user) {
+    //     $query = "SELECT id, day, time, notes, doctor_id FROM appointments WHERE username = :username";
 
-        $stmt = $this->dbh->prepare($query);
+    //     $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute(['username'=>$user]);
+    //     $stmt->execute(['username'=>$user]);
 
-        $results = $stmt->fetchAll();
+    //     $results = $stmt->fetchAll();
 
-        return $results;
-    }
+    //     return $results;
+    // }
 
-    public function cancelAppointment ($id, $time) {
-        $query = "DELETE FROM appointments WHERE id = :id AND time = :time";
+    // public function cancelAppointment ($id, $time) {
+    //     $query = "DELETE FROM appointments WHERE id = :id AND time = :time";
 
-        $stmt = $this->dbh->prepare($query);
+    //     $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute(['id'=>$id, 'time'=>$time]);
-    }
+    //     $stmt->execute(['id'=>$id, 'time'=>$time]);
+    // }
 
-    public function checkTimes ($day) {
-        // $query = "SELECT time FROM appointments WHERE day = :date";
+    // public function checkTimes ($day) {
 
-        // $stmt = $this->dbh->prepare($query);
-        // return $stmt->execute(['date' => $day]);
+    //     $query = "SELECT time FROM appointments WHERE day = :date";
 
-        $query = "SELECT time from appointments WHERE day = :date";
+    //     $stmt = $this->dbh->prepare($query);
+    //     $stmt->execute(['date'=>$day]);
 
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['date'=>$day]);
+    //     $result = $stmt->fetchAll();
 
-        $result = $stmt->fetchAll();
+    //     $sel = [];
+    //     foreach($result as $r) {
+    //         $sel[] = $r['time'];
+    //     }
+    //     return $sel;
+    // }
 
-        $sel = [];
-        foreach($result as $r) {
-            $sel[] = $r['time'];
-        }
-        return $sel;
-    }
+    // public function addMessage ($user, $message, $senderType) {
+    //     $query = "INSERT INTO messages (username, message, date, sender) VALUES (:username, :message, NOW(), :sender)";
 
-    public function addMessage ($user, $message, $senderType) {
-        $query = "INSERT INTO messages (username, message, date, sender) VALUES (:username, :message, NOW(), :sender)";
+    //     $stmt = $this->dbh->prepare($query);
 
-        $stmt = $this->dbh->prepare($query);
+    //     if ($stmt->execute(['username'=>$user, 'message'=>$message, 'sender'=>$senderType])) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-        if ($stmt->execute(['username'=>$user, 'message'=>$message, 'sender'=>$senderType])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function fetchMessages ($user, $showAll = false) {
+    //     $limit = !$showAll ? "LIMIT 2" : "";
+    //     $query = "SELECT message, date, sender FROM messages WHERE username = :username ORDER BY date DESC $limit";
+    //     $stmt = $this->dbh->prepare($query);
+    //     $stmt->execute(['username'=>$user]);
 
-    public function fetchMessages ($user, $showAll = false) {
-        $limit = !$showAll ? "LIMIT 2" : "";
-        $query = "SELECT message, date, sender FROM messages WHERE username = :username ORDER BY date DESC $limit";
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['username'=>$user]);
+    //     if ($result = $stmt->fetchAll()) {
+    //         $sel = [];
+    //         foreach($result as $r) {
+    //             $msgs['date'] = $r['date'];
+    //             $msgs['msg'] = $r['message'];
+    //             $msgs['sender'] = $r['sender'];
+    //             $sel[] = $msgs;
+    //         }
+    
+    //     } else {
+    //         $msgs['error'] = 'Failed to fetch messages';
+    //         $sel[] = $msgs;
+    //     }
 
-        $result = $stmt->fetchAll();
+    //     return $sel;
 
-        $sel = [];
-        foreach($result as $r) {
-            $msgs['date'] = $r['date'];
-            $msgs['msg'] = $r['message'];
-            $msgs['sender'] = $r['sender'];
-            $sel[] = $msgs;
-        }
-
-        // echo "<pre>";
-        // print_r($sel);
-        // echo "</pre>";
-        return $sel;
-    }
+    // }
 }

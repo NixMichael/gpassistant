@@ -10,6 +10,18 @@ $colorDark: rgb(0,0,0);
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
+textarea, input {
+    &:hover, &:focus {
+        outline: 5px solid orange;
+    }
+}
+
+a, .link-highlight {
+    &:hover, &:focus {
+        border-bottom: 5px solid orange;
+    }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -115,7 +127,12 @@ footer {
 
         a {
             color: black;
+            padding: 0.35rem 0.75rem;
             font-size: 0.7rem;
+            &:hover, &:focus {
+                border: none;
+                background-color: orange;
+            }
         }
     }
 
@@ -231,6 +248,9 @@ footer {
             padding: 0.5rem 0.75rem;
             margin: 0.5rem 1rem;
             text-decoration: none;
+            &:hover, &:focus {
+                outline: 5px solid orange;
+            }
         }
 
         .msg-area {
@@ -339,7 +359,7 @@ footer {
 .current-appointments {
     width: 80vw;
     height: 40vh;
-    margin: 2rem auto 0;
+    margin: 2rem auto;
     padding: 2rem;
     border-radius: 10px;
     border: 3px solid black;
@@ -379,8 +399,9 @@ footer {
         cursor: pointer;
         color: black;
         text-decoration: none;
-        &:hover {
-            outline: none;
+        &:hover, &:focus {
+            border: none;
+            outline: 5px solid orange;
             background-color: $featureColor;
             box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
         }
@@ -406,6 +427,7 @@ footer {
                 padding: 0.5rem 0 1rem;
                 span {
                     font-size: 1.4rem;
+                    padding: 0.5rem 1rem;
                 }
     
                 a {
@@ -418,13 +440,17 @@ footer {
                     &:hover {
                         background-color: $featureColor;
                     }
-                    &:nth-of-type(2) {
+                }
+                .no-highlight {
+                    background: none;
+                    &:hover, &:focus {
+                        border: none;
                         background: none;
-                        padding: 0 0 5px;
+                        outline: 3px solid orange;
                     }
                 }
             }
-    
+            
             .datesArea {
                 display: grid;
                 grid-template-columns: repeat(7, 8ch);
@@ -488,6 +514,7 @@ footer {
                         text-decoration: none;
                         border: none;
                         &:hover {
+                            outline: none;
                             color: $fontColorDark;
                             border-radius: 0;
                             padding: 0.3rem 0.6rem;
@@ -504,79 +531,70 @@ footer {
         }
     
     }
+}
 
-    .confirm-appointment {
-        width: 35vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        border-radius: 10px;
-        box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
-        background-color: rgba(141, 179, 197, 0.2);
-        outline: 5px solid rgb(141, 179, 197);
-        outline-offset: 10px;
-        border-radius: 10px;
-        padding: 1rem 3rem;
-        margin-bottom: 8rem;
-        & > * {
-            margin: 1rem 0;
-        }
-        form {
+.confirm-appointment {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
+    background-color: rgba(141, 179, 197, 0.2);
+    outline: 5px solid rgb(141, 179, 197);
+    outline-offset: 10px;
+    border-radius: 10px;
+    padding: 1rem 3rem;
+    margin-bottom: 8rem;
+    & > * {
+        margin: 1rem 0;
+    }
+    form {
+        width: 100%;
+        textarea {
+            resize: none;
             width: 100%;
-            textarea {
-                resize: none;
-                width: 100%;
-                height: 15ch;
-            }
-            button {
-                margin: 0.5rem 1rem;
-                background-color: rgb(141, 179, 197);
-                padding: 0.5rem 1rem;
-                border: none;
-                border-radius: 5px;
-                color: $fontColorLight;
-                min-width: 25ch;
-                cursor: pointer;
-                &:last-of-type {
-                    background-color: rgba(255,0,0,0.4);
-                }
+            height: 15ch;
+        }
+        button {
+            margin: 0.5rem 1rem;
+            background-color: rgb(141, 179, 197);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            color: $fontColorLight;
+            min-width: 25ch;
+            cursor: pointer;
+            &:last-of-type {
+                background-color: rgba(255,0,0,0.4);
             }
         }
     }
-   
-    .confirmation-message {
-        background-color: $featureColor;
+}
+
+.confirmation-message {
+    background-color: $featureColor;
+    border-radius: 10px;
+    padding: 2rem 3rem 3rem;
+    color: $fontColorLight;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+    a {
+        text-decoration: none;
+        color: black;
+        background-color: $colorLight;
         border-radius: 10px;
-        padding: 2rem 3rem 3rem;
-        color: $fontColorLight;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+        margin-top: 2rem;
+        padding: 0.5rem 1rem;
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
-        a {
-            text-decoration: none;
-            color: black;
-            background-color: $colorLight;
-            border-radius: 10px;
-            margin-top: 2rem;
-            padding: 0.5rem 1rem;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
-            
+        &:hover, &:focus {
+            border: none;
+            outline: 5px solid orange;
         }
     }
 }
 
 // ********************************
-
-textarea, input {
-    &:hover, &:focus {
-        outline: 5px solid orange;
-    }
-}
-
-a, .link-highlight {
-    &:hover, &:focus {
-        border-bottom: 5px solid orange;
-    }
-}

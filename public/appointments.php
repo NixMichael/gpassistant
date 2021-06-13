@@ -3,7 +3,8 @@
 
 require_once 'includes/header.inc.php';
 require_once '../app/config.php';
-require_once '../app/libraries/Database.class.php';
+// require_once '../app/libraries/Database.class.php';
+require_once '../app/libraries/Appointments.class.php';
 
 session_start();
 
@@ -11,7 +12,7 @@ if (empty($_SESSION['useremail'])) {
     header('Location: /');
 }
 
-$conn = new Database();
+$conn = new Appointments();
 
 $username = $_SESSION['useremail'];
 
@@ -68,7 +69,7 @@ function buildCalendar($month, $year) {
     } else {
         $calendar .= "<a href='?month=".($prevMonth + 1)."&year=".date('Y')."'>&lt; ".$prevMonthName."</a>";
     }
-    $calendar .= "<a href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
+    $calendar .= "<a class='no-highlight' href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
     if ($nextMonth <= (date('m') + 2)) {
         $calendar .= "<a href='?month=".$nextMonth."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
     } else {

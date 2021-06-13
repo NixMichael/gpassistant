@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (empty($_SESSION['useremail'])) {
     header('Location: /');
 }
@@ -11,7 +13,7 @@ $result = $confirmation == 'success' ? 'Thank you. You successfully booked an ap
 require_once 'includes/header.inc.php';
 ?>
 
-<div class="appointments-container">
+<div class="container">
     <?php if ($confirmation) : ?>
         <div class="confirmation-message">
         <h4><?php echo $result ?></h4>

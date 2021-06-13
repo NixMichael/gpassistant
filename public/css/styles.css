@@ -6,6 +6,14 @@
   border: 0;
 }
 
+textarea:hover, textarea:focus, input:hover, input:focus {
+  outline: 5px solid orange;
+}
+
+a:hover, a:focus, .link-highlight:hover, .link-highlight:focus {
+  border-bottom: 5px solid orange;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -107,7 +115,12 @@ footer {
 }
 .container .logIn a {
   color: black;
+  padding: 0.35rem 0.75rem;
   font-size: 0.7rem;
+}
+.container .logIn a:hover, .container .logIn a:focus {
+  border: none;
+  background-color: orange;
 }
 .container .dates h2, .container .times h2 {
   margin-top: 0;
@@ -159,6 +172,9 @@ footer {
   padding: 0.5rem 0.75rem;
   margin: 0.5rem 1rem;
   text-decoration: none;
+}
+.msg-container .messages .message-button:hover, .msg-container .messages .message-button:focus {
+  outline: 5px solid orange;
 }
 .msg-container .messages .msg-area {
   margin: 0 auto;
@@ -253,7 +269,7 @@ footer {
 .current-appointments {
   width: 80vw;
   height: 40vh;
-  margin: 2rem auto 0;
+  margin: 2rem auto;
   padding: 2rem;
   border-radius: 10px;
   border: 3px solid black;
@@ -291,8 +307,9 @@ footer {
   color: black;
   text-decoration: none;
 }
-.current-appointments .button:hover {
-  outline: none;
+.current-appointments .button:hover, .current-appointments .button:focus {
+  border: none;
+  outline: 5px solid orange;
   background-color: #54b6b6;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
@@ -318,6 +335,7 @@ footer {
 }
 .appointments-container .calendar-area > div:first-of-type .calendar-heading span {
   font-size: 1.4rem;
+  padding: 0.5rem 1rem;
 }
 .appointments-container .calendar-area > div:first-of-type .calendar-heading a {
   color: black;
@@ -330,9 +348,13 @@ footer {
 .appointments-container .calendar-area > div:first-of-type .calendar-heading a:hover {
   background-color: #54b6b6;
 }
-.appointments-container .calendar-area > div:first-of-type .calendar-heading a:nth-of-type(2) {
+.appointments-container .calendar-area > div:first-of-type .calendar-heading .no-highlight {
   background: none;
-  padding: 0 0 5px;
+}
+.appointments-container .calendar-area > div:first-of-type .calendar-heading .no-highlight:hover, .appointments-container .calendar-area > div:first-of-type .calendar-heading .no-highlight:focus {
+  border: none;
+  background: none;
+  outline: 3px solid orange;
 }
 .appointments-container .calendar-area > div:first-of-type .datesArea {
   display: grid;
@@ -397,6 +419,7 @@ footer {
   border: none;
 }
 .appointments-container .calendar-area > div:last-child .results .results-area .result:hover {
+  outline: none;
   color: black;
   border-radius: 0;
   padding: 0.3rem 0.6rem;
@@ -405,7 +428,8 @@ footer {
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
   cursor: pointer;
 }
-.appointments-container .confirm-appointment {
+
+.confirm-appointment {
   width: 35vw;
   display: flex;
   flex-direction: column;
@@ -419,18 +443,18 @@ footer {
   padding: 1rem 3rem;
   margin-bottom: 8rem;
 }
-.appointments-container .confirm-appointment > * {
+.confirm-appointment > * {
   margin: 1rem 0;
 }
-.appointments-container .confirm-appointment form {
+.confirm-appointment form {
   width: 100%;
 }
-.appointments-container .confirm-appointment form textarea {
+.confirm-appointment form textarea {
   resize: none;
   width: 100%;
   height: 15ch;
 }
-.appointments-container .confirm-appointment form button {
+.confirm-appointment form button {
   margin: 0.5rem 1rem;
   background-color: #8db3c5;
   padding: 0.5rem 1rem;
@@ -440,10 +464,11 @@ footer {
   min-width: 25ch;
   cursor: pointer;
 }
-.appointments-container .confirm-appointment form button:last-of-type {
+.confirm-appointment form button:last-of-type {
   background-color: rgba(255, 0, 0, 0.4);
 }
-.appointments-container .confirmation-message {
+
+.confirmation-message {
   background-color: #54b6b6;
   border-radius: 10px;
   padding: 2rem 3rem 3rem;
@@ -454,7 +479,7 @@ footer {
   justify-content: space-between;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.appointments-container .confirmation-message a {
+.confirmation-message a {
   text-decoration: none;
   color: black;
   background-color: white;
@@ -463,13 +488,9 @@ footer {
   padding: 0.5rem 1rem;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
-
-textarea:hover, textarea:focus, input:hover, input:focus {
+.confirmation-message a:hover, .confirmation-message a:focus {
+  border: none;
   outline: 5px solid orange;
-}
-
-a:hover, a:focus, .link-highlight:hover, .link-highlight:focus {
-  border-bottom: 5px solid orange;
 }
 
 /*# sourceMappingURL=styles.css.map */

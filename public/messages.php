@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-require_once '../app/libraries/Database.class.php';
+require_once '../app/libraries/Messages.class.php';
 
 session_start();
 
@@ -9,7 +9,7 @@ if (empty($_SESSION['useremail'])) {
     header('Location: /');
 }
 
-$conn = new Database();
+$conn = new Messages();
 
 if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
     $_SESSION['showall'] = true;
@@ -33,7 +33,7 @@ require_once 'includes/header.inc.php'; ?>
     <?php else: ?>
         <div class="messages">
             <?php 
-            $username = $conn->fetchUser($_SESSION['useremail']);
+            $username = $_SESSION['username'];
             echo "<div class='message-header'>";
             echo '<h3>Hi '.ucfirst($username).', here are your messages:</h3>';
             echo "<div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>";

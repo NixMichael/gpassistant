@@ -1,12 +1,12 @@
 <?php
 
 require_once '../../app/config.php';
-require_once '../../app/libraries/Database.class.php';
+require_once '../../app/libraries/Appointments.class.php';
 
 $id = $_GET['id'];
 $time = $_GET['time'];
 
-$conn = new Database();
+$conn = new Appointments();
 
 $conn->cancelAppointment($id, $time);
 
