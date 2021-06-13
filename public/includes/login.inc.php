@@ -1,37 +1,41 @@
 <?php
 
-require_once '../../app/config.php';
-require_once '../../app/libraries/Database.class.php';
+require_once '../app/config.php';
+require_once '../app/libraries/Database.class.php';
 
 $conn = new Database();
 
-session_start();
+$errors = ['email' => '', 'password' => '', 'failedlogin' => ''];
 
 if (empty($_POST['submit'])) {
-    header('Location: /messages.php');
+    // header('Location: /messages.php');
 } else {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
     $email = trim($email);
     $password = trim($password);
-
+    
     if (!$email) {
-        header('Location: /index.php?error=emptyemail');
-        exit();
+        $errors['email'] = 'email field required';
+        // header('Location: /index.php?error=emptyemail');
+        // exit();
     }
-
+    
     if (!$password) {
-        header('Location: /index.php?error=emptypassword');
-        exit();
+        $errors['password'] = 'Password field required';
+        // header("Location: /index.php?error=emptypassword&email=$email");
+        // exit();
     }
 
     $user = $conn->logIn($email);
-
+    
     if (password_verify($password, $user['password'])) {
+        session_start();
         $_SESSION['useremail'] = $email;
         header('Location: /messages.php');
     } else {
-        header('Location: /index.php?error=failedlogin');
+        $errors['failedlogin'] = 'Username and/or password incorrect';
+        // header('Location: /index.php?error=failedlogin');
     }
 }

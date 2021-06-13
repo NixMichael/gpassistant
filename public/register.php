@@ -19,7 +19,10 @@ if (!empty($_SESSION['useremail'])) {
             <input type="password" name="password" placeholder="Password" autocomplete="off"/>
             <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptypassword') { echo 'password field required'; } ?></span>
             <input type="password" name="repeatPassword" placeholder="Repeat password" autocomplete="off"/>
-            <span class="fielderror"><?php if (isset($_GET['error']) && $_GET['error'] == 'emptypassword') { echo 'password field required'; } ?></span>
+            <span class="fielderror"><?php if (isset($_GET['error'])) {
+                 if ($_GET['error'] == 'emptypassword') { echo 'password field required'; }
+                 else if ($_GET['error'] == 'userexists') { echo 'username or email already registered'; }
+            } ?></span>
             <input type="submit" name="submit" value="Register"/>
             <a href="/">Already registered?</a>
         </form>

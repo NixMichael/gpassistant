@@ -46,6 +46,6 @@ if (empty($_POST['submit'])) {
         $conn->registerUser($email, $username, $hash);
         header('Location: /index.php?status=successfullyregistered');
     } else {
-        header('Location: /index.php?error=userexists');
+        header('Location: /register.php?error=userexists');
     }
 }
