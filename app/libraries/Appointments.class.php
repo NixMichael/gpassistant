@@ -63,4 +63,27 @@ class Appointments extends Database {
         return $sel;
     }
 
+    public function getAllAppointments ($doctorId) {
+        $query = "SELECT * FROM appointments WHERE doctor_id = :doctorid OR accepted = false";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['doctorid'=>$doctorId]);
+
+        $apptList = $stmt->fetchAll();
+
+        return $apptList;
+    }
+
+    public function confirmAppointment ($apptId, $doctorId) {
+        $query = "UPDATE appointments SET accepted = true, doctor_id = :doctor WHERE id = :id";
+
+        $stmt = $this->dbh->prepare($query);
+
+        if ($stmt->execute(['doctor'=>$doctorId, 'id'=>$apptId])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

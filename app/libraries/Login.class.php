@@ -8,23 +8,23 @@ class Login extends Database {
 
         $stmt = $this->dbh->prepare($query);
         $stmt->execute(['email'=>$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetchAll();
         return $user;
     }
 
-    public function existingUser ($email, $username) {
-        $query = "SELECT * FROM users WHERE email = :email OR username = :username";
+    public function existingUser ($patientId, $email, $username) {
+        $query = "SELECT * FROM users WHERE patient_id = :patientid";
 
         $stmt = $this->dbh->prepare($query);
-        $stmt->execute(['email'=>$email, 'username'=>$username]);
+        $stmt->execute(['patientid'=>$patientId]);
         $count = $stmt->rowCount();
         return $count;
     }
 
-    public function registerUser ($email, $username, $password) {
-        $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+    public function registerUser ($patientId, $email, $username, $password, $admin = false) {
+        $query = "INSERT INTO users (patient_id, username, email, password, admin) VALUES (:patientid, :username, :email, :password, :admin)";
         $stmt = $this->dbh->prepare($query);
-        return $stmt->execute(['username'=>$username, 'email'=>$email, 'password'=>$password]);
+        return $stmt->execute(['patientid'=>$patientId, 'username'=>$username, 'email'=>$email, 'password'=>$password, 'admin'=>$admin]);
     }
 
     public function fetchUser ($email) {

@@ -19,7 +19,7 @@ if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
     $_SESSION['showall'] = false;
 }
 
-$msgs = $conn->fetchMessages($_SESSION['useremail'], $_SESSION['showall']);
+$msgs = $conn->fetchMessages($_SESSION['patientid'], $_SESSION['showall'], $_SESSION['admin']);
 
 $msgs = array_reverse($msgs);
 
@@ -32,14 +32,14 @@ require_once 'includes/header.inc.php'; ?>
         </div>
     <?php else: ?>
         <div class="messages">
+            <div class='message-header'>
+            <h3>Hi <?php echo ucfirst($_SESSION['username']) ?>, here are your messages:</h3>
+            <div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>
+            </div>
+            <div class=results-header><span>From</span><span>Date</span><span>Message</span></div>
+            <div class='msg-area'>
+            <ul>
             <?php 
-            $username = $_SESSION['username'];
-            echo "<div class='message-header'>";
-            echo '<h3>Hi '.ucfirst($username).', here are your messages:</h3>';
-            echo "<div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>";
-            echo "</div>";
-            echo "<div class='msg-area'>";
-            echo "<ul>";
             if (empty($msgs)) {
                 echo 'No messages';
             } else {
@@ -47,8 +47,9 @@ require_once 'includes/header.inc.php'; ?>
                     $datetime = explode(' ', $msg['date']);
                     $date = $datetime[0];
                     $time = $datetime[1];
-                    $sender = $msg['sender'] == 'D' ? 'doctor' : 'you';
-                    echo "<li class='".$sender."'><span>$sender</span><span>$date <br> ($time)</span> $msg[msg]</li>";
+                    $sender = $msg['sender'] == 'D' ? 'doctor' : $msg['username'];
+                    $acceptAppt = $_SESSION['admin'] == true ? "<input type='checkbox'/>" : "<span>Accept Appointment: <input type='checkbox'/></span>";
+                    echo "<li class='".$sender."'><span>$msg[patientid]</span><span>$date <br> ($time)</span> $msg[msg]</li>";
                 }
             };
             

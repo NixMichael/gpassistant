@@ -30,11 +30,16 @@ if (empty($_POST['submit'])) {
     }
 
     $user = $conn->logIn($email);
-    
+    $user = $user[0];
+
     if (password_verify($password, $user['password'])) {
         session_start();
         $_SESSION['useremail'] = $email;
         $_SESSION['username'] = $user['username'];
+        if (!$user['admin']) {
+            $_SESSION['patientid'] = $user['patient_id'];
+        }
+        $_SESSION['admin'] = $user['admin'];
         header('Location: /messages.php');
     } else {
         // $errors['failedlogin'] = 'Username and/or password incorrect';

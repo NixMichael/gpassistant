@@ -8,14 +8,13 @@ $loggedIn = isset($_SESSION['useremail']) ? true : false;
 
 <div class="container">
     <div>
-    <?php
-    if (isset($_GET['status']) && $_GET['status'] == 'successfullyregistered') { 
-        echo '<h3>Registration complete. Now please sign in.</h3>';
-    } ?>
     <?php if (!$loggedIn) {
+        if (isset($_GET['status']) && $_GET['status'] == 'successfullyregistered') { 
+            echo '<h3>Registration complete. Now please sign in.</h3>';
+        }
         include_once 'includes/login.php';
     } else {
-        echo 'Home';
+        header('Location: /messages.php');
     } ?>
     </div>
 </div>

@@ -5,7 +5,7 @@ session_start();
 require_once '../../app/config.php';
 require_once '../../app/libraries/Messages.class.php';
 
-$user = $_SESSION['useremail'];
+$user = $_SESSION['patient_id'];
 $message = $_POST['message'];
 
 if (!isset($_POST['submit'])) {
