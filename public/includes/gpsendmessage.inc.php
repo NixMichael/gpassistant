@@ -5,18 +5,17 @@ session_start();
 require_once '../../app/config.php';
 require_once '../../app/libraries/Messages.class.php';
 
-
 if (!isset($_POST['submit'])) {
     header('Location: /messages.php');
     exit();
 } else {
 
-    $user = $_SESSION['patient_id'];
+    $patientid = $_POST['submit'];
     $message = $_POST['message'];
 
     $conn = new Messages();
 
-    $result = $conn->addMessage($user, $message, 'P');
+    $result = $conn->addMessage($patientid, $message, 'D');
 
     if ($result) {
         header('Location: /messages.php?status=msgsent');

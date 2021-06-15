@@ -19,11 +19,11 @@ class Messages extends Database {
         $limit = !$showAll ? "LIMIT 2" : "";
 
         if ($admin != 1) {
-            $query = "SELECT patient_id, message, date, sender FROM messages WHERE patient_id = :patientid ORDER BY date DESC $limit";
+            $query = "SELECT * FROM messages WHERE patient_id = :patientid ORDER BY date DESC $limit";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute(['patientid'=>$user]);
         } else {
-            $query = "SELECT patient_id, message, date, sender FROM messages WHERE sender = 'P' ORDER BY date DESC $limit";
+            $query = "SELECT * FROM messages WHERE sender = 'P' ORDER BY date DESC $limit";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute();
         }
@@ -31,6 +31,7 @@ class Messages extends Database {
         if ($result = $stmt->fetchAll()) {
             $sel = [];
             foreach($result as $r) {
+                $msgs['msgid'] = $r['message_id'];
                 $msgs['patientid'] = $r['patient_id'];
                 $msgs['date'] = $r['date'];
                 $msgs['msg'] = $r['message'];
@@ -45,5 +46,17 @@ class Messages extends Database {
 
         return $sel;
 
+    }
+
+    public function fetchMessageStream ($patientid) {
+        $query = "SELECT * FROM messages WHERE patient_id = :pid";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['pid'=>$patientid]);
+
+        $result = $stmt->fetchAll();
+
+        return $result;
     }
 }

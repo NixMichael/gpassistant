@@ -31,37 +31,13 @@ require_once 'includes/header.inc.php'; ?>
             <h3>Not logged in</h3>
         </div>
     <?php else: ?>
-        <div class="messages">
-            <div class='message-header'>
-            <h3>Hi <?php echo ucfirst($_SESSION['username']) ?>, here are your messages:</h3>
-            <div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>
-            </div>
-            <div class=results-header><span>From</span><span>Date</span><span>Message</span></div>
-            <div class='msg-area'>
-            <ul>
-            <?php 
-            if (empty($msgs)) {
-                echo 'No messages';
+        <?php
+            if (!$_SESSION['admin']) {
+                include_once 'includes/patientmessages.inc.php';
             } else {
-                foreach($msgs as $msg) {
-                    $datetime = explode(' ', $msg['date']);
-                    $date = $datetime[0];
-                    $time = $datetime[1];
-                    $sender = $msg['sender'] == 'D' ? 'doctor' : $msg['username'];
-                    $acceptAppt = $_SESSION['admin'] == true ? "<input type='checkbox'/>" : "<span>Accept Appointment: <input type='checkbox'/></span>";
-                    echo "<li class='".$sender."'><span>$msg[patientid]</span><span>$date <br> ($time)</span> $msg[msg]</li>";
-                }
-            };
-            
-            echo "</ul>";
-            ?>
-            <?php if (!$_SESSION['showall']) : ?>
-                <a class='message-button' href='?showAll=true'>View All</a>
-            <?php else : ?>
-                <a class='message-button' href='?showAll=false'>Show Less</a>
-            <?php endif ?>
-            </div>
-        </div>
+                include_once 'includes/doctormessages.inc.php';
+            }
+        ?>
     <?php endif; ?>
     <?php if (isset($_GET['newmessage'])) : ?>
         <div class="newMessageContainer">
@@ -76,6 +52,41 @@ require_once 'includes/header.inc.php'; ?>
             </div>
         </div>
     <?php endif ?>
+    <?php if (isset($_GET['msgid'])) : ?>
+        <div class="newMessageContainer">
+        <div class="newMessage">
+        <?php
+            foreach($msgs as $msg) {
+                if ($msg['msgid'] == $_GET['msgid']) {
+                    $curMsg = $msg;
+                    break;
+                }
+            }
+
+            $msgStream = $conn->fetchMessageStream($curMsg['patientid']);
+            
+            // foreach($msgStream as $msg) {
+            //     echo $msg['message'];
+            //     echo "<br>";
+            // }
+        ?>
+                <div>New message to: <?php echo $curMsg['patientid'] ?></div>
+                <ul class='message-stream'><?php 
+                    foreach($msgStream as $msg) {
+                        $class = $msg['sender'] == 'D' ? 'doctor' : '';
+                        echo "<li class='$class'>$msg[message]</li>";
+                        
+                    }
+                    // echo $curMsg['msg'] ?>
+                </ul>
+                <form action="includes/gpsendmessage.inc.php" method="POST">
+                    <textarea name="message" placeholder="Type your new message here..."></textarea>
+                    <button type="submit" name="submit" value="<?php echo $curMsg['patientid'] ?>">Send Message</button>
+                    <input type="submit" name="cancel" value="Cancel">
+                </form>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <?php require_once 'includes/footer.inc.php'; ?>

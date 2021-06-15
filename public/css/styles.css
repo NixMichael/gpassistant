@@ -7,6 +7,7 @@
 }
 
 textarea, input {
+  font-family: "Open Sans", sans-serif;
   border: none;
 }
 textarea[type=text], textarea[type=password], textarea[type=email], input[type=text], input[type=password], input[type=email] {
@@ -216,7 +217,7 @@ footer {
 }
 .msg-container .messages .msg-area ul li {
   display: grid;
-  grid-template-columns: 20ch 20ch auto;
+  grid-template-columns: 20ch 20ch 1fr auto;
   align-items: stretch;
   list-style: none;
   text-align: left;
@@ -236,9 +237,21 @@ footer {
   background: none;
   text-align: center;
 }
-.msg-container .messages .msg-area ul li span:last-of-type {
+.msg-container .messages .msg-area ul li span:nth-of-type(2) {
   border-left: 2px dashed white;
   border-right: 2px dashed white;
+}
+.msg-container .messages .msg-area ul li span:last-of-type {
+  text-align: left;
+}
+.msg-container .messages .msg-area ul li button {
+  border: none;
+  border-radius: 5px;
+  margin: 0.5rem;
+  padding: 0.5rem 3rem;
+  color: white;
+  background-color: #54b6b6;
+  cursor: pointer;
 }
 .msg-container .messages .msg-area ul .doctor {
   background-color: #cde0d4;
@@ -269,13 +282,29 @@ footer {
   color: white;
   background-color: #54b6b6;
 }
+.msg-container .newMessageContainer .newMessage .message-stream {
+  width: 100%;
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+.msg-container .newMessageContainer .newMessage .message-stream li {
+  list-style: none;
+  text-align: left;
+  padding: 1rem;
+  color: black;
+  background-color: #e2dddd;
+  margin-bottom: 0.25rem;
+}
+.msg-container .newMessageContainer .newMessage .message-stream .doctor {
+  background-color: #cde0d4;
+}
 .msg-container .newMessageContainer .newMessage textarea {
   resize: none;
   width: 80%;
   min-width: 60ch;
   height: 15ch;
 }
-.msg-container .newMessageContainer .newMessage input {
+.msg-container .newMessageContainer .newMessage input, .msg-container .newMessageContainer .newMessage button {
   margin: 2rem;
   color: black;
   text-decoration: none;
@@ -285,7 +314,7 @@ footer {
   padding: 0.5rem 0.75rem;
   cursor: pointer;
 }
-.msg-container .newMessageContainer .newMessage input:hover {
+.msg-container .newMessageContainer .newMessage input:hover, .msg-container .newMessageContainer .newMessage button:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
 

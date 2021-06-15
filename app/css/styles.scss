@@ -11,6 +11,7 @@ $colorDark: rgb(0,0,0);
 ::-moz-focus-inner {border:0;}
 
 textarea, input {
+    font-family: 'Open Sans', sans-serif;
     border: none;
     &[type=text], &[type=password], &[type=email] {
         outline: 1px solid $featureColor;
@@ -290,7 +291,7 @@ footer {
                 margin: 0;
                 li {
                     display: grid;
-                    grid-template-columns: 20ch 20ch auto;
+                    grid-template-columns: 20ch 20ch 1fr auto;
                     align-items: stretch;
                     list-style: none;
                     text-align: left;
@@ -312,9 +313,21 @@ footer {
                         text-align: center;
                     }
 
-                    span:last-of-type {
+                    span:nth-of-type(2) {
                         border-left: 2px dashed $colorLight;
                         border-right: 2px dashed $colorLight;
+                    }
+                    span:last-of-type {
+                        text-align: left;
+                    }
+                    button {
+                        border: none;
+                        border-radius: 5px;
+                        margin: 0.5rem;
+                        padding: 0.5rem 3rem;
+                        color: $fontColorLight;
+                        background-color:$featureColor;
+                        cursor: pointer;
                     }
                 }
 
@@ -351,13 +364,29 @@ footer {
             border-radius: 10px;
             color: $fontColorLight;
             background-color: $featureColor;
+            .message-stream {
+                width: 100%;
+                max-height: 30vh;
+                overflow-y: scroll;
+                li {
+                    list-style: none;
+                    text-align: left;
+                    padding: 1rem;
+                    color: black;
+                    background-color: rgb(226, 221, 221);
+                    margin-bottom: 0.25rem;
+                }
+                .doctor {
+                    background-color: rgb(205, 224, 212);
+                }
+            }
             textarea {
                 resize: none;
                 width: 80%;
                 min-width: 60ch;
                 height: 15ch;
             }
-            input {
+            input, button {
                 margin: 2rem;
                 color: $colorDark;
                 text-decoration: none;
