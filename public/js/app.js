@@ -25,7 +25,9 @@ const showBooking = () => {
 
 if (currentPage === 'messages.php') {
     const messagesContainer = document.querySelector('.msg-area')
+    const messageStream = document.querySelector('.message-stream')
     messagesContainer.scrollTop = messagesContainer.scrollHeight
+    messageStream.scrollTop = messageStream.scrollHeight
 }
 
 const submitAppointmentDate = (date, month, year) => {
