@@ -3,6 +3,25 @@
 require_once 'Database.class.php';
 
 class Messages extends Database {
+
+    public function markRead ($pid) {
+        $query = "SELECT message_id FROM messages WHERE patient_id = :pid AND sender = 'P' ORDER BY message_id DESC";
+
+        $stmt = $this->dbh->prepare($query);
+
+        if ($stmt->execute(['pid'=>$pid])) {
+            $msgId = $stmt->fetch();
+        }
+
+        $msgId = $msgId['message_id'];
+
+        $query = "UPDATE messages SET readreceipt = true WHERE message_id = $msgId";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute();
+    }
+
     public function addMessage ($user, $message, $senderType) {
         $query = "INSERT INTO messages (patient_id, message, date, sender) VALUES (:patientid, :message, NOW(), :sender)";
 
@@ -36,6 +55,7 @@ class Messages extends Database {
                 $msgs['date'] = $r['date'];
                 $msgs['msg'] = $r['message'];
                 $msgs['sender'] = $r['sender'];
+                $msgs['readreceipt'] = $r['readreceipt'];
                 $sel[] = $msgs;
             }
     

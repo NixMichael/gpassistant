@@ -152,12 +152,15 @@ footer {
   background-color: rgba(84, 182, 182, 0.55);
 }
 
+.msg-container .message-panels {
+  width: 80%;
+}
 .msg-container .messages {
   align-self: flex-start;
   box-shadow: 0 0 5px 0 black;
   background-color: #54b6b6;
   padding: 1rem 0 0;
-  width: 90%;
+  margin-bottom: 3rem;
 }
 .msg-container .messages .message-header {
   display: flex;
@@ -203,8 +206,7 @@ footer {
   margin: 0 auto;
   padding: 1rem 0;
   background-color: #e9e9e9;
-  min-height: 50vh;
-  max-height: calc(100vh - 40vh);
+  max-height: 50vh;
   width: 100%;
   overflow-y: scroll;
   display: flex;
