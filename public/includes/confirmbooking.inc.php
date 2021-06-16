@@ -7,11 +7,12 @@ require_once '../../app/libraries/Appointments.class.php';
 
 $conn = new Appointments();
 if (isset($_POST['submit'])) {
-    $time = $_POST['time'];
-    $date = $_POST['date'];
-    $note = $_POST['note'];
+    $appt_id = $_POST['appt_id'];
+    // $time = $_POST['time'];
+    // $date = $_POST['date'];
+    $message = $_POST['message'];
     
-    $result = $conn->addAppointmentNote($date, $time, $note, $_SESSION['useremail']);
+    $result = $conn->addAppointmentNote($appt_id, $message, $_SESSION['patientid'], 'P');
 
     $status = $result ? 'success' : 'fail';
 

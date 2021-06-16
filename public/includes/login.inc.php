@@ -38,6 +38,8 @@ if (empty($_POST['submit'])) {
         $_SESSION['username'] = $user['username'];
         if (!$user['admin']) {
             $_SESSION['patientid'] = $user['patient_id'];
+        } else {
+            $_SESSION['doctorid'] = $user['email'];
         }
         $_SESSION['admin'] = $user['admin'];
         header('Location: /messages.php');

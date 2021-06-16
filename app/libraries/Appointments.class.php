@@ -8,15 +8,42 @@ class Appointments extends Database {
 
         $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time]);
-    }
+        $stmt->execute(['day'=>$day, 'time'=>$time]);
 
-    public function addAppointmentNote ($day, $time, $note, $patient) {
-        $query = "UPDATE appointments SET notes = :note, username = :patient WHERE day = :day AND time = :time";
+        $query = "SELECT id FROM appointments WHERE id = LAST_INSERT_ID()";
 
         $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['day'=>$day, 'time'=>$time, 'note'=>$note, 'patient'=>$patient]);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+
+        return $result[0]['id'];
+    }
+
+    public function addAppointmentNote ($appt_id, $message, $patientid, $senderType) {
+        $query = "INSERT INTO messages (patient_id, message, date, sender) VALUES (:patientid, :message, NOW(), :sender)";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['patientid'=>$patientid, 'message'=>$message, 'sender'=>$senderType]);
+
+        $query = "SELECT message_id FROM messages WHERE message_id = LAST_INSERT_ID()";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute();
+
+        $messageAdded = $stmt->fetch();
+        $messageAdded = $messageAdded['message_id'];
+
+        // **************
+
+        $query = "UPDATE appointments SET notes = :msgid, username = :patient WHERE id = $appt_id";
+
+        $stmt = $this->dbh->prepare($query);
+
+        return $stmt->execute(['msgid'=>$messageAdded, 'patient'=>$patientid]);
     }
 
     public function removeAppointment ($day, $time) {
@@ -64,7 +91,7 @@ class Appointments extends Database {
     }
 
     public function getAllAppointments ($doctorId) {
-        $query = "SELECT * FROM appointments WHERE doctor_id = :doctorid OR accepted = false";
+        $query = "SELECT * FROM appointments WHERE doctor_id = :doctorid OR accepted IS NULL";
 
         $stmt = $this->dbh->prepare($query);
 

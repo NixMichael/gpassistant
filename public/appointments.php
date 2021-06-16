@@ -14,14 +14,15 @@ if (empty($_SESSION['useremail'])) {
 
 $conn = new Appointments();
 
-$username = $_SESSION['useremail'];
+$patientid = $_SESSION['patientid'];
+$doctorid = $_SESSION['doctorid'];
 $doctor = false;
 
 if ($_SESSION['admin'] != false) {
-    $appointments = $conn->getAllAppointments($username);
+    $appointments = $conn->getAllAppointments($doctorid);
     $doctor = true;
 } else if ($_SESSION['admin'] != true) {
-    $appointments = $conn->fetchAppointments($username);
+    $appointments = $conn->fetchAppointments($patientid);
 }
 // $selectedDate = mktime(0,0,0,$_POST['month'], $_POST['date'], $_POST['year']);
 // $weekday = intval(date('N', $selectedDate)) - 1;

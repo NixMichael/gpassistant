@@ -18,8 +18,7 @@ $year = $_POST['year'];
 
 $conn = new Appointments();
 
-$result = $conn->addAppointment($date, $time);
-
+$apptId = $conn->addAppointment($date, $time);
 ?>
 
 <div class="container">
@@ -27,7 +26,8 @@ $result = $conn->addAppointment($date, $time);
         <h3>Finalise appointment booking</h3>
         <?php echo "<div>Date: ".$date."/".$month."/".$year."</div><div>Time: ".$time."</div>"; ?>
         <form id="frm" action="/includes/confirmbooking.inc.php" method="POST">
-            <textarea name="note" placeholder="Leave a message for the doctor about your reason for booking an appointment (max 500 characters)" maxlength="500"></textarea>
+            <textarea name="message" placeholder="Leave a message for the doctor about your reason for booking an appointment (max 500 characters)" maxlength="500"></textarea>
+            <input type="hidden" name="appt_id" value="<?php echo $apptId ?>">
             <input type="hidden" name="time" value="<?php echo $time ?>">
             <input type="hidden" name="date" value="<?php echo $date ?>">
             <button type="submit" name="submit">Confirm Appointment</button>
