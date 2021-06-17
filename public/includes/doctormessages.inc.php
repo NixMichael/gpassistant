@@ -1,5 +1,4 @@
 
-<div class='message-panels'>
 <div class="messages">
     <div class='message-header'>
     <h3>Your unread messages:</h3>
@@ -117,5 +116,4 @@
             echo "<div>No previous messages</div>";
         } ?>
     </div>
-</div>
 </div>

@@ -415,6 +415,9 @@ footer {
   grid-template-columns: repeat(7, 8ch);
   justify-content: center;
 }
+.appointments-container .calendar-area > div:first-of-type .datesArea > .calendar-element-days {
+  padding-bottom: 3px;
+}
 .appointments-container .calendar-area > div:first-of-type .datesArea > .calendar-element {
   background-color: #54b6b6;
   margin: 3px;
@@ -429,6 +432,13 @@ footer {
   padding: 0.4rem 0;
   font-size: 1.1rem;
   cursor: pointer;
+}
+.appointments-container .calendar-area > div:first-of-type .datesArea .inactiveDate {
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.3);
+  background: none;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
 }
 .appointments-container .calendar-area > div:first-of-type .datesArea .highlight-date {
   color: black;

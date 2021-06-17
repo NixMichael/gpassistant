@@ -508,6 +508,9 @@ footer {
                 display: grid;
                 grid-template-columns: repeat(7, 8ch);
                 justify-content: center;
+                & > .calendar-element-days {
+                    padding-bottom: 3px;
+                }
                 & > .calendar-element {
                     background-color: $featureColor;
                     margin: 3px;
@@ -522,6 +525,13 @@ footer {
                         font-size: 1.1rem;
                         cursor: pointer;
                     }
+                }
+                .inactiveDate {
+                    pointer-events: none;
+                    color: rgba($colorDark, 0.3);
+                    background: none;
+                    outline: 1px solid rgba($colorDark,0.1);
+                    outline-offset: -1px;
                 }
                 .highlight-date {
                     color: $colorDark;

@@ -31,6 +31,7 @@ require_once 'includes/header.inc.php'; ?>
             <h3>Not logged in</h3>
         </div>
     <?php else: ?>
+        <div class='message-panels'>
         <?php
             if (!$_SESSION['admin']) {
                 include_once 'includes/patientmessages.inc.php';
@@ -38,6 +39,7 @@ require_once 'includes/header.inc.php'; ?>
                 include_once 'includes/doctormessages.inc.php';
             }
         ?>
+        </div>
     <?php endif; ?>
     <?php if (isset($_GET['newmessage'])) : ?>
         <div class="newMessageContainer">

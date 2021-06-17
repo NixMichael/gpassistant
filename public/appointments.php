@@ -72,8 +72,10 @@ function buildCalendar($month, $year) {
     $calendar = "<div><h2>1. Choose a date</h2><div>";
     $calendar .= "<div class='calendar-heading'>";
     if ($prevMonth >= date('m')) {
+        // previous month
         $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
     } else {
+        // current month
         $calendar .= "<a href='?month=".($prevMonth + 1)."&year=".date('Y')."'>&lt; ".$prevMonthName."</a>";
     }
     $calendar .= "<a class='no-highlight' href='?month=".date('m')."&year=".date('Y')."'><span>".$monthName." ".$year."</span></a>";
@@ -82,10 +84,22 @@ function buildCalendar($month, $year) {
     } else {
         $calendar .= "<a href='?month=".($nextMonth - 1)."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
     }
+    $firstDayCurMonth = date('N', mktime(0, 0, 0, $month, 1, date('Y')));
     $calendar .= "<form class='datesArea'>";
+    $daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+    for ($d = 0; $d < 7; $d++) {
+        $calendar .= "<div class='calendar-element-days'>$daysOfWeek[$d]</div>";
+    }
+    for ($space = 1; $space < $firstDayCurMonth; $space++) {
+        $calendar .= "<div class='calendar-element' style='opacity: 0'></div>";
+    }
     for ($c = 0; $c < $numberOfDays; $c++) {
         $i = $c + 1;
-        $calendar .= "<div class='calendar-element' id='$i' type='submit' onclick='submitAppointmentDate($i, $month, $year)' name='querydate'>$i</div>";
+        $class = '';
+        if (date('d') > $i && date('m') == date('m', $firstDayOfMonth)) {
+            $class = 'inactiveDate';
+        };
+        $calendar .= "<div class='calendar-element $class' id='$i' type='submit' onclick='submitAppointmentDate($i, $month, $year)' name='querydate'>$i</div>";
         // $calendar .= "<input type='hidden' name='querymonth' value='".$month."'>";
         // $calendar .= "<input type='hidden' name='queryyear' value='".$year."'>";
         // $calendar .= "<a href='includes/checkavailability.inc.php?querydate=".$i."&querymonth=".$month."&queryyear=".$year."' class='calendar-element  ".checkSelected($i)."   '>".$i."</a>";
