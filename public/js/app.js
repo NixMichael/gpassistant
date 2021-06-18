@@ -62,6 +62,7 @@ const submitAppointmentDate = (date, month, year) => {
         data: dataString,
         cache: false,
         success: function(r) {
+            console.log(r)
             let times = $.parseJSON(r)
             let timesHeading = `${date}${prefix} ${monthName} ${year}`
             let content = ''

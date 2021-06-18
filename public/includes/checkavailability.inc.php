@@ -3,21 +3,27 @@
 require_once '../../app/config.php';
 require_once '../../app/libraries/Appointments.class.php';
 
-$date = $_GET['querydate'];
+$day = $_GET['querydate'];
 $month = intval($_GET['querymonth']);
 $year = $_GET['queryyear'];
 
+$date = "$day/$month/$year";
 
 $conn = new Appointments();
 
-$response = $conn->checkTimes($date);
+$dbResults = $conn->checkTimes($date);
 
 $times = array_filter(TIMELIST, function ($t) {
-    global $response;
+    global $conn;
+    global $dbResults;
     $chk = [];
-    foreach($response as $r) {
-        if ($r == $t) {
-            $chk[] = $t;
+    foreach($dbResults as $time) {
+        if ($time->time == $t) {
+            if (time() - $time->bookedTime > 900) {
+                $conn->removeAppointment($time->id);
+            } else {
+                $chk[] = $t;
+            }
         }
     }
     if (!empty($chk)) {

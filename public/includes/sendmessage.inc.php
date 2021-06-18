@@ -11,7 +11,7 @@ if (!isset($_POST['submit'])) {
     exit();
 } else {
 
-    $user = $_SESSION['patient_id'];
+    $user = $_SESSION['patientid'];
     $message = $_POST['message'];
 
     $conn = new Messages();

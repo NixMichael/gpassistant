@@ -6,16 +6,35 @@ require_once '../app/libraries/Appointments.class.php';
 
 define('APP_RUN', true);
 
-session_start();
-
 if (empty($_SESSION['useremail'])) {
     header('Location: /');
 }
 
 $conn = new Appointments();
 
-$patientid = $_SESSION['patientid'];
-$doctorid = $_SESSION['doctorid'];
+$dbResults = $conn->checkTimes('18/6/2021');
+echo time() - $dbResults[0]->bookedTime;
+if (time() - $dbResults[0]->bookedTime > 11636) {
+    echo 'timed';
+}
+
+
+// echo '<pre>';
+// var_dump($dbResults);
+// echo '</pre>';
+
+// foreach(TIMELIST as $t) {
+//     foreach($dbResults as $time) {
+//         if ($time->time == $t) {
+//             echo 'yes';
+//             }
+//         }
+//     }
+
+
+if (isset($_SESSION['patientid'])) { $patientid = $_SESSION['patientid']; }
+if (isset($_SESSION['doctorid'])) { $doctorid = $_SESSION['doctorid']; }
+
 $doctor = false;
 
 if ($_SESSION['admin'] != false) {
@@ -24,37 +43,6 @@ if ($_SESSION['admin'] != false) {
 } else if ($_SESSION['admin'] != true) {
     $appointments = $conn->fetchAppointments($patientid);
 }
-// $selectedDate = mktime(0,0,0,$_POST['month'], $_POST['date'], $_POST['year']);
-// $weekday = intval(date('N', $selectedDate)) - 1;
-// $monthNm = date('F', $selectedDate);
-// $selectedDateNum = $_POST['date'];
-
-// SET CURRENT DATE SELECTION WITH PHP
-// function checkSelected($date) {
-//     if ($date == 1) {
-//         return 'highlight-date';
-//     }
-// }
-
-// ADD DATE POSTFIX
-// function checkDates($dates) {
-//     return array_filter($dates, function ($e) {
-//         global $selectedDateNum;
-//         return ($e == $selectedDateNum);
-//     });
-// }
-
-
-
-// if (checkDates(['1','21','31'])) {
-//     $postfix = 'st';
-// } else if (checkDates(['2','22'])) {
-//     $postfix = 'nd';
-// } else if (checkDates(['3','23'])) {
-//     $postfix = 'rd';
-// } else {
-//     $postfix = 'th';
-// }
 
 function buildCalendar($month, $year) {
     $firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
@@ -62,15 +50,13 @@ function buildCalendar($month, $year) {
     $dateComponents = getdate($firstDayOfMonth);
     $monthName = $dateComponents['month'];
     $dayOfWeek = $dateComponents['wday'];
-    $dateToday = date('Y-m-d');
     $prevMonth = date('m', mktime(0, 0, 0, $month - 1, 1, $year));
     $prevMonthName = date('M', mktime(0, 0, 0, $month - 1, 1, $year));
     $nextMonth = date('m', mktime(0, 0, 0, $month + 1, 1, $year));
     $nextMonthName = date('M', mktime(0, 0, 0, $month + 1, 1, $year));
     $prevYear = date('Y', mktime(0, 0, 0, $month - 1, 1, $year));
     $nextYear = date('Y', mktime(0, 0, 0, $month + 1, 1, $year));
-    $calendar = "<div><h2>1. Choose a date</h2><div>";
-    $calendar .= "<div class='calendar-heading'>";
+
     if ($prevMonth >= date('m')) {
         // previous month
         $calendar .= "<a href='?month=".$prevMonth."&year=".$prevYear."'>&lt; ".$prevMonthName."</a>";
@@ -95,22 +81,17 @@ function buildCalendar($month, $year) {
     }
     for ($c = 0; $c < $numberOfDays; $c++) {
         $i = $c + 1;
-        $class = '';
+        $class = 'calendar-element';
         if (date('d') > $i && date('m') == date('m', $firstDayOfMonth)) {
-            $class = 'inactiveDate';
+            $class .= ' inactiveDate';
         };
-        $calendar .= "<div class='calendar-element $class' id='$i' type='submit' onclick='submitAppointmentDate($i, $month, $year)' name='querydate'>$i</div>";
-        // $calendar .= "<input type='hidden' name='querymonth' value='".$month."'>";
-        // $calendar .= "<input type='hidden' name='queryyear' value='".$year."'>";
-        // $calendar .= "<a href='includes/checkavailability.inc.php?querydate=".$i."&querymonth=".$month."&queryyear=".$year."' class='calendar-element  ".checkSelected($i)."   '>".$i."</a>";
+        $calendar .= "<div class='$class' id='$i' type='submit' onclick='submitAppointmentDate($i, $month, $year)' name='querydate'>$i</div>";
     }
-    $calendar .= "</form></div></div>";
+    $calendar .= "</form>";
+    
     return $calendar;
 
 }
-
-// $first = mktime(0, 0, 0, $month, 1, $year);
-// $getDate = getdate($first);
 
 if (isset($_GET['month']) && isset($_GET['year'])) {
     $month = $_GET['month'];
@@ -134,7 +115,5 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
 
 <div>
 </div>
-
-<div class="res-area"></div>
 
 <?php require_once 'includes/footer.inc.php'; ?>

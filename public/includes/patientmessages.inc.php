@@ -4,11 +4,11 @@
             <div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>
             </div>
             <div class=results-header><span>From</span><span>Date</span><span>Message</span></div>
-            <div class='msg-area'>
+            <div class='msg-area msg-area-patient'>
             <ul>
             <?php 
-            if (empty($msgs)) {
-                echo 'No messages';
+            if (!is_array($msgs)) {
+                echo $msgs;
             } else {
                 foreach($msgs as $msg) {
                     $datetime = explode(' ', $msg['date']);

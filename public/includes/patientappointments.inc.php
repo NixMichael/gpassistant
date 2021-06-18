@@ -8,16 +8,21 @@
         <a class='button' href="?month=<?php echo $month ?>">Make an appointment</a>
     <?php else : ?>
         <div>Upcoming appointments:</div>
-        <div class='booked-appointment'><span><?php echo "Date: ".$appointments[0]['day'] ?></span><span><?php echo "Time: ".$appointments[0]['time'] ?></span><span>Doctor: <?php echo $appointments[0]['doctor_id'] ?: 'Unassigned' ?></span></div>
-        <div class='booked-appointment appointment-note'><strong>Message to doctor:&emsp;</strong><?php echo $appointments[0]['notes'] ?: 'None provided' ?></div>
-        <a class="button" href="includes/cancelappointment.inc.php?id=<?php echo $appointments[0]['id'] ?>&time=<?php echo $appointments[0]['time'] ?>">Cancel Appointment</a>
+        <div class='booked-appointment'><span><?php echo "Date: ".$appointments['date'] ?></span><span><?php echo "Time: ".$appointments['time'] ?></span><span>Doctor: <?php echo $appointments['doctor_id'] ?: 'Unassigned' ?></span></div>
+        <div class='booked-appointment appointment-note'><strong>Message to doctor:&emsp;</strong><?php echo $appointments['message'] ?: 'None provided' ?></div>
+        <a class="button" href="includes/cancelappointment.inc.php?id=<?php echo $appointments['id'] ?>&time=<?php echo $appointments['time'] ?>">Cancel Appointment</a>
     <?php endif; ?>
 </div>
 <?php else : ?>
     <div class='container appointments-container'>
     <div class='calendar-area'>
         <div id='choose-date'>
-            <?php echo buildCalendar($month, $year); ?>
+
+            <div><h2>1. Choose a date</h2><div>
+                <div class='calendar-heading'>
+                    <?php echo buildCalendar($month, $year); ?>
+                </div>
+            </div>
         </div>
         <div id='choose-time'>
             <div><h2>2. Choose a time</h2></div>

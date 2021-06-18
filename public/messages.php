@@ -21,7 +21,9 @@ if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
 
 $msgs = $conn->fetchMessages($_SESSION['patientid'], $_SESSION['showall'], $_SESSION['admin']);
 
-$msgs = array_reverse($msgs);
+if (is_array($msgs)) {
+    $msgs = array_reverse($msgs);
+}
 
 require_once 'includes/header.inc.php'; ?>
 
@@ -66,25 +68,22 @@ require_once 'includes/header.inc.php'; ?>
             }
 
             $msgStream = $conn->fetchMessageStream($curMsg['patientid']);
-            
-            // foreach($msgStream as $msg) {
-            //     echo $msg['message'];
-            //     echo "<br>";
-            // }
         ?>
                 <div>New message to: <?php echo $curMsg['patientid'] ?></div>
                 <ul class='message-stream'><?php 
-                    foreach($msgStream as $msg) {
-                        $class = $msg['sender'] == 'D' ? 'doctor' : '';
-                        echo "<li class='$class'>$msg[message]</li>";
-                        
-                    }
-                    // echo $curMsg['msg'] ?>
+                    if (!empty($msgStream)) {
+                        foreach($msgStream as $msg) {
+                            $class = $msg['sender'] == 'D' ? 'doctor' : '';
+                            echo "<li class='$class'>$msg[message]</li>";
+                        }
+                    } else {
+                        echo 'No messages to display.';
+                    } ?>
                 </ul>
                 <form action="includes/gpsendmessage.inc.php" method="POST">
                     <textarea name="message" placeholder="Type your new message here..."></textarea>
                     <button type="submit" name="submit" value="<?php echo $curMsg['patientid'] ?>">Send Message</button>
-                    <input type="submit" name="cancel" value="Cancel">
+                    <input type="submit" name="cancel" value="Close">
                 </form>
             </div>
         </div>

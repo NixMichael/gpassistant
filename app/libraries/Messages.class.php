@@ -58,10 +58,8 @@ class Messages extends Database {
                 $msgs['readreceipt'] = $r['readreceipt'];
                 $sel[] = $msgs;
             }
-    
         } else {
-            $msgs['error'] = 'Failed to fetch messages';
-            $sel[] = $msgs;
+            $sel = "No messages to display.";
         }
 
         return $sel;

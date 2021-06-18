@@ -265,6 +265,9 @@ footer {
   color: white;
   background-color: #54b6b6;
 }
+.msg-container .messages .msg-area-patient {
+  height: 50vh;
+}
 .msg-container .newMessageContainer {
   position: absolute;
   inset: 0;

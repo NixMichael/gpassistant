@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_GET['id']) && !isset($_GET['time'])) {
+    header('Location: /index.php');
+    exit();
+}
+
 require_once '../../app/config.php';
 require_once '../../app/libraries/Appointments.class.php';
 
