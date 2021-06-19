@@ -34,7 +34,3 @@ if (time() - $_SESSION['booking-start-time'] < 900) {
     exit();
 }
 ?>
-
-<script>
-    localStorage.removeItem('timer_value');
-</script>

@@ -56,18 +56,20 @@ if (!isset($_POST['time'])) {
     const confirmButton = document.getElementById("submit-form");
     const cancel = document.getElementById("cancel");
 
-    let timeNow = Date.now() / 1000;
+    let timeNow = Date.now() / 1000; // Get timestamp in seconds
+
+    // Check for existing timer_value from sessionStorage. Create if does not exist.
 
     let counter = sessionStorage.getItem('timer_value');
-    console.log(counter);
-    // console.log(`from storage: ${counter} | now: ${Date.now()} | difference: ${Date.now() - counter}`);
     if (!counter) {
         counter = Date.now() / 1000;
         sessionStorage.setItem('timer_value', counter);
     }
 
-    let difference = Math.ceil(timeNow - counter);
-    console.log(`Difference: ${difference}`);
+    let difference = Math.ceil(timeNow - counter); // Store seconds passed in difference variable
+
+    // Get time remaining in seconds. Begin 1000ms interval loop, convert
+    // 'seconds remaining' to minutes, and check when seconds remaining reaches 0
 
     let c = 900 - difference;
     let timer = setInterval(() => {
