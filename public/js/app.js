@@ -23,13 +23,6 @@ const showBooking = () => {
     bookNow.style.zIndex = '1'
 }
 
-if (currentPage === 'messages.php') {
-    const messagesContainer = document.querySelector('.msg-area')
-    const messageStream = document.querySelector('.message-stream')
-    messagesContainer.scrollTop = messagesContainer.scrollHeight
-    messageStream.scrollTop = messageStream.scrollHeight
-}
-
 const submitAppointmentDate = (date, month, year) => {
     const dataString = `querydate=${date}&querymonth=${month}&queryyear=${year}`
     const selectedDate = document.getElementById(date)

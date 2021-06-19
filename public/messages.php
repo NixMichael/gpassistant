@@ -27,7 +27,7 @@ if (is_array($msgs)) {
 
 require_once 'includes/header.inc.php'; ?>
 
-<div class="container msg-container">
+<div class="msg-container">
     <?php if (isset($_SESSION['useremail']) && $_SESSION['useremail'] == false): ?>
         <div>
             <h3>Not logged in</h3>

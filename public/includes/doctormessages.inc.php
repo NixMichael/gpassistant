@@ -1,7 +1,7 @@
 
 <div class="messages">
     <div class='message-header'>
-    <h3>Your unread messages:</h3>
+    <h3>Messages awaiting response:</h3>
     <div><a class='message-button' href=''>Refresh</a></div>
     </div>
     <div class=results-header><span>From</span><span>Date</span><span>Message</span></div>
@@ -53,7 +53,7 @@
         <?php else : ?>
             <a class='message-button' href='?showAll=false'>Show Less</a>
         <?php endif; } else {
-            echo "<div>No new messages</div>";
+            echo "<div class='no-messages'>No new messages</div>";
         } ?>
     </div>
 </div>
@@ -113,7 +113,12 @@
         <?php else : ?>
             <a class='message-button' href='?showAll=false'>Show Less</a>
         <?php endif; } else {
-            echo "<div>No previous messages</div>";
+            echo "<div class='no-messages'>No previous messages</div>";
         } ?>
     </div>
 </div>
+
+<script>
+    let messageStream = document.querySelector('.message-stream');
+    messageStream.scrollTop = messageStream.scrollHeight;
+</script>

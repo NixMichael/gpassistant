@@ -86,11 +86,11 @@ footer {
 }
 
 .container {
-    padding: 1rem;
+    padding-top: 2rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
 
@@ -101,7 +101,7 @@ footer {
         outline-offset: 10px;
         border-radius: 10px;
         padding: 1rem 3rem;
-        margin-bottom: 8rem;
+        margin: auto;
 
         form {
             display: flex;
@@ -227,14 +227,21 @@ footer {
 
 .msg-container {
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
     .message-panels {
         width: 80%;
     }
     .messages {
         align-self: flex-start;
-        box-shadow: 0 0 5px 0 rgb(0,0,0);
-        background-color: $featureColor;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+        background-color: rgba($colorDark, 0.075);
         padding: 1rem 0 0;
+        border-radius: 10px;
         margin-bottom: 3rem;
 
         .message-header {
@@ -243,29 +250,29 @@ footer {
             align-items: center;
             padding: 0 0 0 1rem;
             margin-bottom: 1rem;
-            color: $fontColorLight;
             h3 {
+                color: rgba($colorDark, 0.75);
                 margin: 0;
+                padding-left: 2rem;
             }
         }
 
         .message-button {
-            color: $featureColor;
-            background-color:$colorOffWhite;
+            color: $colorLight;
+            background-color: $featureColor;
             border: none;
             border-radius: 4px;
             padding: 0.5rem 0.75rem;
             margin: 0.5rem 1rem;
             text-decoration: none;
-            &:hover, &:focus {
+            &:focus {
                 outline: 5px solid orange;
             }
         }
 
         .results-header {
             background-color: rgb(207, 207, 207);
-            border-bottom: 2px solid white;
-            border-top: 2px solid white;
+            background-color: $featureColor;
             margin-top: 0.5rem;
             padding: 0.5rem;
             display: grid;
@@ -285,6 +292,7 @@ footer {
             padding: 1rem 0;
             background-color:$colorOffWhite;
             max-height: 50vh;
+            min-height: 10vh;
             width: 100%;
             overflow-y: scroll;
             display: flex;
@@ -332,6 +340,9 @@ footer {
                         color: $fontColorLight;
                         background-color:$featureColor;
                         cursor: pointer;
+                        &:hover {
+                            background-color: rgba($featureColor, 0.7);
+                        }
                     }
                 }
 
@@ -339,13 +350,18 @@ footer {
                     background-color: rgb(205, 224, 212);
                 }
             }
+            .no-messages {
+                margin-bottom: 2rem;
+            }
             .message-button {
                 align-self: center;
                 margin: 0.5rem;
                 padding: 0.5rem 3rem;
                 color: $fontColorLight;
                 background-color:$featureColor;
-
+                &:hover {
+                    background-color: rgba($featureColor, 0.7);
+                }
             }
         }
 
@@ -682,9 +698,22 @@ footer {
 }
 
 .doctor-appointments {
-    justify-self: center;
     width: 80%;
+    min-height: 30vh;
+    background-color: rgba($colorDark, 0.075);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin-bottom: 3rem;
     padding: 0;
+    text-align: left;
+    h3 {
+        color: rgba($colorDark, 0.75);
+        padding-left: 4rem;
+    }
+    .no-appointments {
+        padding-top: 2rem;
+        text-align: center;
+    }
     ul {
         padding: 0;
     }
@@ -694,7 +723,7 @@ footer {
         list-style: none;
         padding: 0.5rem 1rem 0.5rem 4rem;
         margin-bottom: 0.5rem;
-        background-color: rgba($colorDark, 0.15);
+        background-color: rgb(226, 221, 221);
         div {
             display: grid;
             grid-template-columns: repeat(4, 25%);
@@ -713,6 +742,7 @@ footer {
                         color: white;
                         background-color: $featureColor;
                         transition: outline 200ms ease-out;
+                        cursor: pointer;
                         &:hover {
                             outline: 5px solid $featureColor;
                         }
@@ -747,21 +777,5 @@ footer {
                 }
             }
         }
-    }
-}
-// ********************************
-
-.unconfirmed {
-    list-style: bullets;
-    position: relative;
-    &:before {
-        content: '';
-        position: absolute;
-        left: -15px;
-        top: calc(50% - 10px);
-        width: 0px;
-        height: 0px;
-        border: 10px solid transparent;
-        border-left: 10px solid red;
     }
 }

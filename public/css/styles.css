@@ -77,11 +77,11 @@ footer {
 }
 
 .container {
-  padding: 1rem;
+  padding-top: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
 }
@@ -92,7 +92,7 @@ footer {
   outline-offset: 10px;
   border-radius: 10px;
   padding: 1rem 3rem;
-  margin-bottom: 8rem;
+  margin: auto;
 }
 .container .logIn form {
   display: flex;
@@ -155,15 +155,22 @@ footer {
 
 .msg-container {
   width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
 }
 .msg-container .message-panels {
   width: 80%;
 }
 .msg-container .messages {
   align-self: flex-start;
-  box-shadow: 0 0 5px 0 black;
-  background-color: #54b6b6;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.075);
   padding: 1rem 0 0;
+  border-radius: 10px;
   margin-bottom: 3rem;
 }
 .msg-container .messages .message-header {
@@ -172,27 +179,27 @@ footer {
   align-items: center;
   padding: 0 0 0 1rem;
   margin-bottom: 1rem;
-  color: white;
 }
 .msg-container .messages .message-header h3 {
+  color: rgba(0, 0, 0, 0.75);
   margin: 0;
+  padding-left: 2rem;
 }
 .msg-container .messages .message-button {
-  color: #54b6b6;
-  background-color: #e9e9e9;
+  color: white;
+  background-color: #54b6b6;
   border: none;
   border-radius: 4px;
   padding: 0.5rem 0.75rem;
   margin: 0.5rem 1rem;
   text-decoration: none;
 }
-.msg-container .messages .message-button:hover, .msg-container .messages .message-button:focus {
+.msg-container .messages .message-button:focus {
   outline: 5px solid orange;
 }
 .msg-container .messages .results-header {
   background-color: #cfcfcf;
-  border-bottom: 2px solid white;
-  border-top: 2px solid white;
+  background-color: #54b6b6;
   margin-top: 0.5rem;
   padding: 0.5rem;
   display: grid;
@@ -211,6 +218,7 @@ footer {
   padding: 1rem 0;
   background-color: #e9e9e9;
   max-height: 50vh;
+  min-height: 10vh;
   width: 100%;
   overflow-y: scroll;
   display: flex;
@@ -259,8 +267,14 @@ footer {
   background-color: #54b6b6;
   cursor: pointer;
 }
+.msg-container .messages .msg-area ul li button:hover {
+  background-color: rgba(84, 182, 182, 0.7);
+}
 .msg-container .messages .msg-area ul .doctor {
   background-color: #cde0d4;
+}
+.msg-container .messages .msg-area .no-messages {
+  margin-bottom: 2rem;
 }
 .msg-container .messages .msg-area .message-button {
   align-self: center;
@@ -268,6 +282,9 @@ footer {
   padding: 0.5rem 3rem;
   color: white;
   background-color: #54b6b6;
+}
+.msg-container .messages .msg-area .message-button:hover {
+  background-color: rgba(84, 182, 182, 0.7);
 }
 .msg-container .messages .msg-area-patient {
   height: 50vh;
@@ -579,9 +596,22 @@ footer {
 }
 
 .doctor-appointments {
-  justify-self: center;
   width: 80%;
+  min-height: 30vh;
+  background-color: rgba(0, 0, 0, 0.075);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 3rem;
   padding: 0;
+  text-align: left;
+}
+.doctor-appointments h3 {
+  color: rgba(0, 0, 0, 0.75);
+  padding-left: 4rem;
+}
+.doctor-appointments .no-appointments {
+  padding-top: 2rem;
+  text-align: center;
 }
 .doctor-appointments ul {
   padding: 0;
@@ -592,7 +622,7 @@ footer {
   list-style: none;
   padding: 0.5rem 1rem 0.5rem 4rem;
   margin-bottom: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: #e2dddd;
 }
 .doctor-appointments li div {
   display: grid;
@@ -615,6 +645,7 @@ footer {
   color: white;
   background-color: #54b6b6;
   transition: outline 200ms ease-out;
+  cursor: pointer;
 }
 .doctor-appointments li div span:last-of-type button:hover {
   outline: 5px solid #54b6b6;
@@ -645,21 +676,6 @@ footer {
   margin-right: 0;
   display: flex;
   justify-content: center;
-}
-
-.unconfirmed {
-  list-style: bullets;
-  position: relative;
-}
-.unconfirmed:before {
-  content: "";
-  position: absolute;
-  left: -15px;
-  top: calc(50% - 10px);
-  width: 0px;
-  height: 0px;
-  border: 10px solid transparent;
-  border-left: 10px solid red;
 }
 
 /*# sourceMappingURL=styles.css.map */

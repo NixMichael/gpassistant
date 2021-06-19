@@ -29,3 +29,8 @@
             <?php endif ?>
             </div>
         </div>
+
+        <script>
+            let messagesContainer = document.querySelector('.msg-area');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        </script>
