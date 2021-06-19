@@ -13,24 +13,6 @@ if (empty($_SESSION['useremail'])) {
 $conn = new Appointments();
 
 $dbResults = $conn->checkTimes('18/6/2021');
-echo time() - $dbResults[0]->bookedTime;
-if (time() - $dbResults[0]->bookedTime > 11636) {
-    echo 'timed';
-}
-
-
-// echo '<pre>';
-// var_dump($dbResults);
-// echo '</pre>';
-
-// foreach(TIMELIST as $t) {
-//     foreach($dbResults as $time) {
-//         if ($time->time == $t) {
-//             echo 'yes';
-//             }
-//         }
-//     }
-
 
 if (isset($_SESSION['patientid'])) { $patientid = $_SESSION['patientid']; }
 if (isset($_SESSION['doctorid'])) { $doctorid = $_SESSION['doctorid']; }

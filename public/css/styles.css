@@ -80,8 +80,9 @@ footer {
   padding: 1rem;
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
 }
 .container .logIn {
@@ -152,6 +153,9 @@ footer {
   background-color: rgba(84, 182, 182, 0.55);
 }
 
+.msg-container {
+  width: 100%;
+}
 .msg-container .message-panels {
   width: 80%;
 }
@@ -324,20 +328,21 @@ footer {
 }
 
 .current-appointments {
-  width: 80vw;
-  height: 40vh;
+  max-width: 80vw;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 4rem 6rem;
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid #54b6b6;
+  box-shadow: 0 0 0 10px white, 0 5px 25px 0 rgba(20, 20, 20, 0.7);
   text-align: center;
   transition: opacity 400ms ease;
   background-color: white;
   z-index: 2;
 }
 .current-appointments > div {
+  min-width: 80ch;
   padding: 0;
-  margin: 2rem;
+  margin-bottom: 2rem;
 }
 .current-appointments .booked-appointment {
   width: 80%;
@@ -352,6 +357,9 @@ footer {
   background: none;
   justify-content: flex-start;
   margin-bottom: 3rem;
+}
+.current-appointments .appointment-note span {
+  text-align: left;
 }
 .current-appointments .button {
   background-color: rgba(84, 182, 182, 0.55);
@@ -373,6 +381,7 @@ footer {
 
 .appointments-container {
   overflow-y: scroll;
+  width: 100%;
 }
 .appointments-container .calendar-area {
   width: 100%;
@@ -513,6 +522,15 @@ footer {
 .confirm-appointment > * {
   margin: 1rem 0;
 }
+.confirm-appointment #complete-booking-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-appointment #complete-booking-header > span {
+  font-size: 0.8rem;
+}
 .confirm-appointment form {
   width: 100%;
 }
@@ -532,7 +550,7 @@ footer {
   cursor: pointer;
 }
 .confirm-appointment form button:last-of-type {
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: #c23636;
 }
 
 .confirmation-message {

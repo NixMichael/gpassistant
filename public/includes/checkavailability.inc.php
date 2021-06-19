@@ -19,7 +19,7 @@ $times = array_filter(TIMELIST, function ($t) {
     $chk = [];
     foreach($dbResults as $time) {
         if ($time->time == $t) {
-            if (time() - $time->bookedTime > 900) {
+            if ((time() - $time->bookedTime > 900) && (!$time->msgId)) {
                 $conn->removeAppointment($time->id);
             } else {
                 $chk[] = $t;

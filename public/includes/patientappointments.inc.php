@@ -9,8 +9,8 @@
     <?php else : ?>
         <div>Upcoming appointments:</div>
         <div class='booked-appointment'><span><?php echo "Date: ".$appointments['date'] ?></span><span><?php echo "Time: ".$appointments['time'] ?></span><span>Doctor: <?php echo $appointments['doctor_id'] ?: 'Unassigned' ?></span></div>
-        <div class='booked-appointment appointment-note'><strong>Message to doctor:&emsp;</strong><?php echo $appointments['message'] ?: 'None provided' ?></div>
-        <a class="button" href="includes/cancelappointment.inc.php?id=<?php echo $appointments['id'] ?>&time=<?php echo $appointments['time'] ?>">Cancel Appointment</a>
+        <div class='booked-appointment appointment-note'><strong>Issue:&emsp;</strong><span><?php echo $appointments['message'] ?: 'None provided' ?></span></div>
+        <form action="includes/cancelappointment.inc.php" method="GET"> <input type="hidden" name="id" value="<?php echo $appointments['id'] ?>"><input type="hidden" name="time" value="<?php echo $appointments['time'] ?>"><input class="button" type="submit" name="submit" value="Cancel Appointment"/></form>
     <?php endif; ?>
 </div>
 <?php else : ?>

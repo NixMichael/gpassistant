@@ -7,9 +7,10 @@ require_once '../../app/libraries/Appointments.class.php';
 
 $conn = new Appointments();
 if (isset($_POST['submit'])) {
+    $appt_id = $_POST['appt_id'];
     $message = $_POST['message'];
 
-    $result = $conn->addAppointmentNote($appt_id, $message, $_SESSION['patientid'], 'P');
+    $result = $conn->addAppointmentNote($appt_id, $message, 'P');
 
     $status = $result ? 'success' : 'fail';
 
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
     exit();
 } else if (isset($_POST['cancel'])) {
     $appt_id = $_POST['appt_id'];
-    $conn->removeAppointment($appt_id);
+    $conn->removeAppointment($appt_id, $_SESSION['patientid']);
     header('Location: /appointments.php');
     exit();
 } else {

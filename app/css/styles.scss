@@ -89,8 +89,9 @@ footer {
     padding: 1rem;
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
 
     .logIn {
@@ -225,6 +226,7 @@ footer {
 // *** MESSAGE PAGE STYLES ***
 
 .msg-container {
+    width: 100%;
     .message-panels {
         width: 80%;
     }
@@ -414,20 +416,21 @@ footer {
 // *** APPOINTMENTS PAGE STYLES ***
 
 .current-appointments {
-    width: 80vw;
-    height: 40vh;
+    max-width: 80vw;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 4rem 6rem;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid $featureColor;
+    box-shadow: 0 0 0 10px $colorLight, 0 5px 25px 0 rgba(20,20,20,0.7);
     text-align: center;
     transition: opacity 400ms ease;
     background-color: $colorLight;
     z-index: 2;
 
     & > div {
+        min-width: 80ch;
         padding: 0;
-        margin: 2rem;
+        margin-bottom: 2rem;
     }
 
     .booked-appointment {
@@ -444,6 +447,9 @@ footer {
         background: none;
         justify-content: flex-start;
         margin-bottom: 3rem;
+        span {
+            text-align: left;
+        }
     }
 
     .button {
@@ -467,6 +473,7 @@ footer {
 
 .appointments-container {
     overflow-y: scroll;
+    width: 100%;
     .calendar-area {
         width: 100%;
         display: flex;
@@ -616,6 +623,15 @@ footer {
     & > * {
         margin: 1rem 0;
     }
+    #complete-booking-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & > span {
+            font-size: 0.8rem;
+        }
+    }
     form {
         width: 100%;
         textarea {
@@ -633,7 +649,7 @@ footer {
             min-width: 25ch;
             cursor: pointer;
             &:last-of-type {
-                background-color: rgba(255,0,0,0.4);
+                background-color: rgb(194, 54, 54);
             }
         }
     }

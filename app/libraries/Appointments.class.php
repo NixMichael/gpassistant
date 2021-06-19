@@ -3,14 +3,14 @@
 require_once 'Database.class.php';
 
 class Appointments extends Database {
-    public function addAppointment ($date, $time) {
+    public function addAppointment ($date, $time, $ptId) {
         $currentTime = time();
 
-        $query = "INSERT INTO appointments (date, time, booking_time) VALUES (:date, :time, $currentTime)";
+        $query = "INSERT INTO appointments (date, time, patient_id, booking_time) VALUES (:date, :time, :pt, $currentTime)";
 
         $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute(['date'=>$date, 'time'=>$time]);
+        $stmt->execute(['date'=>$date, 'time'=>$time, 'pt'=>$ptId]);
 
         $query = "SELECT id FROM appointments WHERE id = LAST_INSERT_ID()";
 
@@ -23,12 +23,12 @@ class Appointments extends Database {
         return $result['id'];
     }
 
-    public function addAppointmentNote ($appt_id, $message, $patientid, $senderType) {
-        $query = "INSERT INTO messages (patient_id, message, date, sender, readreceipt) VALUES (:patientid, :message, NOW(), :sender, false)";
+    public function addAppointmentNote ($appt_id, $message, $senderType) {
+        $query = "INSERT INTO messages (message, date, sender, readreceipt) VALUES (:message, NOW(), :sender, false)";
 
         $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute(['patientid'=>$patientid, 'message'=>$message, 'sender'=>$senderType]);
+        $stmt->execute(['message'=>$message, 'sender'=>$senderType]);
 
         $query = "SELECT message_id FROM messages WHERE message_id = LAST_INSERT_ID()";
 
@@ -48,12 +48,12 @@ class Appointments extends Database {
         return $stmt->execute(['msgid'=>$messageAdded, 'ptid'=>$patientid]);
     }
 
-    public function removeAppointment ($id) {
-        $query = "DELETE FROM appointments WHERE id = $id";
+    public function removeAppointment ($id, $ptId) {
+        $query = "DELETE FROM appointments WHERE id = $id AND patient_id = :pt";
 
         $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute();
+        $stmt->execute(['pt'=>$ptId]);
     }
 
     public function fetchAppointments ($user) {
@@ -69,16 +69,38 @@ class Appointments extends Database {
     }
 
     public function cancelAppointment ($id, $time) {
+
+        // Get associated message_id in preparation for updating the message with the cancellation notification
+
+        $query = "SELECT message_id FROM appointments WHERE id = :id";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute(['id'=>$id]);
+
+        $msgId = $stmt->fetch(PDO::FETCH_NUM);
+        $msgId = $msgId[0];
+
+        // Delete appointment entry
+
         $query = "DELETE FROM appointments WHERE id = :id AND time = :time";
 
         $stmt = $this->dbh->prepare($query);
 
         $stmt->execute(['id'=>$id, 'time'=>$time]);
+
+        // Add cancellation note to the associated message
+
+        $query = "UPDATE messages SET message = concat(ifnull(message, ''), ' [Appointment cancelled by patient]') WHERE message_id = $msgId";
+
+        $stmt = $this->dbh->prepare($query);
+
+        $stmt->execute();
     }
 
     public function checkTimes ($date) {
 
-        $query = "SELECT id, time, booking_time FROM appointments WHERE date = :date";
+        $query = "SELECT id, time, message_id, booking_time FROM appointments WHERE date = :date";
 
         $stmt = $this->dbh->prepare($query);
         $stmt->execute(['date'=>$date]);
@@ -87,8 +109,7 @@ class Appointments extends Database {
 
         $times = [];
         foreach($result as $r) {
-            $times[] = (object) ['time'=>$r['time'], 'bookedTime'=>$r['booking_time'], 'id'=>$r['id']];
-            // $times[$r['time']] = $r['booked_times'];
+            $times[] = (object) ['time'=>$r['time'], 'bookedTime'=>$r['booking_time'], 'id'=>$r['id'], 'msgId'=>$r['message_id']];
         }
         return $times;
     }
