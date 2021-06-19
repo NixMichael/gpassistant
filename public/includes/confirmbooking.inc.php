@@ -33,3 +33,8 @@ if (time() - $_SESSION['booking-start-time'] < 900) {
     header('Location: /appointments.php?error=timeout');
     exit();
 }
+?>
+
+<script>
+    localStorage.removeItem('timer_value');
+</script>

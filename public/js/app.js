@@ -62,6 +62,7 @@ const submitAppointmentDate = (date, month, year) => {
         data: dataString,
         cache: false,
         success: function(r) {
+            sessionStorage.removeItem('timer_value');
             let times = $.parseJSON(r)
             let timesHeading = `${date}${prefix} ${monthName} ${year}`
             let content = ''
