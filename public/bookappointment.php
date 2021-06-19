@@ -22,7 +22,11 @@ $conn = new Appointments();
 $date = "$day/$month/$year";
 $currentTime = time();
 
-$apptId = $conn->addAppointment($date, $time, $ptId);
+if ((!isset($_SESSION['apptid']) || $_SESSION['apptid'] == NULL)) {
+    $_SESSION['apptid'] = $conn->addAppointment($date, $time, $ptId);
+    $_SESSION['booking-start-time'] = time();
+}
+
 ?>
 
 <div class="container">
@@ -31,7 +35,7 @@ $apptId = $conn->addAppointment($date, $time, $ptId);
         <div id="booking-details"><?php echo "<div>Date: ".$day."/".$month."/".$year."</div><div>Time: ".$time."</div>"; ?></div>
         <form id="frm" action="/includes/confirmbooking.inc.php" method="POST">
             <textarea name="message" placeholder="Leave a message for the doctor about your reason for booking an appointment (max 500 characters)" maxlength="500"></textarea>
-            <input type="hidden" name="appt_id" value="<?php echo $apptId ?>">
+            <input type="hidden" name="appt_id" value="<?php echo $_SESSION['apptid'] ?>">
             <input type="hidden" name="time" value="<?php echo $time ?>">
             <input type="hidden" name="date" value="<?php echo $day ?>">
             <button id="submit-form" type="submit" name="submit">Confirm Appointment</button>
@@ -46,6 +50,7 @@ $apptId = $conn->addAppointment($date, $time, $ptId);
     const timerDisplay = document.getElementById("complete-booking-timer");
     const confirmButton = document.getElementById("submit-form");
     const cancel = document.getElementById("cancel");
+
     let c = 899;
     let timer = setInterval(() => {
         let mins = Math.ceil(c / 60);

@@ -23,12 +23,12 @@ class Appointments extends Database {
         return $result['id'];
     }
 
-    public function addAppointmentNote ($appt_id, $message, $senderType) {
-        $query = "INSERT INTO messages (message, date, sender, readreceipt) VALUES (:message, NOW(), :sender, false)";
+    public function addAppointmentNote ($appt_id, $ptId, $message, $senderType) {
+        $query = "INSERT INTO messages (message, patient_id, date, sender, readreceipt) VALUES (:message, :ptid, NOW(), :sender, false)";
 
         $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute(['message'=>$message, 'sender'=>$senderType]);
+        $stmt->execute(['message'=>$message, 'ptid'=>$ptId, 'sender'=>$senderType]);
 
         $query = "SELECT message_id FROM messages WHERE message_id = LAST_INSERT_ID()";
 
@@ -41,11 +41,11 @@ class Appointments extends Database {
 
         // *** Update appointments with message id ***
 
-        $query = "UPDATE appointments SET message_id = :msgid, patient_id = :ptid WHERE id = $appt_id";
+        $query = "UPDATE appointments SET message_id = :msgid WHERE id = $appt_id";
 
         $stmt = $this->dbh->prepare($query);
 
-        return $stmt->execute(['msgid'=>$messageAdded, 'ptid'=>$patientid]);
+        return $stmt->execute(['msgid'=>$messageAdded]);
     }
 
     public function removeAppointment ($id, $ptId) {
