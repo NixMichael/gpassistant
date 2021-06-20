@@ -69,7 +69,7 @@ require_once 'includes/header.inc.php'; ?>
 
             $msgStream = $conn->fetchMessageStream($curMsg['patientid']);
         ?>
-                <div>New message to: <?php echo $curMsg['patientid'] ?></div>
+                <h3>New message to patient: <?php echo $curMsg['patientid'] ?></h3>
                 <ul class='message-stream'><?php 
                     if (!empty($msgStream)) {
                         foreach($msgStream as $msg) {

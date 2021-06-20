@@ -14,7 +14,20 @@ textarea, input {
     font-family: 'Open Sans', sans-serif;
     border: none;
     &[type=text], &[type=password], &[type=email] {
-        outline: 1px solid $featureColor;
+        outline: 1px solid $originalFeatureColor;
+        padding: 5px;
+    }
+    &[type=submit] {
+        margin-bottom: 0.5rem;
+        background-color: $featureColor;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        color: $fontColorLight;
+        &:hover {
+            cursor: pointer;
+            background-color: $originalFeatureColor;
+        }   
     }
     &:focus {
         box-shadow: 0 0 0 5px orange;
@@ -114,15 +127,6 @@ footer {
             input {
                 font-size: 0.9rem;
                 margin: 0;
-                padding: 5px;
-                &[type=submit] {
-                    margin-bottom: 0.5rem;
-                    background-color: rgb(141, 179, 197);
-                    padding: 0.5rem 1rem;
-                    border: none;
-                    border-radius: 5px;
-                    color: $fontColorLight;
-                }
             }
             .fielderror {
                 display: flex;
@@ -326,6 +330,7 @@ footer {
         position: absolute;
         inset: 0;
         background-color: rgba($colorLight,0.95);
+        margin: -2rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -366,13 +371,14 @@ footer {
                 margin: 2rem;
                 color: $colorDark;
                 text-decoration: none;
-                background-color: $colorLight;
+                background-color: rgba($colorLight, 0.7);
                 border: none;
+                box-shadow: 0 4px 5px 0 rgba(0,0,0,0.3);
                 border-radius: 4px;
                 padding: 0.5rem 0.75rem;
                 cursor: pointer;
                 &:hover {
-                    background-color: rgba($colorLight, 0.7);
+                    background-color: $colorLight;
                 }
             }
         }
