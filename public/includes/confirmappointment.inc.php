@@ -5,7 +5,7 @@
     if (isset($_POST['apptid'])) {
         $conn = new Appointments();
         session_start();
-        $doctorId = $_SESSION['useremail'];
+        $doctorId = $_SESSION['username'];
 
         $appointmentId = $_POST['apptid'];
 

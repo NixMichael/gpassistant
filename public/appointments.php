@@ -15,7 +15,7 @@ $conn = new Appointments();
 $dbResults = $conn->checkTimes('18/6/2021');
 
 if (isset($_SESSION['patientid'])) { $patientid = $_SESSION['patientid']; }
-if (isset($_SESSION['doctorid'])) { $doctorid = $_SESSION['doctorid']; }
+if (isset($_SESSION['doctorname'])) { $doctorid = $_SESSION['doctorname']; }
 
 $doctor = false;
 
