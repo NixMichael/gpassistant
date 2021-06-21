@@ -34,16 +34,6 @@ a:focus, .link-highlight:focus {
   border-bottom: 5px solid orange;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  font-family: "Open Sans", sans-serif;
-}
-
 h1 {
   color: #54b6b6;
 }
@@ -95,6 +85,45 @@ footer {
   padding: 1rem;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+}
+
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 5rem 0;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 3rem;
+  bottom: 0;
+  padding: 1rem 0;
+}
+
+@supports (display: grid) {
+  body {
+    position: static;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  header, footer {
+    position: static;
+  }
+}
 .container {
   padding-top: 2rem;
   position: relative;
@@ -692,48 +721,6 @@ footer {
   margin-right: 0;
   display: flex;
   justify-content: center;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  font-family: "Open Sans", sans-serif;
-  position: relative;
-}
-
-header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  padding: 0;
-}
-
-.container {
-  padding: 5rem 0;
-}
-
-footer {
-  position: absolute;
-  width: 100%;
-  height: 3rem;
-  bottom: 0;
-  padding: 1rem 0;
-}
-
-@supports (display: grid) {
-  body {
-    position: static;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
-
-  header, footer {
-    position: static;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */
