@@ -21,13 +21,12 @@ if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
 
 if (isset($_SESSION['patientid'])) {
     $msgs = $conn->fetchMessages($_SESSION['patientid'], $_SESSION['showall'], $_SESSION['admin']);
+    if (is_array($msgs)) {
+        $msgs = array_reverse($msgs);
+    }
 } else if (isset($_SESSION['doctorname'])) {
     $msgs = $conn->fetchAllMessages();
 }
-
-// if (is_array($msgs)) {
-//     $msgs = array_reverse($msgs);
-// }
 
 require_once 'includes/header.inc.php'; ?>
 

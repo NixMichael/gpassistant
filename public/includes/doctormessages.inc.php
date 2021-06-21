@@ -11,7 +11,9 @@
         if (empty($msgs['read'])) {
             echo 'No messages to display.';
         } else {
-
+            if (is_array($msgs['read'])) {
+                $msgs['read'] = array_reverse($msgs['read']);
+            }
 
         $condensedList = [];
 
@@ -66,7 +68,9 @@
         if (empty($msgs['unread'])) {
             echo 'No messages to display';
         } else {
-
+            if (is_array($msgs['unread'])) {
+                $msgs['unread'] = array_reverse($msgs['unread']);
+            }
 
             $condensedList = [];
 
