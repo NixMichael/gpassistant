@@ -39,6 +39,8 @@
                 $listCount += 1;
                 $datetime = explode(' ', $msg['date']);
                 $date = $datetime[0];
+                $dateExp = explode('-', $date);
+                $date = $dateExp[2].'-'.$dateExp[1].'-'.$dateExp[0];
                 $time = $datetime[1];
                 $sender = $msg['sender'] == 'D' ? 'doctor' : '';
                 $acceptAppt = $_SESSION['admin'] == true ? "<input type='checkbox'/>" : "<span>Accept Appointment: <input type='checkbox'/></span>";
@@ -47,7 +49,7 @@
         }
 
     ?>
-
+        </ul>
     </div>
 </div>
 
@@ -93,14 +95,16 @@
                 $listCount += 1;
                 $datetime = explode(' ', $msg['date']);
                 $date = $datetime[0];
+                $dateExp = explode('-', $date);
+                $date = $dateExp[2].'-'.$dateExp[1].'-'.$dateExp[0];
                 $time = $datetime[1];
                 $sender = $msg['sender'] == 'D' ? 'doctor' : '';
                 $acceptAppt = $_SESSION['admin'] == true ? "<input type='checkbox'/>" : "<span>Accept Appointment: <input type='checkbox'/></span>";
                 echo "<li class='".$sender."'><div><span>$msg[patientid]</span><span>$date <br> ($time)</span></div><div><span>$msg[msg]</span><form action='' method='GET'><button type='submit' name='msgid' value='$msg[msgid]'>Open</button><input type='hidden' name='read' value='unread'/></form></div></li>";
             }
         }
-
     ?>
+        </ul>
     </div>
 </div>
 

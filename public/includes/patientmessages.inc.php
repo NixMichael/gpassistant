@@ -13,6 +13,8 @@
                 foreach($msgs as $msg) {
                     $datetime = explode(' ', $msg['date']);
                     $date = $datetime[0];
+                    $dateExp = explode('-', $date);
+                    $date = $dateExp[2].'-'.$dateExp[1].'-'.$dateExp[0];
                     $time = $datetime[1];
                     $sender = $msg['sender'] == 'D' ? 'doctor' : $msg['username'];
                     $from = $sender == 'doctor' ? 'GP' : 'You';
