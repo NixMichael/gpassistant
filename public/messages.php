@@ -19,11 +19,15 @@ if (isset($_GET['showAll']) && $_GET['showAll'] == 'true') {
     $_SESSION['showall'] = false;
 }
 
-$msgs = $conn->fetchMessages($_SESSION['patientid'], $_SESSION['showall'], $_SESSION['admin']);
-
-if (is_array($msgs)) {
-    $msgs = array_reverse($msgs);
+if (isset($_SESSION['patientid'])) {
+    $msgs = $conn->fetchMessages($_SESSION['patientid'], $_SESSION['showall'], $_SESSION['admin']);
+} else if (isset($_SESSION['doctorname'])) {
+    $msgs = $conn->fetchAllMessages();
 }
+
+// if (is_array($msgs)) {
+//     $msgs = array_reverse($msgs);
+// }
 
 require_once 'includes/header.inc.php'; ?>
 
@@ -60,10 +64,19 @@ require_once 'includes/header.inc.php'; ?>
         <div class="newMessageContainer">
         <div class="newMessage">
         <?php
-            foreach($msgs as $msg) {
-                if ($msg['msgid'] == $_GET['msgid']) {
-                    $curMsg = $msg;
-                    break;
+            if ($_GET['read'] == 'read') {
+                foreach($msgs['read'] as $msg) {
+                    if ($msg['msgid'] == $_GET['msgid']) {
+                        $curMsg = $msg;
+                        break;
+                    }
+                }
+            } else if ($_GET['read'] == 'unread') {
+                foreach($msgs['unread'] as $msg) {
+                    if ($msg['msgid'] == $_GET['msgid']) {
+                        $curMsg = $msg;
+                        break;
+                    }
                 }
             }
 

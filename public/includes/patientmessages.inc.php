@@ -3,7 +3,7 @@
             <h3>Hi <?php echo ucfirst($_SESSION['username']) ?>, here are your messages:</h3>
             <div><a class='message-button' href='?newmessage'>Send Message</a><a class='message-button' href=''>Refresh</a></div>
             </div>
-            <div class=results-header><span>From</span><span>Date</span><span>Message</span></div>
+            <div class=results-header><div><span>From</span><span>Date</span></div><div><span>Message</span></div></div>
             <div class='msg-area msg-area-patient'>
             <ul>
             <?php 
@@ -15,8 +15,9 @@
                     $date = $datetime[0];
                     $time = $datetime[1];
                     $sender = $msg['sender'] == 'D' ? 'doctor' : $msg['username'];
+                    $from = $sender == 'doctor' ? 'GP' : 'You';
                     $acceptAppt = $_SESSION['admin'] == true ? "<input type='checkbox'/>" : "<span>Accept Appointment: <input type='checkbox'/></span>";
-                    echo "<li class='".$sender."'><span>$msg[patientid]</span><span>$date <br> ($time)</span> $msg[msg]</li>";
+                    echo "<li class='".$sender."'><div><span>$from</span><span>$date ($time)</span></div><div>$msg[msg]</div></li>";
                 }
             };
             

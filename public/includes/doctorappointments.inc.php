@@ -15,7 +15,7 @@
 <form class="doctor-appointments" action="includes/confirmappointment.inc.php" method="POST">
     <ul>
         <h3>Unconfirmed Appointments:</h3>
-        <li><span>Date</span><span>Time</span><span>Patient Number</span><span>Confirm Appointment</span></li>
+        <li><span>Date</span><span>Time</span><span>Patient Number</span><span>Confirm Appt.</span></li>
         <?php if (empty($unconfirmed)) : ?>
             <div class='no-appointments'>No unconfirmed appointments to display</div>
         <?php else : ?>

@@ -77,4 +77,37 @@ class Messages extends Database {
 
         return $result;
     }
+
+    public function fetchAllMessages () {
+        $query = "SELECT * FROM messages WHERE sender = 'P' ORDER BY date DESC";
+        $stmt = $this->dbh->prepare($query);
+        $stmt->execute();
+        if ($result = $stmt->fetchAll()) {
+            $sel = [];
+
+            foreach($result as $r) {
+                if ($r['readreceipt'] == 1) {
+                    $msg['msgid'] = $r['message_id'];
+                    $msg['patientid'] = $r['patient_id'];
+                    $msg['date'] = $r['date'];
+                    $msg['msg'] = $r['message'];
+                    $msg['sender'] = $r['sender'];
+                    $read[] = $msg;
+                }
+                else {
+                    $msg['msgid'] = $r['message_id'];
+                    $msg['patientid'] = $r['patient_id'];
+                    $msg['date'] = $r['date'];
+                    $msg['msg'] = $r['message'];
+                    $msg['sender'] = $r['sender'];
+                    $unread[] = $msg;
+                }
+                
+            }
+
+            $sel['read'] = $read;
+            $sel['unread'] = $unread;
+            return $sel;
+        }
+    }
 }

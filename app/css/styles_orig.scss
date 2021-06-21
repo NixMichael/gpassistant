@@ -1,0 +1,772 @@
+$originalFeatureColor: rgba(84, 182, 182, 0.55);
+$featureColor: rgb(84, 182, 182);
+$bgColor: rgb(30,40,40);
+$fontColorLight: rgb(255,255,255);
+$fontColorDark: rgb(0,0,0);
+$colorLight: rgb(255,255,255);
+$colorOffWhite: rgb(233, 233, 233);
+$colorDark: rgb(0,0,0);
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+textarea, input {
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    &[type=text], &[type=password], &[type=email] {
+        outline: 1px solid $originalFeatureColor;
+        padding: 5px;
+    }
+    &[type=submit] {
+        margin-bottom: 0.5rem;
+        background-color: $featureColor;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        color: $fontColorLight;
+        &:hover {
+            cursor: pointer;
+            background-color: $originalFeatureColor;
+        }   
+    }
+    &:focus {
+        box-shadow: 0 0 0 5px orange;
+    }
+}
+
+a, .link-highlight {
+    &:focus {
+        border-bottom: 5px solid orange;
+    }
+}
+
+h1 {
+    color: $featureColor;
+    span {
+        color: $fontColorLight;
+        font-size: 1.3rem;
+    }
+}
+
+header, footer {
+    color: $fontColorLight;
+    background-color: $bgColor;
+    display: flex;
+    .highlight-text {
+        color:$featureColor;
+    }
+}
+
+header {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+    nav ul {
+        display: flex;
+        li {
+            list-style: none;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+
+            a {
+                text-decoration: none;
+                color: $fontColorLight;
+                padding-bottom: 5px;
+                &:hover {
+                    color: $featureColor;
+                }
+            }
+
+            .link-highlight {
+                border-bottom: 5px solid $featureColor;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    justify-content: center;
+    padding: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 5rem 0;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    height: 3rem;
+    bottom: 0;
+    padding: 1rem 0;
+}
+
+@supports (display: grid) {
+    body {
+        position: static;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    header, footer {
+        position: static;
+    }
+}
+
+.container {
+    padding-top: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+
+    .logIn {
+        box-shadow: 0 0 0 10px $colorLight, 0 0 0 15px rgb(141, 179, 197), 0 10px 25px 0 rgba(20,20,20,0.7);
+        background-color: rgba(141, 179, 197, 0.2);
+        border-radius: 10px;
+        padding: 1rem 3rem;
+        margin: 4rem 0;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input {
+                font-size: 0.9rem;
+                margin: 0;
+            }
+            .fielderror {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                height: 1.5rem;
+                margin-top: 5px;
+                font-size: 0.8rem;
+                color: rgb(201, 52, 52);
+            }
+        }
+
+        a {
+            color: black;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.7rem;
+            &:focus {
+                border: none;
+                background-color: orange;
+            }
+        }
+    }
+
+    .dates, .times {
+        h2 {
+            margin-top: 0;
+        }
+        .time-slots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: scroll;
+            .slot {
+                display: block;
+                background-color: $featureColor;
+                padding: 0.5rem 4rem;
+                margin: 0.5rem 0;
+                border-radius: 10px;
+                cursor: pointer;
+                &:hover {
+                    background-color: $originalFeatureColor;
+                }
+            }
+        }
+    }
+}
+
+// *** MESSAGE PAGE STYLES ***
+
+.msg-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    .message-panels {
+        width: 80%;
+    }
+    .messages {
+        align-self: flex-start;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+        background-color: rgba($colorDark, 0.075);
+        padding: 1rem 0 0;
+        border-radius: 10px;
+        margin-bottom: 3rem;
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 0 1rem;
+            margin-bottom: 1rem;
+            h3 {
+                color: rgba($colorDark, 0.75);
+                margin: 0;
+                padding-left: 2rem;
+            }
+        }
+
+        .message-button {
+            color: $colorLight;
+            background-color: $featureColor;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            margin: 0.5rem 1rem;
+            text-decoration: none;
+            &:hover {
+                background-color: $originalFeatureColor;
+            }
+            &:focus {
+                box-shadow: 0 0 0 5px orange;
+            }
+        }
+
+        .results-header {
+            background-color: rgb(207, 207, 207);
+            background-color: $featureColor;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            display: grid;
+            grid-template-columns: 20ch 20ch auto;
+            span {
+                display: flex;
+                justify-content: center;
+                padding: 0 1rem;
+                &:last-of-type {
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        .msg-area {
+            margin: 0 auto;
+            padding: 1rem 0;
+            background-color:$colorOffWhite;
+            max-height: 50vh;
+            min-height: 10vh;
+            width: 100%;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    display: grid;
+                    grid-template-columns: 20ch 20ch 1fr auto;
+                    align-items: stretch;
+                    list-style: none;
+                    text-align: left;
+                    padding: 1rem;
+                    background-color: rgb(226, 221, 221);
+                    margin-bottom: 0.5rem;
+
+                    &:last-of-type {
+                        margin-bottom: 1rem;
+                    }
+
+                    span {
+                        padding: 0 1rem;
+                        color: black;
+                        display: flex;
+                        flex-direction: column;
+                        margin-right: 1rem;
+                        background: none;
+                        text-align: center;
+                    }
+
+                    span:nth-of-type(2) {
+                        border-left: 2px dashed $colorLight;
+                        border-right: 2px dashed $colorLight;
+                    }
+                    span:last-of-type {
+                        text-align: left;
+                    }
+                    button {
+                        border: none;
+                        border-radius: 5px;
+                        margin: 0.5rem;
+                        padding: 0.5rem 3rem;
+                        color: $fontColorLight;
+                        background-color:$featureColor;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: $originalFeatureColor;
+                        }
+                    }
+                }
+
+                .doctor {
+                    background-color: rgb(205, 224, 212);
+                }
+            }
+            .no-messages {
+                margin-bottom: 2rem;
+            }
+            .message-button {
+                align-self: center;
+                margin: 0.5rem;
+                padding: 0.5rem 3rem;
+                color: $fontColorLight;
+                background-color:$featureColor;
+                &:hover {
+                    background-color: $originalFeatureColor;
+                }
+            }
+        }
+
+        .msg-area-patient {
+            height: 50vh;
+        }
+    }
+
+    .newMessageContainer {
+        position: absolute;
+        inset: 0;
+        background-color: rgba($colorLight,0.95);
+        margin: -2rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .newMessage{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            padding: 2rem;
+            border-radius: 10px;
+            color: $fontColorLight;
+            background-color: $featureColor;
+            .message-stream {
+                width: 100%;
+                max-height: 30vh;
+                overflow-y: scroll;
+                li {
+                    list-style: none;
+                    text-align: left;
+                    padding: 1rem;
+                    color: black;
+                    background-color: rgb(226, 221, 221);
+                    margin-bottom: 0.25rem;
+                }
+                .doctor {
+                    background-color: rgb(205, 224, 212);
+                }
+            }
+            textarea {
+                resize: none;
+                width: 80%;
+                min-width: 60ch;
+                height: 15ch;
+            }
+            input, button {
+                margin: 2rem;
+                color: $colorDark;
+                text-decoration: none;
+                background-color: rgba($colorLight, 0.7);
+                border: none;
+                box-shadow: 0 4px 5px 0 rgba(0,0,0,0.3);
+                border-radius: 4px;
+                padding: 0.5rem 0.75rem;
+                cursor: pointer;
+                &:hover {
+                    background-color: $colorLight;
+                }
+            }
+        }
+    }
+}
+
+// ********************************
+
+// *** APPOINTMENTS PAGE STYLES ***
+
+.current-appointments {
+    max-width: 80vw;
+    margin: 2rem auto;
+    padding: 4rem 6rem;
+    border-radius: 10px;
+    border: 3px solid $featureColor;
+    box-shadow: 0 0 0 10px $colorLight, 0 5px 25px 0 rgba(20,20,20,0.7);
+    text-align: center;
+    transition: opacity 400ms ease;
+    background-color: $colorLight;
+    z-index: 2;
+
+    & > div {
+        min-width: 80ch;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .booked-appointment {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-around;
+        background-color: $featureColor;
+        border-bottom: 1px solid black;
+    }
+
+    .appointment-note {
+        background: none;
+        justify-content: flex-start;
+        margin-bottom: 3rem;
+        span {
+            text-align: left;
+        }
+    }
+
+    .button {
+        background-color: $featureColor;
+        box-shadow: 0 5px 6px 0 rgba(0,0,0,0.3);
+        border-radius: 5px;
+        width: 20ch;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        color: black;
+        text-decoration: none;
+        &:hover {
+            background-color: $originalFeatureColor;
+        }
+        &:focus {
+            border: none;
+            background-color: $featureColor;
+            box-shadow: 0 0 0 5px orange;
+        }
+    }
+}
+
+.appointments-container {
+    overflow-y: scroll;
+    width: 100%;
+    .calendar-area {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-self: flex-start;
+        padding-top: 2rem;
+        transition: opacity 600ms ease;
+        & > div:first-of-type {
+            .calendar-heading {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
+                margin: 0.5em 0;
+                border-bottom: 2px solid black;
+                padding: 0.5rem 0 1rem;
+                span {
+                    font-size: 1.4rem;
+                    padding: 0.5rem 1rem;
+                }
+    
+                a {
+                    color: black;
+                    background-color: $colorLight;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    padding: 0.5rem 1rem 0;
+                    background-color: $originalFeatureColor;
+                    &:hover {
+                        background-color: $featureColor;
+                    }
+                }
+                .no-highlight {
+                    background: none;
+                    border-radius: 0;
+                    &:focus {
+                        border: none;
+                        background: none;
+                        color: orange;
+                    }
+                }
+            }
+            
+            .datesArea {
+                display: grid;
+                grid-template-columns: repeat(7, 8ch);
+                justify-content: center;
+                & > .calendar-element-days {
+                    padding-bottom: 3px;
+                }
+                & > .calendar-element {
+                    background-color: $featureColor;
+                    margin: 3px;
+                    padding: 0.5rem 0;
+                    color: $fontColorLight;
+                    text-decoration: none;
+                    &:hover {
+                        color: $colorDark;
+                        background-color: $originalFeatureColor;
+                        box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                        padding: 0.4rem 0;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                    }
+                }
+                .inactiveDate {
+                    pointer-events: none;
+                    color: rgba($colorDark, 0.3);
+                    background: none;
+                    outline: 1px solid rgba($colorDark,0.1);
+                    outline-offset: -1px;
+                }
+                .highlight-date {
+                    color: $colorDark;
+                    background-color: rgba($featureColor, 0.25);
+                    box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                    padding: 0.4rem 0;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+        & > div {
+            &:first-child {
+                & > div > div {
+                    border-radius: 1rem;
+                    padding: 1rem 2rem;
+                }
+        }
+        &:last-child {
+            width: 40%;
+            opacity: 0.2;
+            .results {
+                border-radius: 1rem;
+                padding: 1rem 2rem;
+                .times-heading {
+                    display: flex;
+                    justify-content: center;
+                    margin: 0.5em 0;
+                    padding: 0.5rem 0 1rem;
+                    font-size: 1.4rem;
+                    opacity: 0;
+                    border-bottom: 2px solid black;
+                }
+                .results-area {
+                    display: grid;
+                    grid-template-columns: repeat(5, auto);
+                    .result {
+                        color: $fontColorLight;
+                        background-color: rgba($featureColor, 0.55);
+                        background-color: $featureColor;
+                        padding: 0.5rem 1rem;
+                        margin: 10px;
+                        border-radius: 10px;
+                        text-decoration: none;
+                        border: none;
+                        &:hover {
+                            outline: none;
+                            color: $fontColorDark;
+                            border-radius: 0;
+                            padding: 0.3rem 0.6rem;
+                            font-size: 1.1rem;
+                            background-color: $originalFeatureColor;
+                            box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    
+        }
+    
+    }
+}
+
+.confirm-appointment {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    box-shadow: 0 0 0 10px white, 0 10px 25px 0 rgba(20,20,20,0.7);
+    background-color: rgba(141, 179, 197, 0.2);
+    outline: 5px solid rgb(141, 179, 197);
+    outline-offset: 10px;
+    border-radius: 10px;
+    padding: 1rem 3rem;
+    margin-bottom: 8rem;
+    & > * {
+        margin: 1rem 0;
+    }
+    #complete-booking-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & > span {
+            font-size: 0.8rem;
+        }
+    }
+    form {
+        width: 100%;
+        textarea {
+            resize: none;
+            width: 100%;
+            height: 15ch;
+        }
+        button {
+            margin: 0.5rem 1rem;
+            background-color: rgb(141, 179, 197);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            color: $fontColorLight;
+            min-width: 25ch;
+            cursor: pointer;
+            &:last-of-type {
+                background-color: rgb(194, 54, 54);
+            }
+        }
+    }
+}
+
+.confirmation-message {
+    background-color: $featureColor;
+    border-radius: 10px;
+    padding: 2rem 3rem 3rem;
+    color: $fontColorLight;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+    a {
+        text-decoration: none;
+        color: black;
+        background-color: $colorLight;
+        border-radius: 10px;
+        margin-top: 2rem;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
+        &:focus {
+            border: none;
+            box-shadow: 0 0 0 5px orange;
+        }
+    }
+
+}
+
+.doctor-appointments {
+    width: 80%;
+    min-height: 30vh;
+    background-color: rgba($colorDark, 0.075);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin-bottom: 3rem;
+    padding: 0;
+    text-align: left;
+    h3 {
+        color: rgba($colorDark, 0.75);
+        padding-left: 4rem;
+    }
+    .no-appointments {
+        padding-top: 2rem;
+        text-align: center;
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0.5rem 1rem 0.5rem 4rem;
+        margin-bottom: 0.5rem;
+        background-color: rgb(226, 221, 221);
+        div {
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            min-height: 1.4rem;
+            margin: 0.5rem 0;
+            align-items: center;
+            span {
+                margin-right: 1rem;
+                &:last-of-type {
+                    margin-right: 0;
+                    display: flex;
+                    justify-content: center;
+                    button {
+                        border: none;
+                        padding: 0.25rem 0.5rem;
+                        color: white;
+                        background-color: $featureColor;
+                        transition: outline 200ms ease-out;
+                        cursor: pointer;
+                        &:hover {
+                            box-shadow: 0 0 0 5px $featureColor;
+                        }
+                        &:focus {
+                            box-shadow: 0 0 0 5px orange;
+                        }
+                    }
+                }
+            }
+            &:last-of-type {
+                display: flex;
+                .appointment-notes {
+                    border-top: 1px dashed white;
+                    padding-top: 1rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+        }
+        &:first-of-type {
+            background-color: $featureColor;
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            span {
+                margin-right: 1rem;
+                &:last-of-type {
+                    margin-right: 0;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

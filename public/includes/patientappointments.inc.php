@@ -4,8 +4,7 @@
 <div class="current-appointments">
     <?php if (!$appointments) : ?>
         <div>No upcoming appointments.</div>
-        <!-- <div class='button' onclick="showBooking()">Make an appointment</div> -->
-        <a class='button' href="?month=<?php echo $month ?>">Make an appointment</a>
+        <div><a class='button' href="?month=<?php echo $month ?>">Make an appointment</a></div>
     <?php else : ?>
         <div>Upcoming appointments:</div>
         <div class='booked-appointment'><span><?php echo "Date: ".$appointments['date'] ?></span><span><?php echo "Time: ".$appointments['time'] ?></span><span>Doctor: <?php echo $appointments['doctor_id'] ?: 'Unassigned' ?></span></div>
@@ -17,7 +16,6 @@
     <div class='container appointments-container'>
     <div class='calendar-area'>
         <div id='choose-date'>
-
             <div><h2>1. Choose a date</h2><div>
                 <div class='calendar-heading'>
                     <?php echo buildCalendar($month, $year); ?>

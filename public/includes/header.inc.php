@@ -16,7 +16,9 @@
 </head>
 <body>
 <header>
-    <h1>GP<span>ASSISTANT</span></h1>
+    <h1>GP<span class="highlight-text">ASSISTANT</span></h1>
+    <input id="menu-toggler" type="checkbox"/>
+    <div id="burger-menu"><div></div></div>
     <nav>
         <ul class='menu'>
             <?php if (!isset($_SESSION['useremail'])): ?>
