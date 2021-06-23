@@ -1,11 +1,4 @@
-$originalFeatureColor: rgba(84, 182, 182, 0.55);
-$featureColor: rgb(84, 182, 182);
-$bgColor: rgb(30,40,40);
-$fontColorLight: rgb(255,255,255);
-$fontColorDark: rgb(0,0,0);
-$colorLight: rgb(255,255,255);
-$colorOffWhite: rgb(233, 233, 233);
-$colorDark: rgb(0,0,0);
+@use 'abstracts/colors' as c;
 
 body {
     margin: 0;
@@ -20,35 +13,35 @@ body {
     font-family: 'Open Sans', sans-serif;
     border: none;
     &[type=text], &[type=password], &[type=email] {
-        outline: 1px solid $originalFeatureColor;
+        outline: 1px solid c.$originalFeatureColor;
         padding: 5px;
     }
     &[type=submit] {
         margin-bottom: 0.5rem;
-        background-color: $featureColor;
+        background-color: c.$featureColor;
         padding: 0.5rem 1rem;
         border: none;
         border-radius: 5px;
-        color: $fontColorLight;
+        color: c.$fontColorLight;
         &:hover {
             cursor: pointer;
-            background-color: $originalFeatureColor;
+            background-color: c.$originalFeatureColor;
         }   
     }
     &:focus {
-        box-shadow: 0 0 0 5px orange;
+        box-shadow: 0 0 0 5px c.$focusColor;
     }
 }
 
 }
 
 header, footer {
-    color: $fontColorLight;
-    background-color: $bgColor;
+    color: c.$fontColorLight;
+    background-color: c.$bgColor;
     display: flex;
     .highlight-text {
         font-size: 1.5rem;
-        color: $featureColor;
+        color: c.$featureColor;
     }
 }
 
@@ -136,7 +129,7 @@ header {
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: $colorDark;
+        background-color: c.$colorDark;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -151,17 +144,17 @@ header {
 
             a {
                 text-decoration: none;
-                color: $fontColorLight;
+                color: c.$fontColorLight;
                 padding-bottom: 5px;
                 &:hover {
-                    color: $featureColor;
+                    color: c.$featureColor;
                 }
             }
 
             .link-highlight {
-                border-bottom: 5px solid $featureColor;
+                border-bottom: 5px solid c.$featureColor;
                 &:hover {
-                    color: white;
+                    color: c.$fontColorLight;
                 }
             }
         }
@@ -182,8 +175,8 @@ footer {
     align-items: center;
     text-align: center;
 
-    .logIn {
-        box-shadow: 0 0 0 10px $colorLight, 0 0 0 15px rgb(141, 179, 197), 0 10px 25px 0 rgba(20,20,20,0.7);
+    .log-in {
+        box-shadow: 0 0 0 10px c.$colorLight, 0 0 0 15px rgb(141, 179, 197), 0 10px 25px 0 rgba(20,20,20,0.7);
         background-color: rgba(141, 179, 197, 0.2);
         border-radius: 10px;
         padding: 1rem 3rem;
@@ -197,7 +190,7 @@ footer {
                 font-size: 0.9rem;
                 margin: 0;
             }
-            .fielderror {
+            .field-error {
                 display: flex;
                 justify-content: center;
                 align-items: flex-start;
@@ -214,7 +207,7 @@ footer {
             font-size: 0.7rem;
             &:focus {
                 border: none;
-                background-color: orange;
+                background-color: c.$focusColor;
             }
         }
     }
@@ -235,7 +228,7 @@ footer {
     .messages {
         align-self: flex-start;
         box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-        background-color: rgba($colorDark, 0.075);
+        background-color: rgba(c.$colorDark, 0.075);
         padding: 1rem 0 0;
         border-radius: 10px;
         margin-bottom: 3rem;
@@ -249,7 +242,7 @@ footer {
             padding: 0 0 0 1rem;
             margin-bottom: 1rem;
             h3 {
-                color: rgba($colorDark, 0.75);
+                color: rgba(c.$colorDark, 0.75);
                 margin: 0;
             }
 
@@ -259,18 +252,18 @@ footer {
         }
 
         .message-button {
-            color: $colorLight;
-            background-color: $featureColor;
+            color: c.$colorLight;
+            background-color: c.$featureColor;
             border: none;
             border-radius: 4px;
             padding: 0.5rem 0.75rem;
             margin: 0.5rem 1rem;
             text-decoration: none;
             &:hover {
-                background-color: $originalFeatureColor;
+                background-color: c.$originalFeatureColor;
             }
             &:focus {
-                box-shadow: 0 0 0 5px orange;
+                box-shadow: 0 0 0 5px c.$focusColor;
             }
         }
 
@@ -281,7 +274,7 @@ footer {
         .msg-area {
             margin: 0 auto;
             padding: 1rem 0;
-            background-color:$colorOffWhite;
+            background-color:c.$colorOffWhite;
             min-height: 10vh;
             width: 100%;
             display: flex;
@@ -336,11 +329,11 @@ footer {
                         border-radius: 5px;
                         margin: 0.5rem;
                         padding: 0.5rem 3rem;
-                        color: $fontColorLight;
-                        background-color:$featureColor;
+                        color: c.$fontColorLight;
+                        background-color:c.$featureColor;
                         cursor: pointer;
                         &:hover {
-                            background-color: $originalFeatureColor;
+                            background-color: c.$originalFeatureColor;
                         }
                     }
                 }
@@ -356,19 +349,19 @@ footer {
                 align-self: center;
                 margin: 0.5rem;
                 padding: 0.5rem 3rem;
-                color: $fontColorLight;
-                background-color:$featureColor;
+                color: c.$fontColorLight;
+                background-color:c.$featureColor;
                 &:hover {
-                    background-color: $originalFeatureColor;
+                    background-color: c.$originalFeatureColor;
                 }
             }
         }
     }
 
-    .newMessageContainer {
+    .new-message-container {
         position: absolute;
         inset: 0;
-        background-color: rgba($colorLight,0.95);
+        background-color: rgba(c.$colorLight,0.95);
         margin: -2rem 0;
         padding-top: 2rem;
         max-height: 100%;
@@ -376,7 +369,7 @@ footer {
         justify-content: center;
         align-items: flex-start;
 
-        .newMessage{
+        .new-message{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -384,8 +377,8 @@ footer {
             width: 80%;
             padding: 2rem;
             border-radius: 10px;
-            color: $fontColorLight;
-            background-color: $featureColor;
+            color: c.$fontColorLight;
+            background-color: c.$featureColor;
             .message-stream {
                 width: 100%;
                 max-height: 30vh;
@@ -410,16 +403,16 @@ footer {
             }
             input, button {
                 margin: 2rem;
-                color: $colorDark;
+                color: c.$colorDark;
                 text-decoration: none;
-                background-color: rgba($colorLight, 0.7);
+                background-color: rgba(c.$colorLight, 0.7);
                 border: none;
                 box-shadow: 0 4px 5px 0 rgba(0,0,0,0.3);
                 border-radius: 4px;
                 padding: 0.5rem 0.75rem;
                 cursor: pointer;
                 &:hover {
-                    background-color: $colorLight;
+                    background-color: c.$colorLight;
                 }
             }
         }
@@ -433,11 +426,11 @@ footer {
     margin: 2rem auto;
     padding: 1rem;
     border-radius: 10px;
-    border: 3px solid $featureColor;
-    box-shadow: 0 0 0 10px $colorLight, 0 5px 25px 0 rgba(20,20,20,0.7);
+    border: 3px solid c.$featureColor;
+    box-shadow: 0 0 0 10px c.$colorLight, 0 5px 25px 0 rgba(20,20,20,0.7);
     text-align: center;
     transition: opacity 400ms ease;
-    background-color: $colorLight;
+    background-color: c.$colorLight;
     z-index: 1;
 
     & > div {
@@ -452,7 +445,7 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        background-color: $featureColor;
+        background-color: c.$featureColor;
         border-bottom: 1px solid black;
     }
 
@@ -467,7 +460,7 @@ footer {
     }
 
     .button {
-        background-color: $featureColor;
+        background-color: c.$featureColor;
         box-shadow: 0 5px 6px 0 rgba(0,0,0,0.3);
         border-radius: 5px;
         width: 20ch;
@@ -477,12 +470,12 @@ footer {
         color: black;
         text-decoration: none;
         &:hover {
-            background-color: $originalFeatureColor;
+            background-color: c.$originalFeatureColor;
         }
         &:focus {
             border: none;
-            background-color: $featureColor;
-            box-shadow: 0 0 0 5px orange;
+            background-color: c.$featureColor;
+            box-shadow: 0 0 0 5px c.$focusColor;
         }
     }
 }
@@ -523,13 +516,13 @@ footer {
         
                     a {
                         color: black;
-                        background-color: $colorLight;
+                        background-color: c.$colorLight;
                         border-radius: 5px;
                         text-decoration: none;
                         padding: 0.5rem 1rem 0;
-                        background-color: $originalFeatureColor;
+                        background-color: c.$originalFeatureColor;
                         &:hover {
-                            background-color: $featureColor;
+                            background-color: c.$featureColor;
                         }
                     }
                     .no-highlight {
@@ -538,12 +531,12 @@ footer {
                         &:focus {
                             border: none;
                             background: none;
-                            color: orange;
+                            color: c.$focusColor;
                         }
                     }
                 }
                 
-                .datesArea {
+                .dates-area {
                     display: grid;
                     grid-template-columns: repeat(7, 8ch);
                     justify-content: center;
@@ -551,30 +544,30 @@ footer {
                         padding-bottom: 3px;
                     }
                     & > .calendar-element {
-                        background-color: $featureColor;
+                        background-color: c.$featureColor;
                         margin: 3px;
                         padding: 0.5rem 0;
-                        color: $fontColorLight;
+                        color: c.$fontColorLight;
                         text-decoration: none;
                         &:hover {
-                            color: $colorDark;
-                            background-color: $originalFeatureColor;
+                            color: c.$colorDark;
+                            background-color: c.$originalFeatureColor;
                             box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
                             padding: 0.4rem 0;
                             font-size: 1.1rem;
                             cursor: pointer;
                         }
                     }
-                    .inactiveDate {
+                    .inactive-date {
                         pointer-events: none;
-                        color: rgba($colorDark, 0.3);
+                        color: rgba(c.$colorDark, 0.3);
                         background: none;
-                        outline: 1px solid rgba($colorDark,0.1);
+                        outline: 1px solid rgba(c.$colorDark,0.1);
                         outline-offset: -1px;
                     }
                     .highlight-date {
-                        color: $colorDark;
-                        background-color: rgba($featureColor, 0.25);
+                        color: c.$colorDark;
+                        background-color: rgba(c.$featureColor, 0.25);
                         box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
                         padding: 0.4rem 0;
                         font-size: 1.1rem;
@@ -601,9 +594,9 @@ footer {
                         display: grid;
                         grid-template-columns: repeat(5, auto);
                         .result {
-                            color: $fontColorLight;
-                            background-color: rgba($featureColor, 0.55);
-                            background-color: $featureColor;
+                            color: c.$fontColorLight;
+                            background-color: rgba(c.$featureColor, 0.55);
+                            background-color: c.$featureColor;
                             padding: 0.5rem 1rem;
                             margin: 10px;
                             border-radius: 10px;
@@ -611,11 +604,11 @@ footer {
                             border: none;
                             &:hover {
                                 outline: none;
-                                color: $fontColorDark;
+                                color: c.$fontColorDark;
                                 border-radius: 0;
                                 padding: 0.3rem 0.6rem;
                                 font-size: 1.1rem;
-                                background-color: $originalFeatureColor;
+                                background-color: c.$originalFeatureColor;
                                 box-shadow: 0 0 0 4px rgba(0,0,0,0.75);
                                 cursor: pointer;
                             }
@@ -665,7 +658,7 @@ footer {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 5px;
-            color: $fontColorLight;
+            color: c.$fontColorLight;
             min-width: 25ch;
             cursor: pointer;
             &:last-of-type {
@@ -676,11 +669,11 @@ footer {
 }
 
 .confirmation-message {
-    background-color: $featureColor;
+    background-color: c.$featureColor;
     border-radius: 10px;
     margin: 0 2rem;
     padding: 2rem 3rem 3rem;
-    color: $fontColorLight;
+    color: c.$fontColorLight;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -689,14 +682,14 @@ footer {
     a {
         text-decoration: none;
         color: black;
-        background-color: $colorLight;
+        background-color: c.$colorLight;
         border-radius: 10px;
         margin-top: 2rem;
         padding: 0.5rem 1rem;
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
         &:focus {
             border: none;
-            box-shadow: 0 0 0 5px orange;
+            box-shadow: 0 0 0 5px c.$focusColor;
         }
     }
 
@@ -706,14 +699,14 @@ footer {
     width: 90vw;
     max-width: 1400px;
     min-height: 30vh;
-    background-color: rgba($colorDark, 0.075);
+    background-color: rgba(c.$colorDark, 0.075);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
     border-radius: 10px;
     margin-bottom: 3rem;
     padding: 0;
     text-align: left;
     h3 {
-        color: rgba($colorDark, 0.75);
+        color: rgba(c.$colorDark, 0.75);
         padding-left: 1rem;
     }
     .no-appointments {
@@ -746,14 +739,14 @@ footer {
                         border: none;
                         padding: 0.25rem 0.5rem;
                         color: white;
-                        background-color: $featureColor;
+                        background-color: c.$featureColor;
                         transition: outline 200ms ease-out;
                         cursor: pointer;
                         &:hover {
-                            box-shadow: 0 0 0 5px $featureColor;
+                            box-shadow: 0 0 0 5px c.$featureColor;
                         }
                         &:focus {
-                            box-shadow: 0 0 0 5px orange;
+                            box-shadow: 0 0 0 5px c.$focusColor;
                         }
                     }
                 }
@@ -771,7 +764,7 @@ footer {
             }
         }
         &:first-of-type {
-            background-color: $featureColor;
+            background-color: c.$featureColor;
             display: grid;
             grid-template-columns: repeat(4, 25%);
             span {
@@ -797,38 +790,10 @@ footer {
             display: block;
             position: relative;
             z-index: 11;
-        }
-        nav .menu {
-            display: flex;
-            position: relative;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            height: 100%;
-            background: none;
-            li {
-                list-style: none;
-                margin: 1rem 0;
-                padding: 0 2rem;
-                text-align: center;
+            .menu {
                 position: relative;
-    
-                a {
-                    text-decoration: none;
-                    color: $fontColorLight;
-                    padding-bottom: 5px;
-                    &:hover {
-                        color: $featureColor;
-                    }
-                }
-    
-                .link-highlight {
-                    border-bottom: 5px solid $featureColor;
-                    &:hover {
-                        color: white;
-                    }
-                }
+                flex-direction: row;
+                background: none;
             }
         }
     }
@@ -840,7 +805,7 @@ footer {
             }
             .results-header {
                 display: flex;
-                background-color: $featureColor;
+                background-color: c.$featureColor;
                 & > div {
                     text-align: left;
                     padding: 1rem 0;
@@ -896,8 +861,8 @@ footer {
                         }
     
                         span:nth-of-type(2) {
-                            border-left: 2px dashed $colorLight;
-                            border-right: 2px dashed $colorLight;
+                            border-left: 2px dashed c.$colorLight;
+                            border-right: 2px dashed c.$colorLight;
                         }
                         span:last-of-type {
                             text-align: left;
@@ -905,48 +870,6 @@ footer {
                     }
                 }
             }
-
-            // .msg-area {
-            //     ul {
-            //         li {
-            //             flex-direction: row;
-            //             align-items: stretch;
-
-            //             & > div {
-            //                 list-style: none;
-            //                 text-align: left;
-            //                 padding: 1rem;
-            //                 background-color: rgb(226, 221, 221);
-            //                 margin-bottom: 0.5rem;
-            //                 &:first-of-type {
-            //                     min-width: 40ch;
-            //                     margin: 0;
-            //                     padding-left: 0;
-            //                     span:last-of-type {
-            //                         padding: 0 1rem;
-            //                     }
-            //                 }
-            //                 &:last-of-type {
-            //                     background: none;
-            //                     flex-grow: 1;
-            //                     margin: 0;
-            //                     padding: 1rem 2rem 1rem 0;
-            //                     display: grid;
-            //                     grid-template-columns: 1fr auto;
-            //                     align-items: center;
-            //                 }
-            //             }
-    
-            //             span:nth-of-type(2) {
-            //                 border-left: 2px dashed $colorLight;
-            //                 border-right: 2px dashed $colorLight;
-            //             }
-            //             span:last-of-type {
-            //                 text-align: left;
-            //             }
-            //         }
-            //     }
-            // }
         }
     }
 

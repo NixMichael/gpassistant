@@ -47,8 +47,8 @@ require_once 'includes/header.inc.php'; ?>
         </div>
     <?php endif; ?>
     <?php if (isset($_GET['newmessage'])) : ?>
-        <div class="newMessageContainer">
-            <div class="newMessage">
+        <div class="new-message-container">
+            <div class="new-message">
                 <h3>Compose a new message:</h3>
                 <p>(Once you have submitted a message it cannot be deleted as it will legally form part of your medical records)</p>
                 <form action="includes/sendmessage.inc.php" method="POST">
@@ -60,8 +60,8 @@ require_once 'includes/header.inc.php'; ?>
         </div>
     <?php endif ?>
     <?php if (isset($_GET['msgid'])) : ?>
-        <div class="newMessageContainer">
-        <div class="newMessage">
+        <div class="new-message-container">
+        <div class="new-message">
         <?php
             if ($_GET['read'] == 'read') {
                 foreach($msgs['read'] as $msg) {

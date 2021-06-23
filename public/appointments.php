@@ -53,7 +53,7 @@ function buildCalendar($month, $year) {
         $calendar .= "<a href='?month=".($nextMonth - 1)."&year=".$nextYear."'>".$nextMonthName." &gt;</a></div>";
     }
     $firstDayCurMonth = date('N', mktime(0, 0, 0, $month, 1, date('Y')));
-    $calendar .= "<form class='datesArea'>";
+    $calendar .= "<form class='dates-area'>";
     $daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     for ($d = 0; $d < 7; $d++) {
         $calendar .= "<div class='calendar-element-days'>$daysOfWeek[$d]</div>";
@@ -65,7 +65,7 @@ function buildCalendar($month, $year) {
         $i = $c + 1;
         $class = 'calendar-element';
         if (date('d') > $i && date('m') == date('m', $firstDayOfMonth)) {
-            $class .= ' inactiveDate';
+            $class .= ' inactive-date';
         };
         $calendar .= "<div class='$class' id='$i' type='submit' onclick='submitAppointmentDate($i, $month, $year)' name='querydate'>$i</div>";
     }

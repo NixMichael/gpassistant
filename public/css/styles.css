@@ -28,7 +28,7 @@ body textarea[type=submit]:hover, body input[type=submit]:hover {
   background-color: rgba(84, 182, 182, 0.55);
 }
 body textarea:focus, body input:focus {
-  box-shadow: 0 0 0 5px orange;
+  box-shadow: 0 0 0 5px #cf9528;
 }
 
 header, footer {
@@ -164,23 +164,23 @@ footer {
   align-items: center;
   text-align: center;
 }
-.container .logIn {
+.container .log-in {
   box-shadow: 0 0 0 10px white, 0 0 0 15px #8db3c5, 0 10px 25px 0 rgba(20, 20, 20, 0.7);
   background-color: rgba(141, 179, 197, 0.2);
   border-radius: 10px;
   padding: 1rem 3rem;
   margin: 4rem 0;
 }
-.container .logIn form {
+.container .log-in form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.container .logIn form input {
+.container .log-in form input {
   font-size: 0.9rem;
   margin: 0;
 }
-.container .logIn form .fielderror {
+.container .log-in form .field-error {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -189,14 +189,14 @@ footer {
   font-size: 0.8rem;
   color: #c93434;
 }
-.container .logIn a {
+.container .log-in a {
   color: black;
   padding: 0.35rem 0.75rem;
   font-size: 0.7rem;
 }
-.container .logIn a:focus {
+.container .log-in a:focus {
   border: none;
-  background-color: orange;
+  background-color: #cf9528;
 }
 
 .msg-container {
@@ -249,7 +249,7 @@ footer {
   background-color: rgba(84, 182, 182, 0.55);
 }
 .msg-container .messages .message-button:focus {
-  box-shadow: 0 0 0 5px orange;
+  box-shadow: 0 0 0 5px #cf9528;
 }
 .msg-container .messages .results-header {
   display: none;
@@ -333,7 +333,7 @@ footer {
 .msg-container .messages .msg-area .message-button:hover {
   background-color: rgba(84, 182, 182, 0.55);
 }
-.msg-container .newMessageContainer {
+.msg-container .new-message-container {
   position: absolute;
   inset: 0;
   background-color: rgba(255, 255, 255, 0.95);
@@ -344,7 +344,7 @@ footer {
   justify-content: center;
   align-items: flex-start;
 }
-.msg-container .newMessageContainer .newMessage {
+.msg-container .new-message-container .new-message {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -355,13 +355,13 @@ footer {
   color: white;
   background-color: #54b6b6;
 }
-.msg-container .newMessageContainer .newMessage .message-stream {
+.msg-container .new-message-container .new-message .message-stream {
   width: 100%;
   max-height: 30vh;
   overflow-y: scroll;
   padding: 0;
 }
-.msg-container .newMessageContainer .newMessage .message-stream li {
+.msg-container .new-message-container .new-message .message-stream li {
   list-style: none;
   text-align: left;
   padding: 1rem;
@@ -369,15 +369,15 @@ footer {
   background-color: #e2dddd;
   margin-bottom: 0.25rem;
 }
-.msg-container .newMessageContainer .newMessage .message-stream .doctor {
+.msg-container .new-message-container .new-message .message-stream .doctor {
   background-color: #cde0d4;
 }
-.msg-container .newMessageContainer .newMessage textarea {
+.msg-container .new-message-container .new-message textarea {
   resize: none;
   width: 100%;
   height: 15ch;
 }
-.msg-container .newMessageContainer .newMessage input, .msg-container .newMessageContainer .newMessage button {
+.msg-container .new-message-container .new-message input, .msg-container .new-message-container .new-message button {
   margin: 2rem;
   color: black;
   text-decoration: none;
@@ -388,7 +388,7 @@ footer {
   padding: 0.5rem 0.75rem;
   cursor: pointer;
 }
-.msg-container .newMessageContainer .newMessage input:hover, .msg-container .newMessageContainer .newMessage button:hover {
+.msg-container .new-message-container .new-message input:hover, .msg-container .new-message-container .new-message button:hover {
   background-color: white;
 }
 
@@ -444,7 +444,7 @@ footer {
 .current-appointments .button:focus {
   border: none;
   background-color: #54b6b6;
-  box-shadow: 0 0 0 5px orange;
+  box-shadow: 0 0 0 5px #cf9528;
 }
 
 .appointments-container {
@@ -497,24 +497,24 @@ footer {
 .appointments-container .calendar-area > div > div:first-of-type .calendar-heading .no-highlight:focus {
   border: none;
   background: none;
-  color: orange;
+  color: #cf9528;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area {
   display: grid;
   grid-template-columns: repeat(7, 8ch);
   justify-content: center;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea > .calendar-element-days {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area > .calendar-element-days {
   padding-bottom: 3px;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea > .calendar-element {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area > .calendar-element {
   background-color: #54b6b6;
   margin: 3px;
   padding: 0.5rem 0;
   color: white;
   text-decoration: none;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea > .calendar-element:hover {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area > .calendar-element:hover {
   color: black;
   background-color: rgba(84, 182, 182, 0.55);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
@@ -522,14 +522,14 @@ footer {
   font-size: 1.1rem;
   cursor: pointer;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea .inactiveDate {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area .inactive-date {
   pointer-events: none;
   color: rgba(0, 0, 0, 0.3);
   background: none;
   outline: 1px solid rgba(0, 0, 0, 0.1);
   outline-offset: -1px;
 }
-.appointments-container .calendar-area > div > div:first-of-type .datesArea .highlight-date {
+.appointments-container .calendar-area > div > div:first-of-type .dates-area .highlight-date {
   color: black;
   background-color: rgba(84, 182, 182, 0.25);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
@@ -649,7 +649,7 @@ footer {
 }
 .confirmation-message a:focus {
   border: none;
-  box-shadow: 0 0 0 5px orange;
+  box-shadow: 0 0 0 5px #cf9528;
 }
 
 .doctor-appointments {
@@ -709,7 +709,7 @@ footer {
   box-shadow: 0 0 0 5px #54b6b6;
 }
 .doctor-appointments li div span:last-of-type button:focus {
-  box-shadow: 0 0 0 5px orange;
+  box-shadow: 0 0 0 5px #cf9528;
 }
 .doctor-appointments li div:last-of-type {
   display: flex;
@@ -747,35 +747,9 @@ footer {
     z-index: 11;
   }
   header nav .menu {
-    display: flex;
     position: relative;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    height: 100%;
     background: none;
-  }
-  header nav .menu li {
-    list-style: none;
-    margin: 1rem 0;
-    padding: 0 2rem;
-    text-align: center;
-    position: relative;
-  }
-  header nav .menu li a {
-    text-decoration: none;
-    color: white;
-    padding-bottom: 5px;
-  }
-  header nav .menu li a:hover {
-    color: #54b6b6;
-  }
-  header nav .menu li .link-highlight {
-    border-bottom: 5px solid #54b6b6;
-  }
-  header nav .menu li .link-highlight:hover {
-    color: white;
   }
 
   .msg-container .messages .message-header {
